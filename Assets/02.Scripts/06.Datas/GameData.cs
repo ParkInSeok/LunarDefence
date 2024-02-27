@@ -15,6 +15,10 @@ public class GameData : ScriptableObject
     [Header("Test")]
     public List<AdvantageData> datas = new List<AdvantageData>();
 
+
+    //To Do 뒤끝서버 이용해서 제이슨 데이터가져와서 세팅하기
+
+
     public void ClearData()
     {
         towerDatas.Clear();
