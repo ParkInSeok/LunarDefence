@@ -14,9 +14,18 @@ public class EnemyData : DataBase
 {
     public float moveSpeed;             //이동속도
 
-    public EnemyType enemyType;         //타입
+    protected int enemyType;         //타입
 
-   
+    public EnemyType EnemyType
+    {
+        get
+        {
+            if (enemyType >= 0 && enemyType < System.Enum.GetValues(typeof(EnemyType)).Length)
+                return (EnemyType)enemyType;
+            else
+                return EnemyType.normal;
+        }
+    }
 
 
 

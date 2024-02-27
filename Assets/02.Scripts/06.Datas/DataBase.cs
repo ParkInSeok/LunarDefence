@@ -16,6 +16,13 @@ public enum DamageType{
     masicDamageType,
 }
 
+public enum UnitType{
+    towerData,
+    enemyData,
+    heroData,
+}
+
+
 
 
 [Serializable]
@@ -33,8 +40,10 @@ public class DataBase
     protected int propertyState;               //속성상태
     protected int damageType;               //데미지 타입
 
+    protected int unitType;                 //데이터 타입
+
     public PropertyState PropertyState { get { 
-            if(propertyState >= 0)
+            if(propertyState >= 0 && propertyState < System.Enum.GetValues(typeof (PropertyState)).Length)
             {
                 return (PropertyState)propertyState;
             }
@@ -48,7 +57,7 @@ public class DataBase
     public DamageType DamageType {
         get
         {
-            if (damageType >= 0)
+            if (damageType >= 0 && damageType < System.Enum.GetValues(typeof (DamageType)).Length)
                 return (DamageType)damageType;
             else
             {
@@ -57,6 +66,15 @@ public class DataBase
         }
     }
 
+    public UnitType UnitType {
+        get{
+            if(unitType >= 0 && unitType < System.Enum.GetValues(typeof (UnitType)).Length)
+                return (UnitType)unitType;
+            else
+                return UnitType.towerData;
+        }
+
+    }
 
 
 }

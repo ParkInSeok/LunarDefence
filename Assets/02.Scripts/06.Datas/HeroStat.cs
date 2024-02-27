@@ -4,11 +4,10 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class TowerStat : TowerStatBase
+public class HeroStat : TowerStatBase
 {
-
-    public SkillDataBase skillData;
-
+    
+    public List<SkillDataBase> skillDatas = new List<SkillDataBase>();
 
 
 }
