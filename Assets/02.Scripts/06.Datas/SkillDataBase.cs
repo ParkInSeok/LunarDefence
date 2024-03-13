@@ -33,13 +33,19 @@ public class SkillDataBase
 {
     public string skillUniqueKey;                   //스킬 유니크키
     public string skillModelUniqueKey;              //스킬 모델 유니크 키
-    public int dmageCoefficient;                 //스킬계수 
+    public string skillIconUniqueKey;               //스킬 아이콘
+    public int damageCoefficient;                 //스킬계수 
 
     public int skillLevel;                          //스킬 레벨 
     //스킬 매커니즘 
-    public int skillType;                           //스킬 타입
-    public int buffStatType;                        //버프 스탯타입
+    protected int skillType;                           //스킬 타입
+    protected int buffStatType;                        //버프 스탯타입
 
+
+    public SkillDataBase(){
+
+    }
+    
     public SkillType SkillType
     {
         get
@@ -60,6 +66,15 @@ public class SkillDataBase
             else
                 return BuffStatType.none;
         }
+    }
+
+    public Skill SkillDataConvertToSkill()
+    {
+        Skill skill = new Skill(skillUniqueKey, skillModelUniqueKey,skillIconUniqueKey,
+                        damageCoefficient, skillLevel, SkillType,BuffStatType);
+
+        return skill;
+
     }
 
 }

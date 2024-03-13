@@ -40,7 +40,7 @@ public class DataBase
     protected int propertyState;               //속성상태
     protected int damageType;               //데미지 타입
 
-    protected int unitType;                 //데이터 타입
+    protected int unitType;                 //유닛 타입
 
     public PropertyState PropertyState { get { 
             if(propertyState >= 0 && propertyState < System.Enum.GetValues(typeof (PropertyState)).Length)

@@ -15,8 +15,18 @@ public class AdvantageData
 
     public int level;                               //레벨
 
-    
+    public AdvantageData()
+    {
+        
+    }
 
+
+    public Advantage AdvantageDataConvertToAdvantage()
+    {
+        Advantage advantage = new Advantage(uniqueKey , iconUniqueKey, title, info , level);
+
+        return advantage;
+    }
 
 
 

@@ -4,28 +4,88 @@ using UnityEngine;
 
 public class TestGameData : MonoBehaviour
 {
-   
+
     public GameData data;
 
 
     public int getCount;
-
+    public GameObject testObject;
+    public Sprite testsprite;
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
-            data.datas = data.GetRandomAdvantageData(getCount);
+            DataManager.Instance.GetGameObject("Cube.prefab",SetGameObject);
+
         }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            DataManager.Instance.GetSprite("testsprite.png", SetSprite);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.F6))
+        {
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.F7))
+        {
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.F8))
+        {
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.F9))
+        {
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+
+        }
+
+
+
     }
 
 
+
+
+    public void SetSprite(Sprite set)
+    {
+        testsprite = set;
+        
+    }
+
+    void SetGameObject(GameObject set)
+    {
+        testObject = set;
+    }
 
 
 }

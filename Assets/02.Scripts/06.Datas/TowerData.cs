@@ -10,4 +10,7 @@ public class TowerData : DataBase
     public int criticalDamage;      //크증뎀
     public int lifeBloodAbsorption; // 흡혈
    
+    public TowerData(){
+        
+    }
 }

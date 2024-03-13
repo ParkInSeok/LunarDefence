@@ -15,6 +15,10 @@ public class EnemyData : DataBase
     public float moveSpeed;             //이동속도
 
     protected int enemyType;         //타입
+    public EnemyData()
+    {
+        
+    }
 
     public EnemyType EnemyType
     {

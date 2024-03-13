@@ -11,12 +11,17 @@ public class GameData : ScriptableObject
     [SerializeField]protected List<EnemyData> enemyDatas = new List<EnemyData>();
     [SerializeField]protected List<TowerData> heroDatas = new List<TowerData>();
     [SerializeField]protected List<AdvantageData> advantageDatas = new List<AdvantageData>();
+    [SerializeField]protected List<SkillDataBase> skillDatas = new List<SkillDataBase>();
+
+
+    [SerializeField] protected string version;
+
 
     [Header("Test")]
     public List<AdvantageData> datas = new List<AdvantageData>();
 
 
-    //To Do 뒤끝서버 이용해서 제이슨 데이터가져와서 세팅하기
+    //To Do 뒤끝서버 이용해서 제이슨 데이터가져와서 세팅하기    version 에 따라서 데이터  받아오는거 처리 
 
 
     public void ClearData()
@@ -25,6 +30,7 @@ public class GameData : ScriptableObject
         enemyDatas.Clear();
         heroDatas.Clear();
         advantageDatas.Clear();
+        skillDatas.Clear();
     }
 
     public TowerData GetTowerData(string _uniqueKey)
@@ -50,10 +56,8 @@ public class GameData : ScriptableObject
         for(int i = 0; i < count; i++)
         {
             GetRandomIndex(randomIndexs);
-
-         
         }
-        Debug.Log(randomIndexs.Count);
+
         List<AdvantageData> randomDatas = new List<AdvantageData>();
 
         for (int i = 0; i < randomIndexs.Count; i++)
@@ -83,7 +87,14 @@ public class GameData : ScriptableObject
         }
 
     }
+    
 
+    public Skill GetSkill(string _uniqueKey)
+    {
+        SkillDataBase _skillData = skillDatas.Find((x)=> x.skillUniqueKey.Equals(_uniqueKey) == true);
+        Skill getSkill = new Skill(_skillData);
+        return getSkill;
+    }
 
 
 }
