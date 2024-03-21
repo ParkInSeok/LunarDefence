@@ -32,7 +32,7 @@ public class Advantage
         level = _level;
 
         //todo iconuniquekey convert to icon
-        DataManager.Instance.GetSprite("testsprite.png",SetIconSprite);
+        DataManager.Instance.GetSprite(iconUniqueKey, SetIconSprite);
 
     }
 
@@ -45,7 +45,7 @@ public class Advantage
         level = advantageData.level;
 
         //todo iconuniquekey convert to icon
-
+        DataManager.Instance.GetSprite(iconUniqueKey, SetIconSprite);
 
     }
 

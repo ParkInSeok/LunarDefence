@@ -25,7 +25,17 @@ MonoBehaviour:
     critical: 0
     criticalDamage: 0
     lifeBloodAbsorption: 0
-  enemyDatas: []
+  enemyDatas:
+  - uniqueKey: 
+    modelUniqueKey: 
+    atk: 0
+    hp: 0
+    def: 0
+    spdef: 0
+    attackSpeed: 0
+    propertyReinforcePower: 0
+    propertyResistPower: 0
+    moveSpeed: 0
   heroDatas: []
   advantageDatas:
   - uniqueKey: 1
@@ -48,5 +58,6 @@ MonoBehaviour:
     title: 
     info: 
     level: 0
+  skillDatas: []
   version: 
   datas: []

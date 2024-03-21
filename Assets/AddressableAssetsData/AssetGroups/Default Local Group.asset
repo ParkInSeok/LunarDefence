@@ -16,7 +16,12 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: df2d4ab7ae02e3144bb14dd9b5642d52
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: ef1e294fe861333468fe5abb7c202b73
+    m_Address: testsprite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Texture
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 03e8369acbed02440b1688bef13b2ed2, type: 2}
   m_SchemaSet:

@@ -7,9 +7,9 @@ using UnityEngine;
 public class GameData : ScriptableObject
 {
     
-    [SerializeField]protected List<TowerData> towerDatas = new List<TowerData>();
+    [SerializeField]protected List<TowerDataBase> towerDatas = new List<TowerDataBase>();
     [SerializeField]protected List<EnemyData> enemyDatas = new List<EnemyData>();
-    [SerializeField]protected List<TowerData> heroDatas = new List<TowerData>();
+    [SerializeField]protected List<TowerDataBase> heroDatas = new List<TowerDataBase>();
     [SerializeField]protected List<AdvantageData> advantageDatas = new List<AdvantageData>();
     [SerializeField]protected List<SkillDataBase> skillDatas = new List<SkillDataBase>();
 
@@ -33,14 +33,14 @@ public class GameData : ScriptableObject
         skillDatas.Clear();
     }
 
-    public TowerData GetTowerData(string _uniqueKey)
+    public TowerDataBase GetTowerData(string _uniqueKey)
     {
         var data = towerDatas.Find((x)=>x.uniqueKey.Equals(_uniqueKey) == true);
         return data;
     }
 
 
-    public TowerData GetHeroData(string _uniqueKey)
+    public TowerDataBase GetHeroData(string _uniqueKey)
     {
         var data = heroDatas.Find((x)=>x.uniqueKey.Equals(_uniqueKey) == true);
         return data;

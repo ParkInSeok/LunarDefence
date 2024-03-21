@@ -34,7 +34,9 @@ public class Skill
         skillType = _skillType;
         buffStatType = _BuffStatType;
 
-        //todo set skillmodel , set skillicon
+        DataManager.Instance.GetGameObject(skillModelUniqueKey, SetModel);
+        DataManager.Instance.GetSprite(skillIconUniqueKey, SetSprite);
+
 
     }
 
@@ -48,9 +50,22 @@ public class Skill
         skillType = _skillDataBase.SkillType;
         buffStatType = _skillDataBase.BuffStatType;
 
-        //todo set skillmodel , set skillicon
+        DataManager.Instance.GetGameObject(skillModelUniqueKey, SetModel);
+        DataManager.Instance.GetSprite(skillModelUniqueKey, SetSprite);
+
+
 
     }
 
+    void SetModel(GameObject obj)
+    {
+        skillModel = obj;
+
+    }
+
+    void SetSprite(Sprite _sprite)
+    {
+        skillIcon = _sprite;
+    }
 
 }

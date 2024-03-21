@@ -22,7 +22,7 @@ public class TestGameData : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            DataManager.Instance.GetGameObject("Cube.prefab",SetGameObject);
+            DataManager.Instance.GetGameObject("Cube",SetGameObject);
 
         }
         if (Input.GetKeyDown(KeyCode.F2))
@@ -31,7 +31,7 @@ public class TestGameData : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
-            DataManager.Instance.GetSprite("testsprite.png", SetSprite);
+            DataManager.Instance.GetSprite("testsprite", SetSprite);
         }
 
         if (Input.GetKeyDown(KeyCode.F4))

@@ -5,16 +5,13 @@ using UnityEngine;
 
 
 [Serializable]
-public class EnemyStat
+public class EnemyStat : StatBase
 {
     protected EnemyData origineEnemyStat;
-    protected EnemyData currentEnemyStat;
+    [SerializeField] protected EnemyData currentEnemyStat;
 
     public EnemyData CurrentTowerStat { get { return currentEnemyStat; } }
 
-    protected UnitState unitState;
-
-    public Action dieEventHandler;
 
 
 
@@ -33,7 +30,7 @@ public class EnemyStat
         currentEnemyStat.moveSpeed -= currentEnemyStat.moveSpeed * (float)percent / 100;
     }
 
-    public virtual void GetDamage(int _damage, DamageType _damageType)
+    public override void GetDamage(int _damage, DamageType _damageType)
     {
         //TO DO property type , enemy type not exist 0225 
         if (unitState == UnitState.die)
@@ -62,7 +59,7 @@ public class EnemyStat
 
     }
 
-    public void DieEvent()
+    public override void DieEvent()
     {
         unitState = UnitState.die;
 

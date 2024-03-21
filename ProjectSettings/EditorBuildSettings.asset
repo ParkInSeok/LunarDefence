@@ -17,4 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/04.InfiniteMode.unity
     guid: f9582d462038c7a4f97636866bec27e1
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: eeaaec527c0d11d448dee947f86db03a,
+      type: 2}
