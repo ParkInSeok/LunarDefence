@@ -11,7 +11,7 @@ public class TowerStat : StatBase
 {
 
     protected TowerData origineTowerStat;
-    protected TowerData currentTowerStat;
+    [SerializeField] protected TowerData currentTowerStat;
 
     
 

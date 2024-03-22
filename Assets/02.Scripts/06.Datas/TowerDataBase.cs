@@ -13,4 +13,13 @@ public class TowerDataBase : DataBase
     public TowerDataBase(){
         
     }
+
+
+    public TowerDataBase(int _propertyState, int _damageType, int _unitType)
+    {
+        propertyState = _propertyState;
+        damageType = _damageType;
+        unitType = _unitType;
+    }
+
 }

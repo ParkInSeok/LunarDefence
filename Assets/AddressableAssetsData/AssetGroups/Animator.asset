@@ -10,21 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: LunarBundle
+  m_Name: Animator
   m_EditorClassIdentifier: 
-  m_GroupName: LunarBundle
+  m_GroupName: Animator
   m_Data:
     m_SerializedData: []
-  m_GUID: de15e5b55f76ddd49b4a1f662b903ef0
-  m_SerializeEntries:
-  - m_GUID: 59970e54fae58344db63add9ae025022
-    m_Address: Cube
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Prefab
+  m_GUID: 1647b8d1dc7366e45a28f58b15f41c13
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 03e8369acbed02440b1688bef13b2ed2, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 92341af4542e3ff4ab24611120d64623, type: 2}
-    - {fileID: 11400000, guid: 47cd112909bc7b0408a41fc090ec87d1, type: 2}
+    - {fileID: 11400000, guid: 80ebd5c748390ba4a8b146d88c5d5cd2, type: 2}
+    - {fileID: 11400000, guid: 80392dafff2d3e443beb58c0cf296a76, type: 2}

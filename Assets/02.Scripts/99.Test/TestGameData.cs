@@ -22,8 +22,8 @@ public class TestGameData : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            DataManager.Instance.GetGameObject("Cube",SetGameObject);
-
+            DataManager.Instance.GetGameObject("Enemy",SetGameObject);
+            
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
@@ -85,6 +85,11 @@ public class TestGameData : MonoBehaviour
     void SetGameObject(GameObject set)
     {
         testObject = set;
+
+        var enemy = testObject.GetComponent<Enemy>();
+
+        enemy.Init(DataManager.Instance.GetEnemyData("NormalMonster_Snake"));
+
     }
 
 

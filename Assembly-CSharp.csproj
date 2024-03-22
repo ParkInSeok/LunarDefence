@@ -64,9 +64,10 @@
     <Compile Include="Assets\02.Scripts\01.StartScene\BackEndLogin.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\EnemyData.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\TowerData.cs" />
+    <Compile Include="Assets\02.Scripts\06.Datas\BGDataBaseGenerate.cs" />
     <Compile Include="Assets\TheBackend\Toolkit\SendQueueMgr.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\TowerStat.cs" />
-    <Compile Include="Assets\02.Scripts\06.Datas\Skill.cs" />
+    <Compile Include="Assets\02.Scripts\07.Unit\Skill.cs" />
     <Compile Include="Assets\02.Scripts\05.Managers\NetworkManager.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\StatBase.cs" />
     <Compile Include="Assets\02.Scripts\07.Unit\Enemy.cs" />
@@ -75,12 +76,15 @@
     <Compile Include="Assets\02.Scripts\06.Datas\SkillDataBase.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\UserData.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\02.Scripts\06.Datas\Advantage.cs" />
+    <Compile Include="Assets\02.Scripts\07.Unit\Advantage.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\EnemyStat.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\DataBase.cs" />
     <Compile Include="Assets\02.Scripts\05.Managers\DataManager.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\HeroData.cs" />
     <Compile Include="Assets\02.Scripts\05.Managers\UIManager.cs" />
+    <Compile Include="Assets\02.Scripts\07.Unit\UnitBase.cs" />
+    <Compile Include="Assets\02.Scripts\07.Unit\Tower.cs" />
+    <Compile Include="Assets\02.Scripts\07.Unit\Hero.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TheBackend\Plugins\Android\TheBackend.iOS.dll" />

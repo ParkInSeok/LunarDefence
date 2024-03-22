@@ -1,19 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : UnitBase
 {
-
-   [SerializeField] EnemyStat stat;
+    [Header("Enemy")]
+    [SerializeField] EnemyStat stat;
 
     public EnemyStat Stat { get { return stat; } }
 
-    Animator animator;
+
+    public void Init(EnemyData _stat)
+    {
+        stat.InitStat(_stat);
+
+        CreateModel(stat.CurrentTowerStat.modelUniqueKey);
 
 
+    }
 
-    public void Init()
+    protected override void CreateModel(string modelUniqueKey)
+    {
+        base.CreateModel(modelUniqueKey);
+    }
+
+    protected override void SetModel(GameObject loadedObject)
+    {
+        base.SetModel(loadedObject);
+    }
+
+    public void Move(Transform targetHero)
     {
 
     }

@@ -37,10 +37,10 @@ public class DataBase
     public float attackSpeed;               //공속
     public float propertyReinforcePower;    //속강
     public float propertyResistPower;       //속저
-    protected int propertyState;               //속성상태
-    protected int damageType;               //데미지 타입
+    [SerializeField] protected int propertyState;               //속성상태
+    [SerializeField] protected int damageType;               //데미지 타입
 
-    protected int unitType;                 //유닛 타입
+    [SerializeField] protected int unitType;                 //유닛 타입
 
     public PropertyState PropertyState { get { 
             if(propertyState >= 0 && propertyState < System.Enum.GetValues(typeof (PropertyState)).Length)

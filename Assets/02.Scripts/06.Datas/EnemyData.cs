@@ -14,10 +14,17 @@ public class EnemyData : DataBase
 {
     public float moveSpeed;             //이동속도
 
-    protected int enemyType;         //타입
+    [SerializeField] protected int enemyType;         //타입
     public EnemyData()
     {
         
+    }
+
+    public EnemyData(int _propertyState, int _damageType, int _unitType)
+    {
+        propertyState = _propertyState;
+        damageType = _damageType;
+        unitType = _unitType;
     }
 
     public EnemyType EnemyType
