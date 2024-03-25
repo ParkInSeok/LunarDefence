@@ -17,5 +17,13 @@ public class Hero : UnitBase
         CreateModel(stat.CurrentTowerStat.modelUniqueKey);
     }
 
+    public override void ChangeAnimateState(UnitAnimateState _state, float animSpeed = 1)
+    {
+        throw new System.NotImplementedException();
+    }
 
+    public override void GetDamage(int _damage, DamageType _damageType)
+    {
+        throw new System.NotImplementedException();
+    }
 }

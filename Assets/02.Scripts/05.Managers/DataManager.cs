@@ -15,25 +15,15 @@ using BansheeGz.BGDatabase;
 public class DataManager : Singleton<DataManager>
 {
 
-    Dictionary<string, GameObject> loadAssetPrefabs = new Dictionary<string, GameObject>();
-    Dictionary<string, Sprite> loadAssetSprite = new Dictionary<string, Sprite>();
+    List<LoadClass> loadAssetList = new List<LoadClass>();
 
+    //List<AsyncOperationHandle> loadAssetList = new List<AsyncOperationHandle>();
 
-    List<AsyncOperationHandle> loadAssetList = new List<AsyncOperationHandle>();
+    [SerializeField] GameData gameData;
 
-    GameData data;
-
-    public GameData GameData { get { return data; } }
-
-    
-    [SerializeField] List<EnemyData> enemyDatas = new List<EnemyData>();
-    [SerializeField] List<TowerData> towerDatas = new List<TowerData>();
-    [SerializeField] List<HeroData> heroDatas = new List<HeroData>();
-
+    public GameData GameData { get { return gameData; } }
 
   
-
-    // Start is called before the first frame update
     void Start()
     {
      
@@ -49,10 +39,15 @@ public class DataManager : Singleton<DataManager>
     }
     protected override void Init()
     {
+        gameData.ClearData();
 
         SetEnemyData();
         SetHeroData();
         SetTowerData();
+        SetSkillData();
+        SetAdvantageData();
+
+
 
     }
 
@@ -72,7 +67,7 @@ public class DataManager : Singleton<DataManager>
             int index = i;
 
             string _uniqueKey = enemyData[index].Get<string>("uniqueKey");
-            var foundData = enemyDatas.Find((x) => x.uniqueKey.Equals(_uniqueKey));
+            var foundData = gameData.GetEnemyData(_uniqueKey);
 
             if (foundData != null)
                 continue;
@@ -92,7 +87,7 @@ public class DataManager : Singleton<DataManager>
             data.propertyResistPower = enemyData[index].Get<float>("propertyResistPower");
             data.moveSpeed = enemyData[index].Get<float>("moveSpeed");
 
-            enemyDatas.Add(data);
+            gameData.SetData(data);
 
 
         }
@@ -110,7 +105,7 @@ public class DataManager : Singleton<DataManager>
             int index = i;
 
             string _uniqueKey = towerData[index].Get<string>("uniqueKey");
-            var foundData = heroDatas.Find((x) => x.uniqueKey.Equals(_uniqueKey));
+            var foundData = gameData.GetHeroData(_uniqueKey);
 
             if (foundData != null)
                 continue;
@@ -133,7 +128,7 @@ public class DataManager : Singleton<DataManager>
             data.lifeBloodAbsorption = towerData[index].Get<int>("lifeBloodAbsorption");
             data.skillUniqueKeys = towerData[index].Get<string>("skillUniqueKeys");
 
-            heroDatas.Add(data);
+            gameData.SetData(data);
 
 
         }
@@ -152,7 +147,7 @@ public class DataManager : Singleton<DataManager>
             int index = i;
 
             string _uniqueKey = towerData[index].Get<string>("uniqueKey");
-            var foundData = towerDatas.Find((x) => x.uniqueKey.Equals(_uniqueKey));
+            var foundData = gameData.GetTowerData(_uniqueKey);
 
             if (foundData != null)
                 continue;
@@ -175,11 +170,78 @@ public class DataManager : Singleton<DataManager>
             data.lifeBloodAbsorption = towerData[index].Get<int>("lifeBloodAbsorption");
             data.skillUniqueKey = towerData[index].Get<string>("skillUniqueKey");
 
-            towerDatas.Add(data);
+            gameData.SetData(data);
 
 
         }
     }
+
+    void SetSkillData()
+    {
+        var dbData = BGRepo.I["SkillData"];
+
+        if (dbData == null)
+            Debug.Log("meta null");
+
+        for (int i = 0; i < dbData.CountEntities; i++)
+        {
+            int index = i;
+
+            string _uniqueKey = dbData[index].Get<string>("skillUniqueKey");
+            var foundData = gameData.GetSkillData(_uniqueKey);
+
+            if (foundData != null)
+                continue;
+
+            var skillType = dbData[index].Get<int>("skillType");
+            var buffStatType = dbData[index].Get<int>("buffStatType");
+            SkillDataBase data = new SkillDataBase(skillType, buffStatType);
+            data.skillUniqueKey = _uniqueKey;
+            data.skillModelUniqueKey = dbData[index].Get<string>("skillModelUniqueKey");
+            data.skillIconUniqueKey = dbData[index].Get<string>("skillIconUniqueKey");
+            data.damageCoefficient = dbData[index].Get<int>("damageCoefficient");
+
+            gameData.SetData(data);
+
+
+        }
+
+
+
+    }
+
+    void SetAdvantageData()
+    {
+        var dbData = BGRepo.I["AdvantageData"];
+
+        if (dbData == null)
+            Debug.Log("meta null");
+
+        for (int i = 0; i < dbData.CountEntities; i++)
+        {
+            int index = i;
+
+            string _uniqueKey = dbData[index].Get<string>("uniqueKey");
+            var foundData = gameData.GetAdvantageData(_uniqueKey);
+
+            if (foundData != null)
+                continue;
+         
+            AdvantageData data = new AdvantageData();
+            data.uniqueKey = _uniqueKey;
+            data.iconUniqueKey = dbData[index].Get<string>("iconUniqueKey");
+            data.title = dbData[index].Get<string>("title");
+            data.info = dbData[index].Get<string>("info");
+            data.level = dbData[index].Get<int>("level");
+
+            gameData.SetData(data);
+
+        }
+
+
+
+    }
+
 
     #endregion
 
@@ -199,26 +261,31 @@ public class DataManager : Singleton<DataManager>
     IEnumerator GetFileEvent(string key, Action<GameObject> endCallBack)
     {
 
-        if (loadAssetPrefabs.ContainsKey(key))
+        var existLoadedAsset = loadAssetList.Find((x) =>
+              x.Type == LoadClassType.GameObject && x.IsExist(key) == true
+        );
+
+        if(existLoadedAsset != null)
         {
-            var loadObject = Instantiate(loadAssetPrefabs[key], Vector3.zero, Quaternion.identity);
+            var loadObject = Instantiate(existLoadedAsset.GetGameObject, Vector3.zero, Quaternion.identity);
             endCallBack?.Invoke(loadObject);
         }
         else
         {
             Addressables.LoadAssetAsync<GameObject>(key).Completed += (AsyncOperationHandle<GameObject> obj) =>
             {
-                if (loadAssetList.Contains(obj) == false)
-                    loadAssetList.Add(obj);
-
-                loadAssetPrefabs.Add(key, obj.Result);
+                var newData = new LoadClass(key, obj, obj.Result);
+                loadAssetList.Add(newData);
 
                 var loadObject = Instantiate(obj.Result, Vector3.zero, Quaternion.identity);
 
                 endCallBack?.Invoke(loadObject);
 
             };
+
         }
+
+        
 
 
          yield return null;
@@ -233,33 +300,36 @@ public class DataManager : Singleton<DataManager>
         }
 
         loadAssetList.Clear();
-        loadAssetPrefabs.Clear();
     }
  
 
     IEnumerator GetFileEvent(string key, Action<Sprite> endCallBack)
     {
-        if (loadAssetSprite.ContainsKey(key))
+
+        var existLoadedAsset = loadAssetList.Find((x) =>
+            x.Type == LoadClassType.Sprite && x.IsExist(key) == true
+      );
+
+        if (existLoadedAsset != null)
         {
-            var loadSprite = loadAssetSprite[key];
+            var loadSprite = existLoadedAsset.GetSprite;
             endCallBack?.Invoke(loadSprite);
         }
         else
         {
             Addressables.LoadAssetAsync<Texture2D>(key).Completed += (AsyncOperationHandle<Texture2D> obj) =>
             {
-                if (loadAssetList.Contains(obj) == false)
-                    loadAssetList.Add(obj);
-
-
                 var sprite = Sprite.Create(obj.Result, new Rect(0, 0, obj.Result.width, obj.Result.height), Vector2.one * 0.5f);
-                loadAssetSprite.Add(key, sprite);
+                var newData = new LoadClass(key, obj, sprite);
+                loadAssetList.Add(newData);
+
                 sprite.name = key;
 
                 endCallBack?.Invoke(sprite);
 
             };
         }
+
 
         yield return null;
 
@@ -289,32 +359,7 @@ public class DataManager : Singleton<DataManager>
     }
 
 
-    public EnemyData GetEnemyData(string _uniqueKey)
-    {
-        var data = enemyDatas.Find((x) => x.uniqueKey.Equals(_uniqueKey));
-        if (data == null)
-            return null;
-        else
-            return data;
-    }
-
-    public HeroData GetHeroData(string _uniqueKey)
-    {
-        var data = heroDatas.Find((x) => x.uniqueKey.Equals(_uniqueKey));
-        if (data == null)
-            return null;
-        else
-            return data;
-    }
-
-    public TowerData GetTowerData(string _uniqueKey)
-    {
-        var data = towerDatas.Find((x) => x.uniqueKey.Equals(_uniqueKey));
-        if (data == null)
-            return null;
-        else
-            return data;
-    }
+   
 
 
 

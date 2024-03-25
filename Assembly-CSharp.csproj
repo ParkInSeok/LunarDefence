@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\02.Scripts\99.Test\TestGameData.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\GameData.cs" />
+    <Compile Include="Assets\02.Scripts\07.Unit\Hero.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\TowerDataBase.cs" />
     <Compile Include="Assets\02.Scripts\05.Managers\UtilityManager.cs" />
     <Compile Include="Assets\02.Scripts\05.Managers\01.Generic\Singleton.cs" />
@@ -76,15 +77,16 @@
     <Compile Include="Assets\02.Scripts\06.Datas\SkillDataBase.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\UserData.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\02.Scripts\07.Unit\UnitBase.cs" />
     <Compile Include="Assets\02.Scripts\07.Unit\Advantage.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\EnemyStat.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\DataBase.cs" />
     <Compile Include="Assets\02.Scripts\05.Managers\DataManager.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\HeroData.cs" />
     <Compile Include="Assets\02.Scripts\05.Managers\UIManager.cs" />
-    <Compile Include="Assets\02.Scripts\07.Unit\UnitBase.cs" />
     <Compile Include="Assets\02.Scripts\07.Unit\Tower.cs" />
-    <Compile Include="Assets\02.Scripts\07.Unit\Hero.cs" />
+    <Compile Include="Assets\02.Scripts\06.Datas\MemoryLoadClass\LoadClass.cs" />
+    <Compile Include="Assets\02.Scripts\07.Unit\AnimatorController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TheBackend\Plugins\Android\TheBackend.iOS.dll" />

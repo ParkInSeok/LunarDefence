@@ -528,9 +528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroy: 1
-  enemyDatas: []
-  towerDatas: []
-  heroDatas: []
+  gameData: {fileID: 11400000, guid: fb21b5a1147926d4e98dca177156bf1e, type: 2}
 --- !u!4 &1648877114
 Transform:
   m_ObjectHideFlags: 0

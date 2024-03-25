@@ -2,11 +2,6 @@
 using System;
 using UnityEngine;
 
-public enum UnitState
-{
-    alive,
-    die,
-}
 
 
 
@@ -14,7 +9,7 @@ public enum UnitState
 public abstract class StatBase 
 {
 
-    [SerializeField] protected UnitState unitState;
+
 
     public Action dieEventHandler;
 

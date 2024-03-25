@@ -7,14 +7,14 @@ using UnityEngine;
 public class GameData : ScriptableObject
 {
     
-    [SerializeField]protected List<TowerDataBase> towerDatas = new List<TowerDataBase>();
+    [SerializeField] protected string version;
+    [SerializeField]protected List<TowerData> towerDatas = new List<TowerData>();
     [SerializeField]protected List<EnemyData> enemyDatas = new List<EnemyData>();
-    [SerializeField]protected List<TowerDataBase> heroDatas = new List<TowerDataBase>();
+    [SerializeField]protected List<HeroData> heroDatas = new List<HeroData>();
     [SerializeField]protected List<AdvantageData> advantageDatas = new List<AdvantageData>();
     [SerializeField]protected List<SkillDataBase> skillDatas = new List<SkillDataBase>();
 
 
-    [SerializeField] protected string version;
 
 
     [Header("Test")]
@@ -32,20 +32,6 @@ public class GameData : ScriptableObject
         advantageDatas.Clear();
         skillDatas.Clear();
     }
-
-    public TowerDataBase GetTowerData(string _uniqueKey)
-    {
-        var data = towerDatas.Find((x)=>x.uniqueKey.Equals(_uniqueKey) == true);
-        return data;
-    }
-
-
-    public TowerDataBase GetHeroData(string _uniqueKey)
-    {
-        var data = heroDatas.Find((x)=>x.uniqueKey.Equals(_uniqueKey) == true);
-        return data;
-    }
-
 
 
     public List<AdvantageData> GetRandomAdvantageData(int count)
@@ -95,6 +81,76 @@ public class GameData : ScriptableObject
         Skill getSkill = new Skill(_skillData);
         return getSkill;
     }
+
+    public EnemyData GetEnemyData(string _uniqueKey)
+    {
+        var data = enemyDatas.Find((x) => x.uniqueKey.Equals(_uniqueKey));
+        if (data == null)
+            return null;
+        else
+            return data;
+    }
+
+    public HeroData GetHeroData(string _uniqueKey)
+    {
+        var data = heroDatas.Find((x) => x.uniqueKey.Equals(_uniqueKey));
+        if (data == null)
+            return null;
+        else
+            return data;
+    }
+
+    public TowerData GetTowerData(string _uniqueKey)
+    {
+        var data = towerDatas.Find((x) => x.uniqueKey.Equals(_uniqueKey));
+        if (data == null)
+            return null;
+        else
+            return data;
+    }
+
+    public SkillDataBase GetSkillData(string _uniqueKey)
+    {
+        var data = skillDatas.Find((x) => x.skillUniqueKey.Equals(_uniqueKey));
+        if (data == null)
+            return null;
+        else
+            return data;
+    }
+
+    public AdvantageData GetAdvantageData(string _uniqueKey)
+    {
+        var data = advantageDatas.Find((x) => x.uniqueKey.Equals(_uniqueKey));
+        if (data == null)
+            return null;
+        else
+            return data;
+    }
+    public void SetData(EnemyData _data)
+    {
+        enemyDatas.Add(_data);
+    }
+
+    public void SetData(HeroData _data)
+    {
+        heroDatas.Add(_data);
+    }
+
+    public void SetData(TowerData _data)
+    {
+        towerDatas.Add(_data);
+    }
+    public void SetData(SkillDataBase _data)
+    {
+        skillDatas.Add(_data);
+    }
+    public void SetData(AdvantageData _data)
+    {
+        advantageDatas.Add(_data);
+    }
+
+
+
 
 
 }

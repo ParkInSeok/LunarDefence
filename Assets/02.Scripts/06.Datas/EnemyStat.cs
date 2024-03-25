@@ -8,9 +8,10 @@ using UnityEngine;
 public class EnemyStat : StatBase
 {
     protected EnemyData origineEnemyStat;
+    public EnemyData OrigineEnemyStat { get { return origineEnemyStat; } }
     [SerializeField] protected EnemyData currentEnemyStat;
 
-    public EnemyData CurrentTowerStat { get { return currentEnemyStat; } }
+    public EnemyData CurrentEnemyStat { get { return currentEnemyStat; } }
 
 
 
@@ -18,7 +19,7 @@ public class EnemyStat : StatBase
 
     public virtual void InitStat(EnemyData stat)
     {
-        unitState = UnitState.alive;
+   
 
         origineEnemyStat = stat;
 
@@ -33,16 +34,15 @@ public class EnemyStat : StatBase
     public override void GetDamage(int _damage, DamageType _damageType)
     {
         //TO DO property type , enemy type not exist 0225 
-        if (unitState == UnitState.die)
-            return;
-        var calculationDamage = _damage;
+      
+        var calculationDamage = 0;
         switch (_damageType)
         {
             case DamageType.physicalDamageType:
-                calculationDamage -= (int)((float)calculationDamage * 100f / (100f + currentEnemyStat.def)); /* *(currentEnemyStat.propertyResistPower))*/
+                calculationDamage = (int)((float)_damage * 100f / (100f + currentEnemyStat.def));/* *(currentEnemyStat.propertyResistPower))*/
                 break;
             case DamageType.masicDamageType:
-                calculationDamage -= (int)((float)calculationDamage * 100f / (100f + currentEnemyStat.spdef)); /* *(currentEnemyStat.propertyResistPower))*/
+                calculationDamage = (int)((float)_damage * 100f / (100f + currentEnemyStat.spdef)); /* *(currentEnemyStat.propertyResistPower))*/
                 break;
         }
 
@@ -61,7 +61,6 @@ public class EnemyStat : StatBase
 
     public override void DieEvent()
     {
-        unitState = UnitState.die;
 
         dieEventHandler?.Invoke();
     }

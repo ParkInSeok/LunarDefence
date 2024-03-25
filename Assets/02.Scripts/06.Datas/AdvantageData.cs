@@ -20,12 +20,32 @@ public class AdvantageData
         
     }
 
+    public AdvantageData(string _uniqueKey , string _iconUniqueKey, string _title, string _info, int _level)
+    {
+        uniqueKey = _uniqueKey;
+        iconUniqueKey = _iconUniqueKey;
+        title = _title;
+        info = _info;
+        level = _level;
+
+    }
+
+
+
+
 
     public Advantage AdvantageDataConvertToAdvantage()
     {
         Advantage advantage = new Advantage(uniqueKey , iconUniqueKey, title, info , level);
 
         return advantage;
+    }
+
+
+    public void LevelUpAdvantage()
+    {
+        level++;
+
     }
 
 

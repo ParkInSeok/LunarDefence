@@ -18,7 +18,6 @@ public class HeroStat : StatBase
 
     public virtual void InitStat(HeroData stat)
     {
-        unitState = UnitState.alive;
 
         origineHeroStat = stat;
         origineHeroStat.SetSkills(stat.skillUniqueKeys);
@@ -36,7 +35,6 @@ public class HeroStat : StatBase
 
     public override void DieEvent()
     {
-        unitState = UnitState.die;
 
         dieEventHandler?.Invoke();
     }
@@ -44,8 +42,7 @@ public class HeroStat : StatBase
     public override void GetDamage(int _damage, DamageType _damageType)
     {
         //TO DO property type , enemy type not exist 0225 
-        if (unitState == UnitState.die)
-            return;
+
 
         var calculationDamage = _damage;
         switch (_damageType)

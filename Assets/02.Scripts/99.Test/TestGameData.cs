@@ -12,6 +12,9 @@ public class TestGameData : MonoBehaviour
     public GameObject testObject;
     public Sprite testsprite;
 
+    public Enemy currentEnemy;
+
+
     void Start()
     {
 
@@ -27,7 +30,7 @@ public class TestGameData : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
-
+            currentEnemy.GetDamage(100, DamageType.physicalDamageType);
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
@@ -88,8 +91,9 @@ public class TestGameData : MonoBehaviour
 
         var enemy = testObject.GetComponent<Enemy>();
 
-        enemy.Init(DataManager.Instance.GetEnemyData("NormalMonster_Snake"));
+        enemy.Init(DataManager.Instance.GameData.GetEnemyData("NormalMonster_Snake"));
 
+        currentEnemy = enemy;
     }
 
 

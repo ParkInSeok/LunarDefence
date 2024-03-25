@@ -37,15 +37,42 @@ public class SkillDataBase
     public int damageCoefficient;                 //스킬계수 
 
     public int skillLevel;                          //스킬 레벨 
-    //스킬 매커니즘 
     protected int skillType;                           //스킬 타입
     protected int buffStatType;                        //버프 스탯타입
 
+    //TODO 스킬 매커니즘 추가는 상속받아서 처리
 
     public SkillDataBase(){
 
     }
-    
+
+    public SkillDataBase(string _skillUniqueKey, string _skillModelUniqueKey, string _skillIconUniqueKey, int _damageCoefficient,
+        int _skillLevel, int _skillType, int _buffStatType)
+    {
+        skillUniqueKey = _skillUniqueKey;
+        skillModelUniqueKey = _skillModelUniqueKey;
+        skillIconUniqueKey = _skillIconUniqueKey;
+        damageCoefficient = _damageCoefficient;
+        skillLevel = _skillLevel;
+        skillType = _skillType;
+        buffStatType = _buffStatType;
+    }
+    public SkillDataBase(int _skillType, int _buffStatType)
+    {
+        skillLevel = 1;
+        skillType = _skillType;
+        buffStatType = _buffStatType;
+    }
+
+    public void LevelUpSkill(int _damageCoefficient)
+    {
+        skillLevel++;
+        damageCoefficient += _damageCoefficient;
+    }
+
+
+
+
     public SkillType SkillType
     {
         get

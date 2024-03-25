@@ -24,7 +24,6 @@ public class TowerStat : StatBase
 
     public virtual void InitStat(TowerData stat)
     {
-        unitState = UnitState.alive;
 
         origineTowerStat = stat;
 
@@ -36,8 +35,7 @@ public class TowerStat : StatBase
     public override void GetDamage(int _damage, DamageType _damageType)
     {
         //TO DO property type , enemy type not exist 0225 
-        if (unitState == UnitState.die)
-            return;
+
 
         var calculationDamage = _damage;
         switch (_damageType)
@@ -64,7 +62,6 @@ public class TowerStat : StatBase
 
     public override void DieEvent()
     {
-        unitState = UnitState.die;
 
         dieEventHandler?.Invoke();
     }
