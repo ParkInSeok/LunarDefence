@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Animation
+  m_EditorClassIdentifier: 
+  m_GroupName: Animation
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 288c429ffc67c4b40a161c461fc50829
+  m_SerializeEntries:
+  - m_GUID: 384a0411156428045afebeadcfb39179
+    m_Address: Assets/Prefabs/Animation/Snake/Snake@Die 1.FBX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 57528e7b8ec4b444ab9359f88a0709d8
+    m_Address: Assets/Prefabs/Animation/Snake/Snake@Spawn 1.FBX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 052748a65cf9ddd49b0bf8cba8c2b2e6
+    m_Address: Assets/Prefabs/Animation/Snake/Snake@Bite Attack 1.FBX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0842df50d03bf1d4b943969f7bf813c1
+    m_Address: Assets/Prefabs/Animation/Snake/Snake@Idle 1.FBX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 03e8369acbed02440b1688bef13b2ed2, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ca7bc2914a295974baca9271aa62ae87, type: 2}
+    - {fileID: 11400000, guid: a773b7b5302995248868016e0e270829, type: 2}

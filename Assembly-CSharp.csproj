@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\02.Scripts\07.Unit\AnimatorController.cs" />
     <Compile Include="Assets\02.Scripts\99.Test\TestGameData.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\GameData.cs" />
     <Compile Include="Assets\02.Scripts\07.Unit\Hero.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Assets\02.Scripts\07.Unit\Skill.cs" />
     <Compile Include="Assets\02.Scripts\05.Managers\NetworkManager.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\StatBase.cs" />
+    <Compile Include="Assets\02.Scripts\06.Datas\MemoryLoadClass\LoadClass.cs" />
     <Compile Include="Assets\02.Scripts\07.Unit\Enemy.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\AdvantageData.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\HeroStat.cs" />
@@ -85,8 +87,6 @@
     <Compile Include="Assets\02.Scripts\06.Datas\HeroData.cs" />
     <Compile Include="Assets\02.Scripts\05.Managers\UIManager.cs" />
     <Compile Include="Assets\02.Scripts\07.Unit\Tower.cs" />
-    <Compile Include="Assets\02.Scripts\06.Datas\MemoryLoadClass\LoadClass.cs" />
-    <Compile Include="Assets\02.Scripts\07.Unit\AnimatorController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TheBackend\Plugins\Android\TheBackend.iOS.dll" />
