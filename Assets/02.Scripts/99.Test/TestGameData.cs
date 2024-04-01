@@ -34,7 +34,7 @@ public class TestGameData : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
-            DataManager.Instance.GetSprite("testsprite", SetSprite);
+            currentEnemy.ChangeAnimateState(UnitAnimateState.Move);
         }
 
         if (Input.GetKeyDown(KeyCode.F4))

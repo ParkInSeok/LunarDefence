@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5661814827379416443}
   - component: {fileID: 5661814827379416442}
   - component: {fileID: 5661814827379416441}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,8 +63,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelParent: {fileID: 5661814828695131765}
+  animateState: 0
+  unitState: 0
   stat:
-    unitState: 0
     currentTowerStat:
       uniqueKey: 
       modelUniqueKey: 
@@ -91,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5661814828695131765}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

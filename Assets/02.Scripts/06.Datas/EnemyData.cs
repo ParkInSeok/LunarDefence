@@ -7,6 +7,7 @@ public enum EnemyType
 {
     normal,
     boss,
+    raid,
 }
 
 [Serializable]

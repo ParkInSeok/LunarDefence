@@ -31,7 +31,8 @@ public class Enemy : UnitBase
         stat.dieEventHandler += BindPlayDieAnimationEvent;
         animatorContoller.dieEventHandler += DieEvent;
         animatorContoller.spawnedEventHandler += BindSpawnedEvent;
-
+        //delay function 3f => spawn time
+        animatorContoller.noExistSpawnAnimEventHandler += () => { UtilityManager.Instance.DelayFunction(BindSpawnedEvent, 3f); };
         ChangeAnimateState(UnitAnimateState.Spawn);
 
     }

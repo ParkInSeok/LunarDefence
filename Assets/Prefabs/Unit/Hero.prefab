@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7321606960474961351}
   - component: {fileID: 7321606960474961350}
   - component: {fileID: 950771675190436270}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hero
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,8 +63,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelParent: {fileID: 7321606961306795721}
+  animateState: 0
+  unitState: 0
   stat:
-    unitState: 0
+    currentHeroStat:
+      uniqueKey: 
+      modelUniqueKey: 
+      atk: 0
+      hp: 0
+      def: 0
+      spdef: 0
+      attackSpeed: 0
+      propertyReinforcePower: 0
+      propertyResistPower: 0
+      propertyState: 0
+      damageType: 0
+      unitType: 0
+      critical: 0
+      criticalDamage: 0
+      lifeBloodAbsorption: 0
+      skillUniqueKeys: 
+      skillUniqueKeyList: []
 --- !u!1 &7321606961306795722
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7321606961306795721}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

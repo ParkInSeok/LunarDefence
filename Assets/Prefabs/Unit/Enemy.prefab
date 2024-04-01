@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1159991775221143101}
   - component: {fileID: 1159991775221143042}
   - component: {fileID: 1159991775221143100}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,8 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d6a82ec82294748ad774642b430c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modelParent: {fileID: 1159991776589290803}
+  animateState: 0
+  unitState: 0
   stat:
-    unitState: 0
     currentEnemyStat:
       uniqueKey: 
       modelUniqueKey: 
@@ -63,7 +65,6 @@ MonoBehaviour:
       unitType: 0
       moveSpeed: 0
       enemyType: 0
-  modelParent: {fileID: 1159991776589290803}
 --- !u!54 &1159991775221143100
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -89,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1159991776589290803}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
