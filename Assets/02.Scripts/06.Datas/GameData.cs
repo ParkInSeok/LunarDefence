@@ -78,8 +78,13 @@ public class GameData : ScriptableObject
     public Skill GetSkill(string _uniqueKey)
     {
         SkillDataBase _skillData = skillDatas.Find((x)=> x.skillUniqueKey.Equals(_uniqueKey) == true);
-        Skill getSkill = new Skill(_skillData);
-        return getSkill;
+        if(_skillData != null)
+        {
+            Skill getSkill = new Skill(_skillData);
+            return getSkill;
+
+        }
+        return null;
     }
 
     public EnemyData GetEnemyData(string _uniqueKey)

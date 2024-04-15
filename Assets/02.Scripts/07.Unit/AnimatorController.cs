@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class AnimatorController : MonoBehaviour
@@ -37,10 +36,11 @@ public class AnimatorController : MonoBehaviour
                 //move state change 
                 Debug.Log("current anim state " + _state);
                 noExistSpawnAnimEventHandler?.Invoke();
+                //스폰 default 연출 이후 spawnedEventHandler Action 실행 
             }
             else
             {
-                //spawnedEventHandler Action 실행
+                Debug.Log("ExistSpawnAnimfalse " + _state);
             }
         }
 

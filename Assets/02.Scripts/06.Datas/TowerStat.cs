@@ -28,8 +28,10 @@ public class TowerStat : StatBase
         origineTowerStat = stat;
 
         currentTowerStat = origineTowerStat;
-
-        skill = DataManager.Instance.GameData.GetSkill(stat.skillUniqueKey);
+        if (string.IsNullOrEmpty(stat.skillUniqueKey) == false)
+        {
+            skill = DataManager.Instance.GameData.GetSkill(stat.skillUniqueKey);
+        }
     }
 
     public override void GetDamage(int _damage, DamageType _damageType)

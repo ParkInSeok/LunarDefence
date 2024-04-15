@@ -9,7 +9,13 @@ public enum UnitAnimateState {
     Move,
     Stun,
     Attack,
-    Die
+    Die,
+    Idle,
+    Skill_First, // need skill motion
+    Skill_Second,
+    Skill_Third,
+    Skill_Fourth,
+
 
 }
 public enum UnitState
@@ -69,6 +75,11 @@ public abstract class UnitBase : MonoBehaviour
 
         //object pool add
 
+    }
+
+    protected virtual void BindSpawnedEvent()
+    {
+        ChangeAnimateState(UnitAnimateState.Move);
     }
     public abstract void ChangeAnimateState(UnitAnimateState _state, float animSpeed = 1);
     public abstract void GetDamage(int _damage, DamageType _damageType);

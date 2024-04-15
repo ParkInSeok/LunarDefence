@@ -13,7 +13,7 @@ public class TestGameData : MonoBehaviour
     public Sprite testsprite;
 
     public Enemy currentEnemy;
-
+    public Tower currentTower;
 
     void Start()
     {
@@ -30,7 +30,7 @@ public class TestGameData : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            currentEnemy.GetDamage(100, DamageType.physicalDamageType);
+            DataManager.Instance.GetGameObject("Tower", SetTowerGameObject);
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
@@ -39,7 +39,7 @@ public class TestGameData : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F4))
         {
-
+            currentTower.ChangeAnimateState(UnitAnimateState.Idle);
         }
 
         if (Input.GetKeyDown(KeyCode.F5))
@@ -95,6 +95,15 @@ public class TestGameData : MonoBehaviour
 
         currentEnemy = enemy;
     }
+    void SetTowerGameObject(GameObject set)
+    {
+        testObject = set;
 
+        var tower = testObject.GetComponent<Tower>();
+
+        tower.Init(DataManager.Instance.GameData.GetTowerData("Tower_SunfloraPixie"));
+
+        currentTower = tower;
+    }
 
 }

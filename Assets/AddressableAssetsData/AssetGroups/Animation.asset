@@ -33,6 +33,50 @@ MonoBehaviour:
     m_Address: Assets/Prefabs/Animation/Snake/Snake@Idle 1.FBX
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 26e0298a4e5bd254b9446a6cc9f61f4e
+    m_Address: Assets/Prefabs/Animation/Tower/SunfloraPixie/Sunflora Pixie@Underground.FBX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9415a12b368076d4b869a772b752b9b4
+    m_Address: Assets/Prefabs/Animation/Tower/SunfloraPixie/Sunflora Pixie@Spawn.FBX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 10a1ae7da5aa20a44b0a5bdfb79b91c8
+    m_Address: Assets/Prefabs/Animation/Tower/SunfloraPixie/Sunflora Pixie@Idle 1.FBX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b25ef7514f4ddfb4b93284edf4529daa
+    m_Address: Assets/Prefabs/Animation/Tower/SunfloraPixie/Sunflora Pixie@Look Around
+      1.FBX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 709d8ce8b6e4fb24eaebe95ec3a4087c
+    m_Address: Assets/Prefabs/Animation/Tower/SunfloraPixie/Sunflora Pixie@Die 1.FBX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: cd7f2ad831568074cb31c69587852dba
+    m_Address: Assets/Prefabs/Animation/Tower/SunfloraPixie/Sunflora Pixie@Projectile
+      Attack 1.FBX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ed0ca45ebc012ce4a902bbba3cc8be70
+    m_Address: Assets/Prefabs/Animation/Enemy/Dragon Fire/Dragon Fire@Bite Attack
+      1.FBX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bc190a3536d882e40b4f46dc06b3321a
+    m_Address: Assets/Prefabs/Animation/Enemy/Dragon Fire/Dragon Fire@Die 1.FBX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d9f6d517f60322a488c699d7accd14bc
+    m_Address: Assets/Prefabs/Animation/Enemy/Dragon Fire/Dragon Fire@Fly Forward
+      In Place 1.FBX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7c1193a64504e8a429dc2e84f78fe417
+    m_Address: Assets/Prefabs/Animation/Enemy/Dragon Fire/Dragon Fire@Fly Idle 1.FBX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 03e8369acbed02440b1688bef13b2ed2, type: 2}
   m_SchemaSet:

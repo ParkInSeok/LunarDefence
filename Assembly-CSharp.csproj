@@ -175,6 +175,7 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Towers\Data\TowerLibrary.cs" />
     <Compile Include="Assets\02.Scripts\07.Unit\Skill.cs" />
     <Compile Include="Assets\02.Scripts\05.Managers\NetworkManager.cs" />
+    <Compile Include="Assets\02.Scripts\05.Managers\StageManager\Controller\AdvantageController.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\UI\Modal.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Input\TouchInfo.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\UI\EndGameScreen.cs" />
@@ -241,6 +242,7 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\UI\SimpleMainMenuPage.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\UserLutModel.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Towers\Tower.cs" />
+    <Compile Include="Assets\02.Scripts\05.Managers\StageManager\StageManager.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\MotionBlurModel.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\ActionGameFramework\Spawning\WeightedObject.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\EnemyStat.cs" />
@@ -288,6 +290,7 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\UI\HUD\WaveUI.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Components\FogComponent.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Input\MouseButtonInfo.cs" />
+    <Compile Include="Assets\02.Scripts\05.Managers\StageManager\Controller\RoundController.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\DepthOfFieldModel.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\UI\ExitButton.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\UI\HUD\GameUI.cs" />
@@ -296,6 +299,7 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Input\InputController.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\UI\ScorePanel.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\AntialiasingModel.cs" />
+    <Compile Include="Assets\02.Scripts\05.Managers\StageManager\InfinityStageManager.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Health\DamageableBehaviour.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\DitheringModel.cs" />
   </ItemGroup>

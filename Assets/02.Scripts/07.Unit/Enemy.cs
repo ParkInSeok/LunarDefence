@@ -18,11 +18,12 @@ public class Enemy : UnitBase
     {
         stat.InitStat(_stat);
 
+        setModelCompletedEventHandler += BindEvents;
+
         CreateModel(stat.CurrentEnemyStat.modelUniqueKey);
 
         unitState = UnitState.alive;
 
-        setModelCompletedEventHandler += BindEvents;
 
     }
 
@@ -37,7 +38,7 @@ public class Enemy : UnitBase
 
     }
 
-    private void BindSpawnedEvent()
+    protected override void BindSpawnedEvent()
     {
         ChangeAnimateState(UnitAnimateState.Move);
 

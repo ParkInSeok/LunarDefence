@@ -73,6 +73,10 @@ MonoBehaviour:
     m_Address: BossMonster_Training Dummy
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: effcb8203b5b003418af58cbd4b63211
+    m_Address: Tower_SunfloraPixie
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 03e8369acbed02440b1688bef13b2ed2, type: 2}
   m_SchemaSet:

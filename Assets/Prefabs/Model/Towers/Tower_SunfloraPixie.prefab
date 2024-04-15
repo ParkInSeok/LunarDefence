@@ -950,7 +950,7 @@ GameObject:
   - component: {fileID: 4823713659448952121}
   - component: {fileID: 4823713659448952120}
   m_Layer: 0
-  m_Name: Tower_Sunflora Pixie
+  m_Name: Tower_SunfloraPixie
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1008,7 +1008,7 @@ Animator:
   m_GameObject: {fileID: 4823713659448952122}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ee6bbf292af9ffd4898d8804ded7f53d, type: 3}
-  m_Controller: {fileID: 9100000, guid: d70c9dd9cb7636041a9795856f803101, type: 2}
+  m_Controller: {fileID: 9100000, guid: 02dc4095e389eb142903741286a0f16a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

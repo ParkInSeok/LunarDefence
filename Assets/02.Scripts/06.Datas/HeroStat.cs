@@ -20,14 +20,18 @@ public class HeroStat : StatBase
     {
 
         origineHeroStat = stat;
-        origineHeroStat.SetSkills(stat.skillUniqueKeys);
 
         currentHeroStat = origineHeroStat;
-
-        for (int i = 0; i < origineHeroStat.skillUniqueKeyList.Count; i++)
+        
+        if (string.IsNullOrEmpty(stat.skillUniqueKeys) == false)
         {
-            int index = i;
-            skills[index] = DataManager.Instance.GameData.GetSkill(origineHeroStat.skillUniqueKeyList[index]);
+            origineHeroStat.SetSkills(stat.skillUniqueKeys);
+
+            for (int i = 0; i < origineHeroStat.skillUniqueKeyList.Count; i++)
+            {
+                int index = i;
+                skills[index] = DataManager.Instance.GameData.GetSkill(origineHeroStat.skillUniqueKeyList[index]);
+            }
         }
 
     }
