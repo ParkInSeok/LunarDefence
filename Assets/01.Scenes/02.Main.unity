@@ -7293,6 +7293,7 @@ MonoBehaviour:
   testsprite: {fileID: 0}
   currentEnemy: {fileID: 0}
   currentTower: {fileID: 0}
+  currentHero: {fileID: 0}
 --- !u!4 &1023759867
 Transform:
   m_ObjectHideFlags: 0
@@ -18044,6 +18045,80 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f2d5b686c6d93c4da83476d87b456f0, type: 3}
+--- !u!1001 &7946241436115615039
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 411499409617208278, guid: 740d811f41fc6b740b1cf41c8c90992b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 411499409617208278, guid: 740d811f41fc6b740b1cf41c8c90992b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411499409617208278, guid: 740d811f41fc6b740b1cf41c8c90992b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411499409617208278, guid: 740d811f41fc6b740b1cf41c8c90992b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411499409617208278, guid: 740d811f41fc6b740b1cf41c8c90992b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 411499409617208278, guid: 740d811f41fc6b740b1cf41c8c90992b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411499409617208278, guid: 740d811f41fc6b740b1cf41c8c90992b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411499409617208278, guid: 740d811f41fc6b740b1cf41c8c90992b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411499409617208278, guid: 740d811f41fc6b740b1cf41c8c90992b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411499409617208278, guid: 740d811f41fc6b740b1cf41c8c90992b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 411499409617208278, guid: 740d811f41fc6b740b1cf41c8c90992b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080336303854459244, guid: 740d811f41fc6b740b1cf41c8c90992b,
+        type: 3}
+      propertyPath: m_Name
+      value: BlastRobotBlueHeroTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 1080336303854459244, guid: 740d811f41fc6b740b1cf41c8c90992b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 740d811f41fc6b740b1cf41c8c90992b, type: 3}
 --- !u!1001 &8252532902670332838
 PrefabInstance:
   m_ObjectHideFlags: 0

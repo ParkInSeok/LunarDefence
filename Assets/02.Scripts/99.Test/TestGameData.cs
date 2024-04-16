@@ -14,7 +14,7 @@ public class TestGameData : MonoBehaviour
 
     public Enemy currentEnemy;
     public Tower currentTower;
-
+    public Hero currentHero;
     void Start()
     {
 
@@ -34,7 +34,7 @@ public class TestGameData : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
-            currentEnemy.ChangeAnimateState(UnitAnimateState.Move);
+            DataManager.Instance.GetGameObject("Hero", SetHeroGameObject);
         }
 
         if (Input.GetKeyDown(KeyCode.F4))
@@ -104,6 +104,17 @@ public class TestGameData : MonoBehaviour
         tower.Init(DataManager.Instance.GameData.GetTowerData("Tower_SunfloraPixie"));
 
         currentTower = tower;
+    }
+
+    void SetHeroGameObject(GameObject set)
+    {
+        testObject = set;
+
+        var hero = testObject.GetComponent<Hero>();
+
+        hero.Init(DataManager.Instance.GameData.GetHeroData("BlastRobotBlueHeroTest"));
+
+        currentHero = hero;
     }
 
 }

@@ -33,7 +33,15 @@ public class Hero : UnitBase
 
     public override void ChangeAnimateState(UnitAnimateState _state, float animSpeed = 1)
     {
-        ChangeAnimateState(UnitAnimateState.Idle);
+        if (animateState == UnitAnimateState.Die)
+            return;
+
+        if (animateState == _state)
+            return;
+
+        animateState = _state;
+
+        animatorContoller.ChangeAnimateState(_state, animSpeed);
     }
 
     public override void GetDamage(int _damage, DamageType _damageType)
@@ -44,4 +52,10 @@ public class Hero : UnitBase
         stat.GetDamage(_damage, _damageType);
 
     }
+
+    protected override void BindSpawnedEvent()
+    {
+        ChangeAnimateState(UnitAnimateState.Idle);
+    }
+
 }

@@ -9,6 +9,9 @@ public class InfinityStageManager : StageManager
 
     RoundController roundController;
     AdvantageController advantageController;
+    ObjectPoolingController objectPoolingController; 
+
+
 
     void Start()
     {
@@ -27,10 +30,13 @@ public class InfinityStageManager : StageManager
 
         roundController = GetComponentInChildren<RoundController>();
         advantageController = GetComponentInChildren<AdvantageController>();
+        objectPoolingController = GetComponentInChildren<ObjectPoolingController>();
 
 
         roundController.Init();
         advantageController.Init();
+
+        objectPoolingController.Init();
     }
 
 

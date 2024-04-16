@@ -302,6 +302,9 @@
     <Compile Include="Assets\02.Scripts\05.Managers\StageManager\InfinityStageManager.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Health\DamageableBehaviour.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\DitheringModel.cs" />
+    <Compile Include="Assets\99.OtherAsset\MagicCircles_SRP\DemoScene\Demo\PlayEffects.cs" />
+    <Compile Include="Assets\02.Scripts\05.Managers\StageManager\Controller\ObjectPoolingController.cs" />
+    <Compile Include="Assets\02.Scripts\07.Unit\ObjectPooling\ReturnToPool_Particle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TheBackend\Plugins\Android\TheBackend.iOS.dll" />
@@ -356,6 +359,7 @@
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
     <None Include="Assets\TheBackend\Plugins\Settings\TheBackendMultiSettings.dll" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\DepthOfField.cginc" />
+    <None Include="Assets\99.OtherAsset\MagicCircles_SRP\Art\Shaders\Add_Glow.shader" />
     <None Include="Assets\TheBackend\Plugins\Backend.dll" />
     <None Include="Assets\BansheeGz\BGDatabase\readme.txt" />
   </ItemGroup>

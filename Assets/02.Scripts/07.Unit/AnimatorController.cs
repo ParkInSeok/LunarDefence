@@ -30,7 +30,7 @@ public class AnimatorController : MonoBehaviour
 
         if (_state == UnitAnimateState.Spawn)
         {
-            if (stateinfo.IsTag("ExistSpawnAnimfalse") == false)
+            if (stateinfo.IsTag("ExistSpawnAnimfalse") == true)
             {
                 //spawnedEventHandler Action 실행 안함
                 //move state change 
