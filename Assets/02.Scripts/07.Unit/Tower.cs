@@ -16,7 +16,7 @@ public class Tower : UnitBase
 
         setModelCompletedEventHandler += BindEvents;
 
-        CreateModel(stat.CurrentTowerStat.modelUniqueKey);
+        CreateModel(stat.CurrentTowerStat.uniqueKey);
 
         unitState = UnitState.alive;
 
@@ -64,6 +64,18 @@ public class Tower : UnitBase
 
 
     }
+
+
+    public override void ResetModel()
+    {
+        DataManager.Instance.ResetMemory(stat.CurrentTowerStat.uniqueKey);
+        if (model != null)
+            Destroy(model);
+
+    }
+
+
+
 
 
 }

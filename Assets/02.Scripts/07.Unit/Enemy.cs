@@ -11,30 +11,44 @@ public class Enemy : UnitBase
     public EnemyStat Stat { get { return stat; } }
 
 
+    public Action<Enemy> dieEventHandler;
 
 
 
     public void Init(EnemyData _stat)
     {
+        stat = new EnemyStat();
         stat.InitStat(_stat);
-
+        unitState = UnitState.alive;
+        animateState = UnitAnimateState.None;
         setModelCompletedEventHandler += BindEvents;
 
-        CreateModel(stat.CurrentEnemyStat.modelUniqueKey);
+        CreateModel(stat.CurrentEnemyStat.uniqueKey);
 
+      
+    }
+    public void RecycleInit(EnemyData _stat)
+    {
+        this.gameObject.SetActive(true);
+        stat.InitStat(_stat);
         unitState = UnitState.alive;
+        animateState = UnitAnimateState.None;
+        setModelCompletedEventHandler = null;
+        setModelCompletedEventHandler += BindEvents;
 
+        CreateModel(stat.CurrentEnemyStat.uniqueKey);
 
     }
 
+
+
     protected override void BindEvents()
     {
+        Debug.Log("Enemy BindEvents");
         stat.dieEventHandler += BindPlayDieAnimationEvent;
         animatorContoller.dieEventHandler += DieEvent;
         animatorContoller.spawnedEventHandler += BindSpawnedEvent;
-        //delay function 3f => spawn time
-        animatorContoller.noExistSpawnAnimEventHandler += () => { UtilityManager.Instance.DelayFunction(BindSpawnedEvent, 3f); };
-        ChangeAnimateState(UnitAnimateState.Spawn);
+        RecycleBindEvents();
 
     }
 
@@ -47,9 +61,11 @@ public class Enemy : UnitBase
 
     protected override void DieEvent()
     {
+        Debug.Log("enemy component DieEvent");
         base.DieEvent();
         //object pool add
-
+        dieEventHandler?.Invoke(this);
+        this.gameObject.SetActive(false);
     }
 
   
@@ -96,7 +112,15 @@ public class Enemy : UnitBase
 
     }
 
- 
+    public override void ResetModel()
+    {
+        DataManager.Instance.ResetMemory(stat.CurrentEnemyStat.uniqueKey);
+
+
+        if (model != null)
+            Destroy(model);
+
+    }
 
 
 

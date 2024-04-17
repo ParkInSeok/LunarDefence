@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,96 @@ public class ObjectPoolingController : MonoBehaviour
 
     public bool collectionChecks = true;
     public int maxPoolSize = 10;
+
+    Hero currentHero;
+
+    public Hero CurrentHero { get { return currentHero; } }
+
+    Queue<Enemy> enemyPool = new Queue<Enemy>();
+
+    List<Transform> unitTypeParent = new List<Transform>();
+
+
+
+
+
+
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+
+    public void Init()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            unitTypeParent.Add(transform.GetChild(i));
+        }
+
+        for (int i = 0; i < maxPoolSize; i++)
+        {
+            CreateEnemy("NormalMonster_Snake");
+        }
+    }
+
+    public void BindEvents()
+    {
+
+    }
+
+    void CreateEnemy(string key)
+    {
+        DataManager.Instance.GetGameObject("Enemy", (obj)=>SetEnemy(obj,key));
+    }
+
+    void SetEnemy(GameObject obj, string key)
+    {
+        var enemy = obj.GetComponent<Enemy>();
+        enemy.Init(DataManager.Instance.GameData.GetEnemyData(key));
+        enemy.dieEventHandler += DieEnemyEvent;
+
+        enemy.transform.SetParent(unitTypeParent[(int)enemy.Stat.CurrentEnemyStat.UnitType]);
+
+    }
+
+    private void DieEnemyEvent(Enemy enemy)
+    {
+        enemyPool.Enqueue(enemy);
+    }
+
+    public void GetEnemyPool(string key)
+    {
+        Debug.Log("enemyPool count " + enemyPool.Count);
+        if(enemyPool.Count > 0)
+        {
+            var enemy = enemyPool.Dequeue();
+            enemy.ResetModel();
+            enemy.RecycleInit(DataManager.Instance.GameData.GetEnemyData(key));
+          
+        }
+        else
+        {
+            CreateEnemy(key);
+        }
+
+
+
+    }
+
+
+
+
+
+
+    /*
+
     IObjectPool<ParticleSystem> m_Pool;
 
     public IObjectPool<ParticleSystem> Pool
@@ -37,30 +128,6 @@ public class ObjectPoolingController : MonoBehaviour
 
 
 
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
-    public void Init()
-    {
-
-    }
-
-    public void BindEvents()
-    {
-
-    }
-
-  
 
 
     ParticleSystem CreatePooledItem()
@@ -114,5 +181,7 @@ public class ObjectPoolingController : MonoBehaviour
             }
         }
     }
+    */
+
 
 }

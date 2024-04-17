@@ -39,12 +39,12 @@ public class TestGameData : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            currentTower.ChangeAnimateState(UnitAnimateState.Idle);
+            InfinityStageManager.Instance.ObjectPoolingController.GetEnemyPool("BossMonster_Dragon Fire");
         }
 
         if (Input.GetKeyDown(KeyCode.F5))
         {
-
+            currentEnemy.GetDamage(1000, DamageType.physicalDamageType);
         }
 
         if (Input.GetKeyDown(KeyCode.F6))
@@ -92,7 +92,7 @@ public class TestGameData : MonoBehaviour
         var enemy = testObject.GetComponent<Enemy>();
 
         enemy.Init(DataManager.Instance.GameData.GetEnemyData("NormalMonster_Snake"));
-
+       
         currentEnemy = enemy;
     }
     void SetTowerGameObject(GameObject set)

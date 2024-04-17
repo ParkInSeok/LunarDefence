@@ -34,8 +34,9 @@ public abstract class UnitBase : MonoBehaviour
     protected AnimatorController animatorContoller;
     [SerializeField] protected UnitAnimateState animateState;
     [SerializeField] protected UnitState unitState;
+    
     public Action setModelCompletedEventHandler;
-
+   
 
 
     protected virtual void CreateModel(string modelUniqueKey)
@@ -54,6 +55,8 @@ public abstract class UnitBase : MonoBehaviour
         animatorContoller = model.GetComponent<AnimatorController>();
 
         setModelCompletedEventHandler?.Invoke();
+
+    
     }
 
 
@@ -73,7 +76,6 @@ public abstract class UnitBase : MonoBehaviour
     {
         unitState = UnitState.die;
 
-        //object pool add
 
     }
 
@@ -81,6 +83,17 @@ public abstract class UnitBase : MonoBehaviour
     {
         ChangeAnimateState(UnitAnimateState.Move);
     }
+
+    protected virtual void RecycleBindEvents()
+    {
+        animatorContoller.noExistSpawnAnimEventHandler += () => { UtilityManager.Instance.DelayFunction(BindSpawnedEvent, 3f); };
+        //delay function 3f => spawn time
+        ChangeAnimateState(UnitAnimateState.Spawn);
+    }
+
+
+    public abstract void ResetModel();
+
     public abstract void ChangeAnimateState(UnitAnimateState _state, float animSpeed = 1);
     public abstract void GetDamage(int _damage, DamageType _damageType);
 

@@ -16,7 +16,7 @@ public class Hero : UnitBase
 
         setModelCompletedEventHandler += BindEvents;
 
-        CreateModel(stat.CurrentTowerStat.modelUniqueKey);
+        CreateModel(stat.CurrentHeroStat.uniqueKey);
 
         unitState = UnitState.alive;
     }
@@ -57,5 +57,14 @@ public class Hero : UnitBase
     {
         ChangeAnimateState(UnitAnimateState.Idle);
     }
+
+    public override void ResetModel()
+    {
+        DataManager.Instance.ResetMemory(stat.CurrentHeroStat.uniqueKey);
+        if (model != null)
+            Destroy(model);
+
+    }
+
 
 }

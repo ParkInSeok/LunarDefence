@@ -19,11 +19,8 @@ public class EnemyStat : StatBase
 
     public virtual void InitStat(EnemyData stat)
     {
-   
-
-        origineEnemyStat = stat;
-
-        currentEnemyStat = origineEnemyStat;
+        origineEnemyStat = new EnemyData(stat);
+        currentEnemyStat = new EnemyData(stat);
     }
 
     public virtual void SlowEvent(int percent)

@@ -11,7 +11,7 @@ public enum LoadClassType
 
 }
 
-
+[System.Serializable]
 public class LoadClass
 {
     [SerializeField] string key;
@@ -20,7 +20,7 @@ public class LoadClass
     [SerializeField] GameObject gameObject;
     [SerializeField] Sprite sprite;
 
-
+    public string Key { get { return key; } }
 
     public LoadClassType Type { get { return type; } }
 
@@ -45,8 +45,12 @@ public class LoadClass
 
     public bool IsExist(string _key)
     {
+        Debug.Log("IsExist event " + _key);
         if (key.Equals(_key))
+        {
+            Debug.Log("key equal " + _key);
             return true;
+        }
 
         return false;
     }

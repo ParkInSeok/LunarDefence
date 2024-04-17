@@ -20,6 +20,21 @@ public class EnemyData : DataBase
     {
         
     }
+    public EnemyData(EnemyData data)
+    {
+        this.uniqueKey = data.uniqueKey;
+        this.atk = data.atk;
+        this.hp = data.hp;
+        this.def = data.def;
+        this.spdef = data.spdef;
+        this.attackSpeed = data.attackSpeed;
+        this.propertyReinforcePower = data.propertyReinforcePower;
+        this.propertyResistPower = data.propertyResistPower;
+        this.propertyState = data.propertyState;
+        this.damageType = data.damageType;
+        this.unitType = data.unitType;
+    }
+
 
     public EnemyData(int _propertyState, int _damageType, int _unitType)
     {

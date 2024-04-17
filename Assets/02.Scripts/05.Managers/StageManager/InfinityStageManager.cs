@@ -3,13 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class InfinityStageManager : StageManager
+public class InfinityStageManager : Singleton<InfinityStageManager>
 {
+    [SerializeField] protected StageType stageType;
+
+    public StageType StageType { get { return stageType; } }
+
 
 
     RoundController roundController;
     AdvantageController advantageController;
     ObjectPoolingController objectPoolingController; 
+
+
+    public RoundController RoundController { get { return roundController; } }
+
+    public AdvantageController AdvantageController { get { return advantageController; } }
+
+    public ObjectPoolingController ObjectPoolingController { get { return objectPoolingController; } }
 
 
 
@@ -26,7 +37,7 @@ public class InfinityStageManager : StageManager
 
     protected override void Init()
     {
-        base.Init();
+        stageType = (StageType)SceneManager.GetActiveScene().buildIndex;
 
         roundController = GetComponentInChildren<RoundController>();
         advantageController = GetComponentInChildren<AdvantageController>();
@@ -35,8 +46,8 @@ public class InfinityStageManager : StageManager
 
         roundController.Init();
         advantageController.Init();
-
         objectPoolingController.Init();
+
     }
 
 

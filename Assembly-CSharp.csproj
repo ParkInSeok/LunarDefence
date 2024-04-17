@@ -67,6 +67,7 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Health\HealthChangeInfo.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Level\LevelManager.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Agents\AgentEffect.cs" />
+    <Compile Include="Assets\99.OtherAsset\MagicCircles_SRP\DemoScene\Demo\PlayEffects.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\ActionGameFramework\Projectiles\LinearProjectile.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Utilities\TimedBehaviour.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Towers\Projectiles\ContactDestroyer.cs" />
@@ -207,6 +208,7 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Utils\GraphicsUtils.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\UI\HUD\TowerSpawnButton.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Economy\LootDrop.cs" />
+    <Compile Include="Assets\02.Scripts\05.Managers\StageManager\Controller\ObjectPoolingController.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Health\HitInfo.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Camera\CameraInitialState.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
@@ -242,6 +244,7 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\UI\SimpleMainMenuPage.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\UserLutModel.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Towers\Tower.cs" />
+    <Compile Include="Assets\02.Scripts\07.Unit\ObjectPooling\ReturnToPool_Particle.cs" />
     <Compile Include="Assets\02.Scripts\05.Managers\StageManager\StageManager.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\MotionBlurModel.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\ActionGameFramework\Spawning\WeightedObject.cs" />
@@ -302,9 +305,6 @@
     <Compile Include="Assets\02.Scripts\05.Managers\StageManager\InfinityStageManager.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Health\DamageableBehaviour.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\DitheringModel.cs" />
-    <Compile Include="Assets\99.OtherAsset\MagicCircles_SRP\DemoScene\Demo\PlayEffects.cs" />
-    <Compile Include="Assets\02.Scripts\05.Managers\StageManager\Controller\ObjectPoolingController.cs" />
-    <Compile Include="Assets\02.Scripts\07.Unit\ObjectPooling\ReturnToPool_Particle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TheBackend\Plugins\Android\TheBackend.iOS.dll" />

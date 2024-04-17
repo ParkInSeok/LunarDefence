@@ -29,7 +29,6 @@ public enum UnitType{
 public class DataBase
 {
     public string uniqueKey;                //유니크 키
-    public string modelUniqueKey;           //모델 유니크 키
     public float atk;                       //공격력
     public int hp;                          //체력
     public float def;                       //방어력

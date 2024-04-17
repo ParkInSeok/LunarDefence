@@ -9,7 +9,7 @@ public class HeroStat : StatBase
     protected HeroData origineHeroStat;
     [SerializeField] protected HeroData currentHeroStat;
 
-    public HeroData CurrentTowerStat { get { return currentHeroStat; } }
+    public HeroData CurrentHeroStat { get { return currentHeroStat; } }
 
 
     protected List<Skill> skills;

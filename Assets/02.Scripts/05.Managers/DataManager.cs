@@ -15,13 +15,19 @@ using BansheeGz.BGDatabase;
 public class DataManager : Singleton<DataManager>
 {
 
-    List<LoadClass> loadAssetList = new List<LoadClass>();
+    [SerializeField] List<LoadClass> loadAssetList = new List<LoadClass>();
 
     //List<AsyncOperationHandle> loadAssetList = new List<AsyncOperationHandle>();
 
     [SerializeField] GameData gameData;
 
     public GameData GameData { get { return gameData; } }
+
+    [SerializeField] string selectedHeroUniqueKey;
+    [SerializeField] List<string> selectedTowerUniqueKeys = new List<string>();
+
+    public string SelectedHero { get { return selectedHeroUniqueKey; } }
+    public List<string> SelectedTowers { get { return selectedTowerUniqueKeys; } }
 
   
     void Start()
@@ -77,7 +83,6 @@ public class DataManager : Singleton<DataManager>
             int _unitType = enemyData[index].Get<int>("unitType");
             EnemyData data = new EnemyData(_propertyState, _damageType, _unitType);
             data.uniqueKey = _uniqueKey;
-            data.modelUniqueKey = enemyData[index].Get<string>("modelUniqueKey");
             data.atk = enemyData[index].Get<float>("atk");
             data.hp = enemyData[index].Get<int>("hp");
             data.def = enemyData[index].Get<float>("def");
@@ -115,7 +120,6 @@ public class DataManager : Singleton<DataManager>
             int _unitType = towerData[index].Get<int>("unitType");
             HeroData data = new HeroData(_propertyState, _damageType, _unitType);
             data.uniqueKey = _uniqueKey;
-            data.modelUniqueKey = towerData[index].Get<string>("modelUniqueKey");
             data.atk = towerData[index].Get<float>("atk");
             data.hp = towerData[index].Get<int>("hp");
             data.def = towerData[index].Get<float>("def");
@@ -157,7 +161,6 @@ public class DataManager : Singleton<DataManager>
             int _unitType = towerData[index].Get<int>("unitType");
             TowerData data = new TowerData(_propertyState, _damageType, _unitType);
             data.uniqueKey = _uniqueKey;
-            data.modelUniqueKey = towerData[index].Get<string>("modelUniqueKey");
             data.atk = towerData[index].Get<float>("atk");
             data.hp = towerData[index].Get<int>("hp");
             data.def = towerData[index].Get<float>("def");
@@ -245,7 +248,7 @@ public class DataManager : Singleton<DataManager>
 
     #endregion
 
-
+    #region Create Addressable Function
 
     public void GetSprite(string key, Action<Sprite> endCallBack)
     {
@@ -260,21 +263,24 @@ public class DataManager : Singleton<DataManager>
 
     IEnumerator GetFileEvent(string key, Action<GameObject> endCallBack)
     {
-
-        var existLoadedAsset = loadAssetList.Find((x) =>
-              x.Type == LoadClassType.GameObject && x.IsExist(key) == true
-        );
+        // TODO 
+        // 처음 for문으로 만들떄 여러개가 추가됨 확인해서 처리할것 
+        Debug.Log("GetFileEvent loadAssetList count " + loadAssetList.Count);
+        var existLoadedAsset = loadAssetList.Find((x) => x.IsExist(key) == true);
 
         if(existLoadedAsset != null)
         {
+            Debug.Log("existLoadedAsset != null");
             var loadObject = Instantiate(existLoadedAsset.GetGameObject, Vector3.zero, Quaternion.identity);
             endCallBack?.Invoke(loadObject);
         }
         else
         {
+            Debug.Log("existLoadedAsset == null");
             Addressables.LoadAssetAsync<GameObject>(key).Completed += (AsyncOperationHandle<GameObject> obj) =>
             {
                 var newData = new LoadClass(key, obj, obj.Result);
+                Debug.Log("add loadclass data : " + key);
                 loadAssetList.Add(newData);
 
                 var loadObject = Instantiate(obj.Result, Vector3.zero, Quaternion.identity);
@@ -302,6 +308,18 @@ public class DataManager : Singleton<DataManager>
         loadAssetList.Clear();
     }
  
+    public void ResetMemory(string key)
+    {
+        var findedAsset = loadAssetList.Find((x) => x.Key.Equals(key));
+
+        if (findedAsset == null)
+            return;
+
+        Addressables.Release(findedAsset.GetGameObject);
+
+        if (loadAssetList.Contains(findedAsset))
+            loadAssetList.Remove(findedAsset);
+    }
 
     IEnumerator GetFileEvent(string key, Action<Sprite> endCallBack)
     {
@@ -358,9 +376,27 @@ public class DataManager : Singleton<DataManager>
 
     }
 
+    #endregion
 
-   
+    #region Set Hero Tower Keys
+
+    public void SetHeroKey(string key)
+    {
+        selectedHeroUniqueKey = key;
+    }
+
+    public void SetTowerKeys(List<string> keys)
+    {
+        selectedTowerUniqueKeys = keys;
+    }
+
+    public void ClearKeys()
+    {
+        selectedHeroUniqueKey = "";
+        selectedTowerUniqueKeys.Clear();
+    }
 
 
+    #endregion
 
 }
