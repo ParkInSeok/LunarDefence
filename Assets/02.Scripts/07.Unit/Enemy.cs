@@ -19,13 +19,13 @@ public class Enemy : UnitBase
     {
         stat = new EnemyStat();
         stat.InitStat(_stat);
-        unitState = UnitState.alive;
-        animateState = UnitAnimateState.None;
+        unitState = UnitState.die;
+        animateState = UnitAnimateState.Die;
         setModelCompletedEventHandler += BindEvents;
 
         CreateModel(stat.CurrentEnemyStat.uniqueKey);
 
-      
+        DieEvent();
     }
     public void RecycleInit(EnemyData _stat)
     {
@@ -114,11 +114,13 @@ public class Enemy : UnitBase
 
     public override void ResetModel()
     {
-        DataManager.Instance.ResetMemory(stat.CurrentEnemyStat.uniqueKey);
-
-
         if (model != null)
             Destroy(model);
+
+        //씬에 하나라도 남아있으면 메모리 리셋 안함 -> 가지고있다가 게임 끝나면 초기화 큰차이없음
+
+        //DataManager.Instance.ResetMemory(stat.CurrentEnemyStat.uniqueKey);
+
 
     }
 

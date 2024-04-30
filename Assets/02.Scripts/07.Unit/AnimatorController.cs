@@ -6,6 +6,8 @@ using UnityEngine;
 public class AnimatorController : MonoBehaviour
 {
 
+    [SerializeField] SkinnedMeshRenderer meshRenderer; 
+
     Animator animator;
 
     public Action<UnitAnimateState, float> changeAnimationEventHandler;
@@ -14,6 +16,13 @@ public class AnimatorController : MonoBehaviour
     public Action spawnedEventHandler;
     public Action attackEventHandler;
     public Action noExistSpawnAnimEventHandler;
+
+    public void Init()
+    {
+        Material dummy = new Material(meshRenderer.material);
+        meshRenderer.material = dummy;
+    }
+
 
     public void ChangeAnimateState(UnitAnimateState _state, float animSpeed)
     {
@@ -52,8 +61,30 @@ public class AnimatorController : MonoBehaviour
     public void DieEvent()
     {
         //Debug.Log("DieEvent");
-        dieEventHandler?.Invoke();
+
+        StartCoroutine(DissolveEvent());
     }
+
+    IEnumerator DissolveEvent()
+    {
+        yield return null;
+
+        float t = 0;
+        float dissolveValue = meshRenderer.material.GetFloat("_DissolveValue");
+        float currentDissolveValue = meshRenderer.material.GetFloat("_DissolveValue");
+        while (t < 2f)
+        {
+            t += Time.deltaTime;
+            dissolveValue = Mathf.Lerp(currentDissolveValue, 1, t);
+            meshRenderer.material.SetFloat("_DissolveValue", dissolveValue);
+            yield return null;
+        }
+
+        meshRenderer.material.SetFloat("_DissolveValue", 1f);
+        dieEventHandler?.Invoke();
+
+    }
+
 
     public void SpawnedEvent()
     {

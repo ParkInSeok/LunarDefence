@@ -329,6 +329,7 @@
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Third-Party Notices.txt" />
     <None Include="Assets\TheBackend\Plugins\Settings\TheBackendSettings.dll" />
+    <None Include="Assets\06.Shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Bluenoise64\LICENSE.txt" />
     <None Include="Assets\TheBackend\Plugins\LitJSON.dll" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\ACES.cginc" />

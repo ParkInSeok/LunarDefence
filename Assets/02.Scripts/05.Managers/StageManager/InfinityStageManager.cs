@@ -50,7 +50,15 @@ public class InfinityStageManager : Singleton<InfinityStageManager>
 
     }
 
+    public void GameOver()
+    {
+        //게임패배 연출 
 
+        DataManager.Instance.ResetMemory(); //모든 메모리 리셋
+
+        //연출끝나고 씬이동 -> 메인씬
+        //해당 라운드 표시해줌
+    }
 
 
 

@@ -652,7 +652,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8472fd7bd8ae55c4eae6645159aefad9, type: 2}
+  - {fileID: 2100000, guid: 2a096391bcfca7f459b978274900c2d9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1046,7 +1046,7 @@ Animator:
   m_GameObject: {fileID: 8477863359489032805}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 7e6f12450e16bb747b66d2d48155c6d1, type: 3}
-  m_Controller: {fileID: 9100000, guid: b3597d47af00b8743bdc605d28b55f28, type: 2}
+  m_Controller: {fileID: 9100000, guid: d12dbe7684244e246988abd5aeed9071, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1069,6 +1069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce7809b98aebfb40b001a32d1ac4bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 8477863359485857651}
 --- !u!65 &8477863359481754029
 BoxCollider:
   m_ObjectHideFlags: 0

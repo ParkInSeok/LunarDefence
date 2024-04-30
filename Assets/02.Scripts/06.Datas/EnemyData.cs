@@ -33,14 +33,16 @@ public class EnemyData : DataBase
         this.propertyState = data.propertyState;
         this.damageType = data.damageType;
         this.unitType = data.unitType;
+        this.enemyType = data.enemyType;
     }
 
 
-    public EnemyData(int _propertyState, int _damageType, int _unitType)
+    public EnemyData(int _propertyState, int _damageType, int _unitType, int _enemyType)
     {
         propertyState = _propertyState;
         damageType = _damageType;
         unitType = _unitType;
+        enemyType = _enemyType;
     }
 
     public EnemyType EnemyType

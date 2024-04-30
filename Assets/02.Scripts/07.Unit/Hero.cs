@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class Hero : UnitBase
     [SerializeField] HeroStat stat;
 
     public HeroStat Stat { get { return stat; } }
+
+    public Action<Hero> dieEventHandler;
 
 
     public void Init(HeroData _stat)
@@ -65,6 +68,16 @@ public class Hero : UnitBase
             Destroy(model);
 
     }
+
+    protected override void DieEvent()
+    {
+        Debug.Log("hero DieEvent");
+        base.DieEvent();
+        //object pool add
+        dieEventHandler?.Invoke(this);
+        this.gameObject.SetActive(false);
+    }
+
 
 
 }

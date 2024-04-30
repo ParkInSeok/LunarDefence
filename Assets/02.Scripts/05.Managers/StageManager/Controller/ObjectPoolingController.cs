@@ -20,11 +20,12 @@ public class ObjectPoolingController : MonoBehaviour
     public bool collectionChecks = true;
     public int maxPoolSize = 10;
 
-    Hero currentHero;
+   // Hero currentHero;
 
-    public Hero CurrentHero { get { return currentHero; } }
+    //public Hero CurrentHero { get { return currentHero; } }
 
     Queue<Enemy> enemyPool = new Queue<Enemy>();
+    Queue<Tower> towerPool = new Queue<Tower>();
 
     List<Transform> unitTypeParent = new List<Transform>();
 
@@ -51,11 +52,19 @@ public class ObjectPoolingController : MonoBehaviour
         {
             unitTypeParent.Add(transform.GetChild(i));
         }
+        // need enemy round kyes
+        SubscribeEnemy("NormalMonster_Snake"); 
 
-        for (int i = 0; i < maxPoolSize; i++)
+        SubscribeHero(DataManager.Instance.SelectedHero);
+
+        var selectedTowers = DataManager.Instance.SelectedTowers;
+        for (int i = 0; i < selectedTowers.Count; i++)
         {
-            CreateEnemy("NormalMonster_Snake");
+            CreateTower(selectedTowers[i]);
         }
+
+        //tower recycle init 만들어야함
+       
     }
 
     public void BindEvents()
@@ -63,20 +72,56 @@ public class ObjectPoolingController : MonoBehaviour
 
     }
 
+    #region Enemy
+
+    void SubscribeEnemy(string key)
+    {
+        DataManager.Instance.GetGameObject("Enemy", (obj)=>SubscribeSetEnemy(obj,key));
+    }
+
+  
+    void SubscribeSetEnemy(GameObject obj, string key)
+    {
+        var enemy = obj.GetComponent<Enemy>();
+        enemy.dieEventHandler += DieEnemyEvent;
+        enemy.Init(DataManager.Instance.GameData.GetEnemyData(key));
+        enemy.setModelCompletedEventHandler += () =>
+        {
+            InitSubscribeCreateEnemy(enemy);
+        };
+        enemy.transform.SetParent(unitTypeParent[(int)enemy.Stat.CurrentEnemyStat.UnitType]);
+
+    }
+
+    private void InitSubscribeCreateEnemy(Enemy _enemy)
+    {
+        for (int i = 0; i < maxPoolSize - 1; i++)
+        {
+            CreateEnemy("NormalMonster_Snake");
+        }
+        _enemy.setModelCompletedEventHandler -= () =>
+        {
+            InitSubscribeCreateEnemy(_enemy);
+        };
+    }
+
     void CreateEnemy(string key)
     {
-        DataManager.Instance.GetGameObject("Enemy", (obj)=>SetEnemy(obj,key));
+        DataManager.Instance.GetGameObject("Enemy", (obj) => SetEnemy(obj, key));
     }
+
 
     void SetEnemy(GameObject obj, string key)
     {
         var enemy = obj.GetComponent<Enemy>();
-        enemy.Init(DataManager.Instance.GameData.GetEnemyData(key));
         enemy.dieEventHandler += DieEnemyEvent;
-
+        enemy.Init(DataManager.Instance.GameData.GetEnemyData(key));
+    
         enemy.transform.SetParent(unitTypeParent[(int)enemy.Stat.CurrentEnemyStat.UnitType]);
 
     }
+
+
 
     private void DieEnemyEvent(Enemy enemy)
     {
@@ -98,13 +143,64 @@ public class ObjectPoolingController : MonoBehaviour
             CreateEnemy(key);
         }
 
+    }
 
+    #endregion
+
+    #region Hero
+
+    void SubscribeHero(string key)
+    {
+        DataManager.Instance.GetGameObject("Hero", (obj) => SetHero(obj, key));
 
     }
 
+    void SetHero(GameObject obj, string key)
+    {
+        var hero = obj.GetComponent<Hero>();
+
+        hero.dieEventHandler += DieHeroEvent;
+        hero.Init(DataManager.Instance.GameData.GetHeroData(key));
+
+        hero.transform.SetParent(unitTypeParent[(int)hero.Stat.CurrentHeroStat.UnitType]);
+
+        //currentHero = hero;
+    }
+
+    private void DieHeroEvent(Hero obj)
+    {
+        //게임 패배
+        InfinityStageManager.Instance.GameOver();
+    }
+
+    #endregion
+
+    #region Tower
+    void CreateTower(string key)
+    {
+        DataManager.Instance.GetGameObject("Tower", (obj) => SetTower(obj, key));
+
+    }
+
+    void SetTower(GameObject obj, string key)
+    {
+        var tower = obj.GetComponent<Tower>();
+
+        tower.dieEventHandler += DieTowerEvent;
+        tower.Init(DataManager.Instance.GameData.GetTowerData(key));
+        
+
+        tower.transform.SetParent(unitTypeParent[(int)tower.Stat.CurrentTowerStat.UnitType]);
+
+    }
+
+    private void DieTowerEvent(Tower _tower)
+    {
+        towerPool.Enqueue(_tower);
+    }
 
 
-
+    #endregion
 
 
     /*

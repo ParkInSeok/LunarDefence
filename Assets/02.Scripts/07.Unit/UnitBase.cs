@@ -54,6 +54,8 @@ public abstract class UnitBase : MonoBehaviour
 
         animatorContoller = model.GetComponent<AnimatorController>();
 
+        animatorContoller.Init();
+
         setModelCompletedEventHandler?.Invoke();
 
     

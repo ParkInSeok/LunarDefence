@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,18 +9,19 @@ public class Tower : UnitBase
 
     public TowerStat Stat { get { return stat; } }
 
-
+    public Action<Tower> dieEventHandler;
 
     public void Init(TowerData _stat)
     {
         stat.InitStat(_stat);
+        unitState = UnitState.die;
+        animateState = UnitAnimateState.Die;
 
         setModelCompletedEventHandler += BindEvents;
 
         CreateModel(stat.CurrentTowerStat.uniqueKey);
 
-        unitState = UnitState.alive;
-
+        DieEvent();
     }
 
     protected override void BindEvents()
@@ -74,7 +76,14 @@ public class Tower : UnitBase
 
     }
 
-
+    protected override void DieEvent()
+    {
+        Debug.Log("tower DieEvent");
+        base.DieEvent();
+        //object pool add
+        dieEventHandler?.Invoke(this);
+        this.gameObject.SetActive(false);
+    }
 
 
 

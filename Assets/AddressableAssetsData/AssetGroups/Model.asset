@@ -21,10 +21,6 @@ MonoBehaviour:
     m_Address: NormalMonster_Snake
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: b9114f2ef53c4e049be225d6c0a62118
-    m_Address: NormalMonster_Dragon Spark
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 3f2d5b686c6d93c4da83476d87b456f0
     m_Address: NormalMonster_Target Dummy
     m_ReadOnly: 0

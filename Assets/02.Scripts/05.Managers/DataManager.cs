@@ -80,8 +80,10 @@ public class DataManager : Singleton<DataManager>
 
             int _propertyState = enemyData[index].Get<int>("propertyState");
             int _damageType = enemyData[index].Get<int>("damageType");
-            int _unitType = enemyData[index].Get<int>("unitType");
-            EnemyData data = new EnemyData(_propertyState, _damageType, _unitType);
+            var _unitType = (int)UnitType.enemyData;
+            int _enemyType = enemyData[index].Get<int>("enemyType");
+
+            EnemyData data = new EnemyData(_propertyState, _damageType, _unitType, _enemyType);
             data.uniqueKey = _uniqueKey;
             data.atk = enemyData[index].Get<float>("atk");
             data.hp = enemyData[index].Get<int>("hp");
@@ -100,37 +102,38 @@ public class DataManager : Singleton<DataManager>
 
     void SetHeroData()
     {
-        var towerData = BGRepo.I["HeroData"];
+        var heroData = BGRepo.I["HeroData"];
 
-        if (towerData == null)
+        if (heroData == null)
             Debug.Log("meta null");
 
-        for (int i = 0; i < towerData.CountEntities; i++)
+        for (int i = 0; i < heroData.CountEntities; i++)
         {
             int index = i;
 
-            string _uniqueKey = towerData[index].Get<string>("uniqueKey");
+            string _uniqueKey = heroData[index].Get<string>("uniqueKey");
             var foundData = gameData.GetHeroData(_uniqueKey);
 
             if (foundData != null)
                 continue;
 
-            int _propertyState = towerData[index].Get<int>("propertyState");
-            int _damageType = towerData[index].Get<int>("damageType");
-            int _unitType = towerData[index].Get<int>("unitType");
+            int _propertyState = heroData[index].Get<int>("propertyState");
+            int _damageType = heroData[index].Get<int>("damageType");
+            var _unitType = (int)UnitType.heroData;
+
             HeroData data = new HeroData(_propertyState, _damageType, _unitType);
             data.uniqueKey = _uniqueKey;
-            data.atk = towerData[index].Get<float>("atk");
-            data.hp = towerData[index].Get<int>("hp");
-            data.def = towerData[index].Get<float>("def");
-            data.spdef = towerData[index].Get<float>("spdef");
-            data.attackSpeed = towerData[index].Get<float>("attackSpeed");
-            data.propertyReinforcePower = towerData[index].Get<float>("propertyReinforcePower");
-            data.propertyResistPower = towerData[index].Get<float>("propertyResistPower");
-            data.critical = towerData[index].Get<int>("critical");
-            data.criticalDamage = towerData[index].Get<int>("criticalDamage");
-            data.lifeBloodAbsorption = towerData[index].Get<int>("lifeBloodAbsorption");
-            data.skillUniqueKeys = towerData[index].Get<string>("skillUniqueKeys");
+            data.atk = heroData[index].Get<float>("atk");
+            data.hp = heroData[index].Get<int>("hp");
+            data.def = heroData[index].Get<float>("def");
+            data.spdef = heroData[index].Get<float>("spdef");
+            data.attackSpeed = heroData[index].Get<float>("attackSpeed");
+            data.propertyReinforcePower = heroData[index].Get<float>("propertyReinforcePower");
+            data.propertyResistPower = heroData[index].Get<float>("propertyResistPower");
+            data.critical = heroData[index].Get<int>("critical");
+            data.criticalDamage = heroData[index].Get<int>("criticalDamage");
+            data.lifeBloodAbsorption = heroData[index].Get<int>("lifeBloodAbsorption");
+            data.skillUniqueKeys = heroData[index].Get<string>("skillUniqueKeys");
 
             gameData.SetData(data);
 
@@ -158,7 +161,8 @@ public class DataManager : Singleton<DataManager>
 
             int _propertyState = towerData[index].Get<int>("propertyState");
             int _damageType = towerData[index].Get<int>("damageType");
-            int _unitType = towerData[index].Get<int>("unitType");
+            var _unitType = (int)UnitType.towerData;
+
             TowerData data = new TowerData(_propertyState, _damageType, _unitType);
             data.uniqueKey = _uniqueKey;
             data.atk = towerData[index].Get<float>("atk");

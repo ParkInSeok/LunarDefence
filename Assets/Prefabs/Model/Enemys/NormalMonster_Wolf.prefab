@@ -180,7 +180,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2776642bf9c243944bcbb03410608365, type: 2}
+  - {fileID: 2100000, guid: 5796c17d6ab7fc34da97c9e0769cdad2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1212,6 +1212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce7809b98aebfb40b001a32d1ac4bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 95031140596960725}
 --- !u!65 &95031140592661271
 BoxCollider:
   m_ObjectHideFlags: 0
