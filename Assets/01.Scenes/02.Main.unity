@@ -16327,8 +16327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d9061c14514d3a4493a0d8f5265a271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 0
-  collectionChecks: 1
   maxPoolSize: 10
 --- !u!1 &1989853371
 GameObject:

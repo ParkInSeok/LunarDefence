@@ -45,10 +45,6 @@ MonoBehaviour:
     m_Address: NormalMonster_Wolf
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 2e4805d12e9e43343bbbcbc8592bd576
-    m_Address: NormalMonster_Snakelet
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 1abd0a7840e038e438e79f5145d4592f
     m_Address: NormalMonster_Shell
     m_ReadOnly: 0
@@ -75,6 +71,30 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 740d811f41fc6b740b1cf41c8c90992b
     m_Address: BlastRobotBlueHeroTest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ca7f552bb3bbbf74da288fb5d2a3a61d
+    m_Address: Tower_Angel Mage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d6c3a7640e75f2249b75a767e516c895
+    m_Address: Tower_Death Mage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dcf148f45297d134abb4b0df7d443aa8
+    m_Address: Tower_Fire Mage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7281ff75d57df464c9ff9fb3f70f7cf3
+    m_Address: Tower_Ice Mage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d0baa2e31d2ae0844905e7b4391cc09c
+    m_Address: Tower_Nightmare
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b85060250d0059146ab7affb4b945c1a
+    m_Address: Tower_Wind Mage
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

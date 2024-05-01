@@ -17,6 +17,10 @@ public class AnimatorController : MonoBehaviour
     public Action attackEventHandler;
     public Action noExistSpawnAnimEventHandler;
 
+    string dissolveValueKeyWord = "_DissolveValue";
+
+
+
     public void Init()
     {
         Material dummy = new Material(meshRenderer.material);
@@ -44,7 +48,8 @@ public class AnimatorController : MonoBehaviour
                 //spawnedEventHandler Action 실행 안함
                 //move state change 
                 Debug.Log("current anim state " + _state);
-                noExistSpawnAnimEventHandler?.Invoke();
+                StartCoroutine(SpawnDissolveEvent(-0.1f, 2f, true, 1));
+
                 //스폰 default 연출 이후 spawnedEventHandler Action 실행 
             }
             else
@@ -62,28 +67,60 @@ public class AnimatorController : MonoBehaviour
     {
         //Debug.Log("DieEvent");
 
-        StartCoroutine(DissolveEvent());
+        StartCoroutine(DieDissolveEvent(1f,2f));
     }
 
-    IEnumerator DissolveEvent()
+    IEnumerator DieDissolveEvent(float targetValue , float delayTime)
     {
         yield return null;
 
         float t = 0;
-        float dissolveValue = meshRenderer.material.GetFloat("_DissolveValue");
-        float currentDissolveValue = meshRenderer.material.GetFloat("_DissolveValue");
-        while (t < 2f)
+        float dissolveValue = meshRenderer.material.GetFloat(dissolveValueKeyWord);
+        float currentDissolveValue = meshRenderer.material.GetFloat(dissolveValueKeyWord);
+
+        while (t < delayTime)
         {
             t += Time.deltaTime;
-            dissolveValue = Mathf.Lerp(currentDissolveValue, 1, t);
-            meshRenderer.material.SetFloat("_DissolveValue", dissolveValue);
+            dissolveValue = Mathf.Lerp(currentDissolveValue, targetValue, t);
+            meshRenderer.material.SetFloat(dissolveValueKeyWord, dissolveValue);
             yield return null;
         }
 
-        meshRenderer.material.SetFloat("_DissolveValue", 1f);
+        meshRenderer.material.SetFloat(dissolveValueKeyWord, targetValue);
         dieEventHandler?.Invoke();
 
     }
+
+    IEnumerator SpawnDissolveEvent(float targetValue, float delayTime, bool isCurrentValueSetting = false, float currentValue = 0)
+    {
+        yield return null;
+
+        float t = 0;
+        float dissolveValue = meshRenderer.material.GetFloat(dissolveValueKeyWord);
+        float currentDissolveValue = 0;
+        if (isCurrentValueSetting)
+        {
+            currentDissolveValue = currentValue;
+        }
+        else
+        {
+            currentDissolveValue = meshRenderer.material.GetFloat(dissolveValueKeyWord);
+        }
+
+
+        while (t < delayTime)
+        {
+            t += Time.deltaTime;
+            dissolveValue = Mathf.Lerp(currentDissolveValue, targetValue, t);
+            meshRenderer.material.SetFloat(dissolveValueKeyWord, dissolveValue);
+            yield return null;
+        }
+
+        meshRenderer.material.SetFloat(dissolveValueKeyWord, targetValue);
+        noExistSpawnAnimEventHandler?.Invoke();
+
+    }
+
 
 
     public void SpawnedEvent()

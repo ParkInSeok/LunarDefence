@@ -305,6 +305,8 @@
     <Compile Include="Assets\02.Scripts\05.Managers\StageManager\InfinityStageManager.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Health\DamageableBehaviour.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\DitheringModel.cs" />
+    <Compile Include="Assets\99.OtherAsset\Hovl Studio\HSFiles\Scripts\For demo scenes\HS_DemoShooting.cs" />
+    <Compile Include="Assets\99.OtherAsset\Hovl Studio\HSFiles\Scripts\HS_ProjectileMover.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TheBackend\Plugins\Android\TheBackend.iOS.dll" />
@@ -315,18 +317,24 @@
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\EyeAdaptation.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Editor Resources\UI\CurveBackground.shader" />
+    <None Include="Assets\99.OtherAsset\Hovl Studio\Toon Projectiles 2\Demo scene\HS_ProjectileMover script example save.txt" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\BuiltinDebugViews.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\EyeAdaptation.cginc" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\LutGen.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\EyeHistogram.compute" />
     <None Include="Assets\BansheeGz\BGDatabase\Scripts\BGDatabase.dll" />
     <None Include="Assets\BansheeGz\BGDatabase\Scripts\link.xml" />
+    <None Include="Assets\99.OtherAsset\Hovl Studio\Toon Projectiles 2\Demo scene\Readme.txt" />
+    <None Include="Assets\99.OtherAsset\Hovl Studio\HSFiles\Shaders\DissolveNoise.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\TAA.cginc" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Editor Resources\Monitors\VectorscopeCompute.compute" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\ColorGrading.cginc" />
+    <None Include="Assets\99.OtherAsset\Hovl Studio\HSFiles\Shaders\Distortion.shader" />
+    <None Include="Assets\99.OtherAsset\Hovl Studio\HSFiles\Shaders\Blend_TwoSides.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
+    <None Include="Assets\99.OtherAsset\Hovl Studio\HSFiles\Shaders\Blend_CenterGlow.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Third-Party Notices.txt" />
     <None Include="Assets\TheBackend\Plugins\Settings\TheBackendSettings.dll" />
     <None Include="Assets\06.Shader" />
@@ -338,11 +346,13 @@
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Fonts\Roboto\LICENSE.txt" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\FXAA.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\ScreenSpaceRaytrace.cginc" />
+    <None Include="Assets\99.OtherAsset\Hovl Studio\Toon Projectiles 2\Demo scene\HDRP and URP(LWRP).txt" />
     <None Include="Assets\BansheeGz\BGDatabase\Third-Party Notices.txt" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\Tonemapping.cginc" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\Fog.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Editor Resources\Monitors\ParadeRender.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\MotionBlur.shader" />
+    <None Include="Assets\99.OtherAsset\Hovl Studio\Toon Projectiles 2\Demo scene\HS_DemoShooting old script example save.txt" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\DiskKernels.cginc" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Bluenoise64\COPYING.txt" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Editor Resources\UI\Trackball.shader" />
@@ -358,6 +368,7 @@
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\Blit.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\Bloom.cginc" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
+    <None Include="Assets\99.OtherAsset\Hovl Studio\HSFiles\Shaders\Add_CenterGlow.shader" />
     <None Include="Assets\TheBackend\Plugins\Settings\TheBackendMultiSettings.dll" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\DepthOfField.cginc" />
     <None Include="Assets\99.OtherAsset\MagicCircles_SRP\Art\Shaders\Add_Glow.shader" />

@@ -88,7 +88,7 @@ public abstract class UnitBase : MonoBehaviour
 
     protected virtual void RecycleBindEvents()
     {
-        animatorContoller.noExistSpawnAnimEventHandler += () => { UtilityManager.Instance.DelayFunction(BindSpawnedEvent, 3f); };
+        animatorContoller.noExistSpawnAnimEventHandler += BindSpawnedEvent;
         //delay function 3f => spawn time
         ChangeAnimateState(UnitAnimateState.Spawn);
     }

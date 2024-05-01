@@ -15,9 +15,9 @@ public enum PoolType
 
 public class ObjectPoolingController : MonoBehaviour 
 {
-    public PoolType poolType;
+    //public PoolType poolType;
+    //public bool collectionChecks = true;
 
-    public bool collectionChecks = true;
     public int maxPoolSize = 10;
 
    // Hero currentHero;
