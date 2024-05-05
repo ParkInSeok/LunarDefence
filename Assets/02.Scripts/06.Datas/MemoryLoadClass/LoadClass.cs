@@ -45,10 +45,8 @@ public class LoadClass
 
     public bool IsExist(string _key)
     {
-        Debug.Log("IsExist event " + _key);
         if (key.Equals(_key))
         {
-            Debug.Log("key equal " + _key);
             return true;
         }
 

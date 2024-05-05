@@ -59,7 +59,7 @@ public class HeroStat : StatBase
                 break;
         }
 
-        Debug.Log("GetDamage : " + calculationDamage);
+        Debug.Log("GetDamage : " + calculationDamage + "current Unit : " + currentHeroStat.uniqueKey);
 
         currentHeroStat.hp -= calculationDamage;
 

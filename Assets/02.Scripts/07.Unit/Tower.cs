@@ -11,6 +11,8 @@ public class Tower : UnitBase
 
     public Action<Tower> dieEventHandler;
 
+    #region Init
+
     public void Init(TowerData _stat)
     {
         stat.InitStat(_stat);
@@ -23,18 +25,37 @@ public class Tower : UnitBase
 
         DieEvent();
     }
+    public void RecycleInit(TowerData _stat)
+    {
+        this.gameObject.SetActive(true);
+        stat.InitStat(_stat);
+        unitState = UnitState.alive;
+        animateState = UnitAnimateState.None;
+        setModelCompletedEventHandler = null;
+        setModelCompletedEventHandler += BindEvents;
+
+        CreateModel(stat.CurrentTowerStat.uniqueKey);
+
+    }
+
+
+    #endregion
 
     protected override void BindEvents()
     {
         stat.dieEventHandler += BindPlayDieAnimationEvent;
         animatorContoller.dieEventHandler += DieEvent;
         animatorContoller.spawnedEventHandler += BindSpawnedEvent;
-        //delay function 3f => spawn time
         animatorContoller.noExistSpawnAnimEventHandler += BindSpawnedEvent;
+        animatorContoller.attackEventHandler += BindAttackEvent;
         ChangeAnimateState(UnitAnimateState.Spawn);
 
     }
 
+    private void BindAttackEvent()
+    {
+
+    }
 
     public override void ChangeAnimateState(UnitAnimateState _state, float animSpeed = 1)
     {
@@ -78,13 +99,36 @@ public class Tower : UnitBase
 
     protected override void DieEvent()
     {
-        Debug.Log("tower DieEvent");
+        //Debug.Log("tower DieEvent");
         base.DieEvent();
         //object pool add
         dieEventHandler?.Invoke(this);
         this.gameObject.SetActive(false);
     }
 
+    protected override float SetDamage()
+    {
+        bool isCritical = false;
+        var randomIndex = UnityEngine.Random.Range(0, 100);
+        var _damage = stat.CurrentTowerStat.atk;
+        if (randomIndex <= stat.CurrentTowerStat.critical)
+        {
+            isCritical = true;
+        }
 
+        if (isCritical)
+        {
+            _damage = stat.CurrentTowerStat.atk * (200f + (float)stat.CurrentTowerStat.criticalDamage) / 100f;
+            //加碍 单固瘤 贸府
+        }
+        else
+        {
+            _damage = stat.CurrentTowerStat.atk;
+            //加碍 单固瘤 贸府
+        }
+
+
+        return _damage;
+    }
 
 }

@@ -13,7 +13,8 @@ public class InfinityStageManager : Singleton<InfinityStageManager>
 
     RoundController roundController;
     AdvantageController advantageController;
-    ObjectPoolingController objectPoolingController; 
+    ObjectPoolingController objectPoolingController;
+    PathController pathController;
 
 
     public RoundController RoundController { get { return roundController; } }
@@ -22,7 +23,7 @@ public class InfinityStageManager : Singleton<InfinityStageManager>
 
     public ObjectPoolingController ObjectPoolingController { get { return objectPoolingController; } }
 
-
+    public PathController PathController { get { return pathController; } }
 
     void Start()
     {
@@ -39,14 +40,15 @@ public class InfinityStageManager : Singleton<InfinityStageManager>
     {
         stageType = (StageType)SceneManager.GetActiveScene().buildIndex;
 
+        pathController = GetComponentInChildren<PathController>();
         roundController = GetComponentInChildren<RoundController>();
         advantageController = GetComponentInChildren<AdvantageController>();
         objectPoolingController = GetComponentInChildren<ObjectPoolingController>();
 
-
+        pathController.Init();
         roundController.Init();
         advantageController.Init();
-        objectPoolingController.Init();
+        objectPoolingController.Init(pathController.GetStartPathNode, pathController.GetTargetPathNode);
 
     }
 

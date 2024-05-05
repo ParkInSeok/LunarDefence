@@ -12,7 +12,7 @@ public class Hero : UnitBase
 
     public Action<Hero> dieEventHandler;
 
-
+    #region Init
     public void Init(HeroData _stat)
     {
         stat.InitStat(_stat);
@@ -23,6 +23,22 @@ public class Hero : UnitBase
 
         unitState = UnitState.alive;
     }
+
+    public void RecycleInit(HeroData _stat)
+    {
+        this.gameObject.SetActive(true);
+        stat.InitStat(_stat);
+        unitState = UnitState.alive;
+        animateState = UnitAnimateState.None;
+        setModelCompletedEventHandler = null;
+        setModelCompletedEventHandler += BindEvents;
+
+        CreateModel(stat.CurrentHeroStat.uniqueKey);
+
+    }
+
+    #endregion
+
     protected override void BindEvents()
     {
         stat.dieEventHandler += BindPlayDieAnimationEvent;
@@ -30,7 +46,13 @@ public class Hero : UnitBase
         animatorContoller.spawnedEventHandler += BindSpawnedEvent;
         //delay function 3f => spawn time
         animatorContoller.noExistSpawnAnimEventHandler += BindSpawnedEvent;
+        animatorContoller.attackEventHandler += BindAttackEvent;
         ChangeAnimateState(UnitAnimateState.Spawn);
+
+    }
+
+    private void BindAttackEvent()
+    {
 
     }
 
@@ -78,6 +100,32 @@ public class Hero : UnitBase
         this.gameObject.SetActive(false);
     }
 
+
+    protected override float SetDamage()
+    {
+
+        bool isCritical = false;
+        var randomIndex = UnityEngine.Random.Range(0, 100);
+        var _damage = stat.CurrentHeroStat.atk;
+        if (randomIndex <= stat.CurrentHeroStat.critical)
+        {
+            isCritical = true;
+        }
+
+        if (isCritical)
+        {
+            _damage = stat.CurrentHeroStat.atk * (200f + (float)stat.CurrentHeroStat.criticalDamage) / 100f;
+            //加碍 单固瘤 贸府
+        }
+        else
+        {
+            _damage = stat.CurrentHeroStat.atk;
+            //加碍 单固瘤 贸府
+        }
+
+
+        return _damage;
+    }
 
 
 }

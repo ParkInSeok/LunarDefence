@@ -46,7 +46,7 @@ public class ObjectPoolingController : MonoBehaviour
     }
 
 
-    public void Init()
+    public void Init(PathNode startNode, PathNode targetNode)
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -55,7 +55,7 @@ public class ObjectPoolingController : MonoBehaviour
         // need enemy round kyes
         SubscribeEnemy("NormalMonster_Snake"); 
 
-        SubscribeHero(DataManager.Instance.SelectedHero);
+        SubscribeHero(DataManager.Instance.SelectedHero, targetNode);
 
         var selectedTowers = DataManager.Instance.SelectedTowers;
         for (int i = 0; i < selectedTowers.Count; i++)
@@ -149,13 +149,13 @@ public class ObjectPoolingController : MonoBehaviour
 
     #region Hero
 
-    void SubscribeHero(string key)
+    void SubscribeHero(string key, PathNode startNode)
     {
-        DataManager.Instance.GetGameObject("Hero", (obj) => SetHero(obj, key));
+        DataManager.Instance.GetGameObject("Hero", (obj) => SetHero(obj, key, startNode));
 
     }
 
-    void SetHero(GameObject obj, string key)
+    void SetHero(GameObject obj, string key, PathNode startNode)
     {
         var hero = obj.GetComponent<Hero>();
 
@@ -163,7 +163,7 @@ public class ObjectPoolingController : MonoBehaviour
         hero.Init(DataManager.Instance.GameData.GetHeroData(key));
 
         hero.transform.SetParent(unitTypeParent[(int)hero.Stat.CurrentHeroStat.UnitType]);
-
+        hero.transform.position = startNode.position;
         //currentHero = hero;
     }
 

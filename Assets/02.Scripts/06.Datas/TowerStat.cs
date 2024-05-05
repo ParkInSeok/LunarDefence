@@ -50,7 +50,7 @@ public class TowerStat : StatBase
                 break;
         }
 
-        Debug.Log("GetDamage : " + calculationDamage);
+        Debug.Log("GetDamage : " + calculationDamage + "current Unit : " + currentTowerStat.uniqueKey);
 
         currentTowerStat.hp -= calculationDamage;
 

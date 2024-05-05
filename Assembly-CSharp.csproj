@@ -94,6 +94,7 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\ActionGameFramework\Audio\RandomAudioSource.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Input\KeyboardMouseInput.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\PostProcessingProfile.cs" />
+    <Compile Include="Assets\02.Scripts\08.Path\PathController.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Input\PointerInfo.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\MeshCreator\Triangulator.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Camera\CameraRig.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\ActionGameFramework\Health\DamageZone.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Data\IDataSaver.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\BGDataBaseGenerate.cs" />
+    <Compile Include="Assets\99.OtherAsset\Hovl Studio\HSFiles\Scripts\For demo scenes\HS_DemoShooting.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Input\TowerDefenseKeyboardMouseInput.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Utilities\Pool.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Affectors\SlowAffector.cs" />
@@ -202,6 +204,7 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Attributes\TrackballGroupAttribute.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\AdvantageData.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Agents\Agent.cs" />
+    <Compile Include="Assets\99.OtherAsset\Hovl Studio\HSFiles\Scripts\HS_ProjectileMover.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\EyeAdaptationModel.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\PostProcessingBehaviour.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Effects\ProjectileEffect.cs" />
@@ -240,6 +243,7 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\UI\MainMenu.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Utilities\RepeatingTimer.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Utilities\PoolManager.cs" />
+    <Compile Include="Assets\02.Scripts\08.Path\PathNode.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Data\FileSaver.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\UI\SimpleMainMenuPage.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\UserLutModel.cs" />
@@ -305,8 +309,6 @@
     <Compile Include="Assets\02.Scripts\05.Managers\StageManager\InfinityStageManager.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Health\DamageableBehaviour.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\DitheringModel.cs" />
-    <Compile Include="Assets\99.OtherAsset\Hovl Studio\HSFiles\Scripts\For demo scenes\HS_DemoShooting.cs" />
-    <Compile Include="Assets\99.OtherAsset\Hovl Studio\HSFiles\Scripts\HS_ProjectileMover.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TheBackend\Plugins\Android\TheBackend.iOS.dll" />

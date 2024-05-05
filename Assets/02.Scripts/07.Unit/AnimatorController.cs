@@ -47,14 +47,14 @@ public class AnimatorController : MonoBehaviour
             {
                 //spawnedEventHandler Action 실행 안함
                 //move state change 
-                Debug.Log("current anim state " + _state);
+                //Debug.Log("current anim state " + _state);
                 StartCoroutine(SpawnDissolveEvent(-0.1f, 2f, true, 1));
 
                 //스폰 default 연출 이후 spawnedEventHandler Action 실행 
             }
             else
             {
-                Debug.Log("ExistSpawnAnimfalse " + _state);
+               // Debug.Log("ExistSpawnAnimfalse " + _state);
             }
         }
 

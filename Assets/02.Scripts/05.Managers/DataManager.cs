@@ -269,22 +269,22 @@ public class DataManager : Singleton<DataManager>
     {
         // TODO 
         // 처음 for문으로 만들떄 여러개가 추가됨 확인해서 처리할것 
-        Debug.Log("GetFileEvent loadAssetList count " + loadAssetList.Count);
+        //Debug.Log("GetFileEvent loadAssetList count " + loadAssetList.Count);
         var existLoadedAsset = loadAssetList.Find((x) => x.IsExist(key) == true);
 
         if(existLoadedAsset != null)
         {
-            Debug.Log("existLoadedAsset != null");
+           // Debug.Log("existLoadedAsset != null");
             var loadObject = Instantiate(existLoadedAsset.GetGameObject, Vector3.zero, Quaternion.identity);
             endCallBack?.Invoke(loadObject);
         }
         else
         {
-            Debug.Log("existLoadedAsset == null");
+            //Debug.Log("existLoadedAsset == null");
             Addressables.LoadAssetAsync<GameObject>(key).Completed += (AsyncOperationHandle<GameObject> obj) =>
             {
                 var newData = new LoadClass(key, obj, obj.Result);
-                Debug.Log("add loadclass data : " + key);
+                //Debug.Log("add loadclass data : " + key);
                 loadAssetList.Add(newData);
 
                 var loadObject = Instantiate(obj.Result, Vector3.zero, Quaternion.identity);

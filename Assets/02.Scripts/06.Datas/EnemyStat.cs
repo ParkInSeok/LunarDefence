@@ -43,7 +43,7 @@ public class EnemyStat : StatBase
                 break;
         }
 
-        Debug.Log("GetDamage : " + calculationDamage);
+        Debug.Log("GetDamage : " + calculationDamage + "current Unit : " + currentEnemyStat.uniqueKey);
 
         currentEnemyStat.hp -= calculationDamage;
 

@@ -49,7 +49,8 @@ public class TestGameData : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F6))
         {
-
+            
+            currentEnemy.ChangeAnimateState(UnitAnimateState.Attack);
         }
 
         if (Input.GetKeyDown(KeyCode.F7))

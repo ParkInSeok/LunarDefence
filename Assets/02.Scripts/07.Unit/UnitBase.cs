@@ -34,7 +34,10 @@ public abstract class UnitBase : MonoBehaviour
     protected AnimatorController animatorContoller;
     [SerializeField] protected UnitAnimateState animateState;
     [SerializeField] protected UnitState unitState;
-    
+
+    public UnitAnimateState AnimateState { get { return animateState; } }
+    public UnitState UnitState { get { return unitState; } }
+
     public Action setModelCompletedEventHandler;
    
 
@@ -98,5 +101,8 @@ public abstract class UnitBase : MonoBehaviour
 
     public abstract void ChangeAnimateState(UnitAnimateState _state, float animSpeed = 1);
     public abstract void GetDamage(int _damage, DamageType _damageType);
+    protected abstract float SetDamage();
+
+    
 
 }
