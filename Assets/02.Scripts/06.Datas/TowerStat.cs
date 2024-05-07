@@ -40,13 +40,14 @@ public class TowerStat : StatBase
 
 
         var calculationDamage = _damage;
+        var currentDamage = _damage;
         switch (_damageType)
         {
             case DamageType.physicalDamageType:
-                calculationDamage -= (int)((float)calculationDamage * 100f / (100f + currentTowerStat.def)); /* *(currentEnemyStat.propertyResistPower))*/
+                calculationDamage = (int)((float)currentDamage * 100f / (100f + currentTowerStat.def)); /* *(currentEnemyStat.propertyResistPower))*/
                 break;
             case DamageType.masicDamageType:
-                calculationDamage -= (int)((float)calculationDamage * 100f / (100f+currentTowerStat.spdef)); /* *(currentEnemyStat.propertyResistPower))*/
+                calculationDamage = (int)((float)currentDamage * 100f / (100f + currentTowerStat.spdef)); /* *(currentEnemyStat.propertyResistPower))*/
                 break;
         }
 

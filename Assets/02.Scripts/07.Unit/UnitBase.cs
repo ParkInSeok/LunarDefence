@@ -39,7 +39,7 @@ public abstract class UnitBase : MonoBehaviour
     public UnitState UnitState { get { return unitState; } }
 
     public Action setModelCompletedEventHandler;
-   
+    public Action unitDieEventHandler;
 
 
     protected virtual void CreateModel(string modelUniqueKey)
@@ -80,7 +80,7 @@ public abstract class UnitBase : MonoBehaviour
     protected virtual void DieEvent()
     {
         unitState = UnitState.die;
-
+        unitDieEventHandler?.Invoke();
 
     }
 

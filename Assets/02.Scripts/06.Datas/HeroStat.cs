@@ -46,16 +46,15 @@ public class HeroStat : StatBase
     public override void GetDamage(int _damage, DamageType _damageType)
     {
         //TO DO property type , enemy type not exist 0225 
-
-
         var calculationDamage = _damage;
+        var currentDamage = _damage;
         switch (_damageType)
         {
             case DamageType.physicalDamageType:
-                calculationDamage -= (int)((float)calculationDamage * 100f / (100f + currentHeroStat.def)); /* *(currentEnemyStat.propertyResistPower))*/
+                calculationDamage = (int)((float)currentDamage * 100f / (100f + currentHeroStat.def)); /* *(currentEnemyStat.propertyResistPower))*/
                 break;
             case DamageType.masicDamageType:
-                calculationDamage -= (int)((float)calculationDamage * 100f / (100f + currentHeroStat.spdef)); /* *(currentEnemyStat.propertyResistPower))*/
+                calculationDamage = (int)((float)currentDamage * 100f / (100f + currentHeroStat.spdef)); /* *(currentEnemyStat.propertyResistPower))*/
                 break;
         }
 

@@ -24,6 +24,8 @@ public class LoadClass
 
     public LoadClassType Type { get { return type; } }
 
+    public AsyncOperationHandle LoadedHandle { get { return loadedHandle; } }
+
     public LoadClass(string _key, AsyncOperationHandle _loadedHandle, GameObject _gameObject)
     {
         key = _key;

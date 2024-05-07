@@ -16,6 +16,12 @@ public class Enemy : UnitBase
 
     public Action<Enemy> dieEventHandler;
 
+    Coroutine moveCoroutine;
+
+    int targetIndex = 0;
+
+    List<PathNode> path;
+
     #region Init
 
     public void Init(EnemyData _stat)
@@ -27,6 +33,8 @@ public class Enemy : UnitBase
         setModelCompletedEventHandler += BindEvents;
 
         CreateModel(stat.CurrentEnemyStat.uniqueKey);
+
+        targetIndex = 0;
 
         DieEvent();
     }
@@ -40,6 +48,9 @@ public class Enemy : UnitBase
         setModelCompletedEventHandler += BindEvents;
 
         CreateModel(stat.CurrentEnemyStat.uniqueKey);
+
+        targetIndex = 0;
+        path = InfinityStageManager.Instance.PathController.TargetPath;
 
     }
 
@@ -59,6 +70,9 @@ public class Enemy : UnitBase
     protected override void BindSpawnedEvent()
     {
         ChangeAnimateState(UnitAnimateState.Move);
+
+        Move();
+
 
         //Move(herotransform);
     }
@@ -82,7 +96,22 @@ public class Enemy : UnitBase
        
     }
 
-  
+    private void BindStunEndEvent(UnitAnimateState arg1, float arg2)
+    {
+        if (target != null)
+        {
+            ChangeAnimateState(UnitAnimateState.Attack);
+        }
+        else
+        {
+            ChangeAnimateState(UnitAnimateState.Move);
+        }
+
+        animatorContoller.changeAnimationEventHandler -= BindStunEndEvent;
+
+    }
+
+
 
     protected override void DieEvent()
     {
@@ -122,10 +151,93 @@ public class Enemy : UnitBase
     #endregion
 
 
-    public void Move(Transform targetHero)
+    public void Move()
     {
+        if(moveCoroutine != null)
+        {
+            StopCoroutine(moveCoroutine);
+        }
+        moveCoroutine = StartCoroutine(_Move());
+    }
+
+    IEnumerator _Move()
+    {
+        if (path == null || path.Count == 0)
+        {
+            Debug.LogError("Path is null or empty.");
+            yield break;
+        }
+
+        Vector3 currentWaypoint = path[0].position;
+        Vector3 direction = currentWaypoint - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        while (targetIndex < path.Count - 1)
+        {
+            float distance = Vector3.Distance(transform.position, currentWaypoint);
+
+            if (distance <= 0.1f)
+            {
+                targetIndex++;
+                currentWaypoint = path[targetIndex].position;
+
+                if (path[targetIndex].isTower)
+                {
+                    yield return StartCoroutine(RotateAttackUnit(direction, currentWaypoint, targetRotation));
+                    target = path[targetIndex].Unit;
+                    ChangeAnimateState(UnitAnimateState.Attack);
+                    yield break;
+                }
+
+                if (targetIndex >= path.Count - 1)
+                {
+                    break; // End of path reached
+                }
+
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint,
+                stat.CurrentEnemyStat.moveSpeed * Time.deltaTime);
+            SetRotation(direction, currentWaypoint, targetRotation);
+            yield return null;
+        }
+
+        yield return StartCoroutine(RotateAttackUnit(direction, currentWaypoint, targetRotation));
+        // 앞에 타워가 있다면? 멈추고 공격
+
 
     }
+
+    IEnumerator RotateAttackUnit(Vector3 direction, Vector3 currentWaypoint, Quaternion targetRotation)
+    {
+        while (SetRotation(direction, currentWaypoint, targetRotation) == false)
+        {
+            yield return null;
+        }
+    }
+
+
+
+    bool SetRotation(Vector3 direction, Vector3 currentWaypoint, Quaternion targetRotation)
+    {
+        direction = currentWaypoint - transform.position;
+        if (direction != Vector3.zero)
+        {
+            targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+        }
+
+        float differenceValue = Mathf.Abs(transform.rotation.eulerAngles.y) - Mathf.Abs(targetRotation.eulerAngles.y);
+        if(Mathf.Abs(differenceValue) < 3f)
+        {
+            //Debug.Log("differenceValue " + differenceValue);
+            return true;
+        }
+        return false;
+
+
+  
+    }
+
 
 
     public override void ChangeAnimateState(UnitAnimateState _state, float animSpeed = 1)
@@ -137,11 +249,19 @@ public class Enemy : UnitBase
         if (animateState == _state)
             return;
 
+        if(animateState == UnitAnimateState.Stun)
+        {
+            animatorContoller.changeAnimationEventHandler += BindStunEndEvent;
+        }
+
+
         animateState = _state;
 
         animatorContoller.ChangeAnimateState(_state, animSpeed);
 
     }
+
+ 
 
     #region Damage
 

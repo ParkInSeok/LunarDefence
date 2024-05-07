@@ -104,6 +104,9 @@ public class Tower : UnitBase
         //object pool add
         dieEventHandler?.Invoke(this);
         this.gameObject.SetActive(false);
+
+        //현재 위치해있는 tileeventTrigger.DieUnit 
+
     }
 
     protected override float SetDamage()

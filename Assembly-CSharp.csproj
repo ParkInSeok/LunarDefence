@@ -309,10 +309,14 @@
     <Compile Include="Assets\02.Scripts\05.Managers\StageManager\InfinityStageManager.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Health\DamageableBehaviour.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\DitheringModel.cs" />
+    <Compile Include="Assets\02.Scripts\08.Path\EventTrigger.cs" />
+    <Compile Include="Assets\02.Scripts\08.Path\TileEventTrigger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TheBackend\Plugins\Android\TheBackend.iOS.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\ScreenSpaceReflection.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\GrainGen.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\FXAA3.cginc" />
@@ -320,6 +324,7 @@
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Editor Resources\UI\CurveBackground.shader" />
     <None Include="Assets\99.OtherAsset\Hovl Studio\Toon Projectiles 2\Demo scene\HS_ProjectileMover script example save.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\BuiltinDebugViews.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\EyeAdaptation.cginc" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\LutGen.shader" />
@@ -327,10 +332,13 @@
     <None Include="Assets\BansheeGz\BGDatabase\Scripts\BGDatabase.dll" />
     <None Include="Assets\BansheeGz\BGDatabase\Scripts\link.xml" />
     <None Include="Assets\99.OtherAsset\Hovl Studio\Toon Projectiles 2\Demo scene\Readme.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\99.OtherAsset\Hovl Studio\HSFiles\Shaders\DissolveNoise.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\TAA.cginc" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Editor Resources\Monitors\VectorscopeCompute.compute" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\ColorGrading.cginc" />
     <None Include="Assets\99.OtherAsset\Hovl Studio\HSFiles\Shaders\Distortion.shader" />
     <None Include="Assets\99.OtherAsset\Hovl Studio\HSFiles\Shaders\Blend_TwoSides.shader" />
@@ -340,15 +348,23 @@
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Third-Party Notices.txt" />
     <None Include="Assets\TheBackend\Plugins\Settings\TheBackendSettings.dll" />
     <None Include="Assets\06.Shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Bluenoise64\LICENSE.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
     <None Include="Assets\TheBackend\Plugins\LitJSON.dll" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\ACES.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\AmbientOcclusion.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Fonts\Roboto\LICENSE.txt" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\FXAA.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\ScreenSpaceRaytrace.cginc" />
     <None Include="Assets\99.OtherAsset\Hovl Studio\Toon Projectiles 2\Demo scene\HDRP and URP(LWRP).txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\BansheeGz\BGDatabase\Third-Party Notices.txt" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\Tonemapping.cginc" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\Fog.shader" />
@@ -356,6 +372,7 @@
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\MotionBlur.shader" />
     <None Include="Assets\99.OtherAsset\Hovl Studio\Toon Projectiles 2\Demo scene\HS_DemoShooting old script example save.txt" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\DiskKernels.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Bluenoise64\COPYING.txt" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Editor Resources\UI\Trackball.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Editor Resources\Monitors\WaveformRender.shader" />
@@ -365,6 +382,7 @@
     <None Include="Assets\TheBackend\Plugins\Settings\TheBackendHashKeySettings.dll" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\Uber.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\DepthOfField.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\TAA.shader" />
     <None Include="Assets\TheBackend\Plugins\IOS\TheBackend.iOS.dll" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\Blit.shader" />
@@ -373,9 +391,14 @@
     <None Include="Assets\99.OtherAsset\Hovl Studio\HSFiles\Shaders\Add_CenterGlow.shader" />
     <None Include="Assets\TheBackend\Plugins\Settings\TheBackendMultiSettings.dll" />
     <None Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Resources\Shaders\DepthOfField.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\99.OtherAsset\MagicCircles_SRP\Art\Shaders\Add_Glow.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TheBackend\Plugins\Backend.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\BansheeGz\BGDatabase\readme.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -15,6 +15,7 @@ public class TestGameData : MonoBehaviour
     public Enemy currentEnemy;
     public Tower currentTower;
     public Hero currentHero;
+
     void Start()
     {
 
@@ -25,32 +26,28 @@ public class TestGameData : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            DataManager.Instance.GetGameObject("Enemy",SetGameObject);
-            
+            InfinityStageManager.Instance.ObjectPoolingController.GetEnemyPool("BossMonster_Dragon Fire");
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            DataManager.Instance.GetGameObject("Tower", SetTowerGameObject);
+            InfinityStageManager.Instance.PathController.ReFindPath();
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
-            DataManager.Instance.GetGameObject("Hero", SetHeroGameObject);
+
         }
 
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            InfinityStageManager.Instance.ObjectPoolingController.GetEnemyPool("BossMonster_Dragon Fire");
         }
 
         if (Input.GetKeyDown(KeyCode.F5))
         {
-            currentEnemy.GetDamage(1000, DamageType.physicalDamageType);
         }
 
         if (Input.GetKeyDown(KeyCode.F6))
         {
             
-            currentEnemy.ChangeAnimateState(UnitAnimateState.Attack);
         }
 
         if (Input.GetKeyDown(KeyCode.F7))
@@ -117,5 +114,27 @@ public class TestGameData : MonoBehaviour
 
         currentHero = hero;
     }
+
+
+    private void OnDrawGizmos()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        Debug.DrawRay(ray.origin, ray.direction* 70, Color.blue, 1f);
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+
+            print("raycast hit!");
+
+            hit.transform.TryGetComponent<TileEventTrigger>(out var tile);
+            if (tile == null)
+                return;
+
+            Debug.Log("tile row " + tile.pathNode.row + " tile column " + tile.pathNode.column);
+
+        }
+    }
+
 
 }

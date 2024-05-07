@@ -29,7 +29,8 @@ public class ObjectPoolingController : MonoBehaviour
 
     List<Transform> unitTypeParent = new List<Transform>();
 
-
+    PathNode startNode;
+    PathNode targetNode;
 
 
 
@@ -46,16 +47,19 @@ public class ObjectPoolingController : MonoBehaviour
     }
 
 
-    public void Init(PathNode startNode, PathNode targetNode)
+    public void Init(PathNode _startNode, PathNode _targetNode)
     {
         for (int i = 0; i < transform.childCount; i++)
         {
             unitTypeParent.Add(transform.GetChild(i));
         }
         // need enemy round kyes
-        SubscribeEnemy("NormalMonster_Snake"); 
 
-        SubscribeHero(DataManager.Instance.SelectedHero, targetNode);
+        startNode = _startNode;
+        targetNode = _targetNode;
+
+        SubscribeEnemy("NormalMonster_Snake"); 
+        SubscribeHero(DataManager.Instance.SelectedHero);
 
         var selectedTowers = DataManager.Instance.SelectedTowers;
         for (int i = 0; i < selectedTowers.Count; i++)
@@ -85,6 +89,12 @@ public class ObjectPoolingController : MonoBehaviour
         var enemy = obj.GetComponent<Enemy>();
         enemy.dieEventHandler += DieEnemyEvent;
         enemy.Init(DataManager.Instance.GameData.GetEnemyData(key));
+
+        enemy.transform.position = startNode.position;
+        var path = InfinityStageManager.Instance.PathController.TargetPath;
+        enemy.transform.LookAt(path[0].position);
+
+
         enemy.setModelCompletedEventHandler += () =>
         {
             InitSubscribeCreateEnemy(enemy);
@@ -118,7 +128,10 @@ public class ObjectPoolingController : MonoBehaviour
         enemy.Init(DataManager.Instance.GameData.GetEnemyData(key));
     
         enemy.transform.SetParent(unitTypeParent[(int)enemy.Stat.CurrentEnemyStat.UnitType]);
+        enemy.transform.position = startNode.position;
 
+        var path = InfinityStageManager.Instance.PathController.TargetPath;
+        enemy.transform.LookAt(path[0].position);
     }
 
 
@@ -149,13 +162,13 @@ public class ObjectPoolingController : MonoBehaviour
 
     #region Hero
 
-    void SubscribeHero(string key, PathNode startNode)
+    void SubscribeHero(string key)
     {
-        DataManager.Instance.GetGameObject("Hero", (obj) => SetHero(obj, key, startNode));
+        DataManager.Instance.GetGameObject("Hero", (obj) => SetHero(obj, key));
 
     }
 
-    void SetHero(GameObject obj, string key, PathNode startNode)
+    void SetHero(GameObject obj, string key)
     {
         var hero = obj.GetComponent<Hero>();
 
@@ -163,7 +176,9 @@ public class ObjectPoolingController : MonoBehaviour
         hero.Init(DataManager.Instance.GameData.GetHeroData(key));
 
         hero.transform.SetParent(unitTypeParent[(int)hero.Stat.CurrentHeroStat.UnitType]);
-        hero.transform.position = startNode.position;
+        hero.transform.position = targetNode.position;
+        hero.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        targetNode.SetUnit(hero);
         //currentHero = hero;
     }
 
@@ -188,10 +203,9 @@ public class ObjectPoolingController : MonoBehaviour
 
         tower.dieEventHandler += DieTowerEvent;
         tower.Init(DataManager.Instance.GameData.GetTowerData(key));
-        
 
         tower.transform.SetParent(unitTypeParent[(int)tower.Stat.CurrentTowerStat.UnitType]);
-
+        tower.transform.localRotation = Quaternion.Euler(0, 180, 0);
     }
 
     private void DieTowerEvent(Tower _tower)

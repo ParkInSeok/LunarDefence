@@ -31,17 +31,18 @@ public class EnemyStat : StatBase
     public override void GetDamage(int _damage, DamageType _damageType)
     {
         //TO DO property type , enemy type not exist 0225 
-      
-        var calculationDamage = 0;
+        var calculationDamage = _damage;
+        var currentDamage = _damage;
         switch (_damageType)
         {
             case DamageType.physicalDamageType:
-                calculationDamage = (int)((float)_damage * 100f / (100f + currentEnemyStat.def));/* *(currentEnemyStat.propertyResistPower))*/
+                calculationDamage = (int)((float)currentDamage * 100f / (100f + currentEnemyStat.def)); /* *(currentEnemyStat.propertyResistPower))*/
                 break;
             case DamageType.masicDamageType:
-                calculationDamage = (int)((float)_damage * 100f / (100f + currentEnemyStat.spdef)); /* *(currentEnemyStat.propertyResistPower))*/
+                calculationDamage = (int)((float)currentDamage * 100f / (100f + currentEnemyStat.spdef)); /* *(currentEnemyStat.propertyResistPower))*/
                 break;
         }
+
 
         Debug.Log("GetDamage : " + calculationDamage + "current Unit : " + currentEnemyStat.uniqueKey);
 

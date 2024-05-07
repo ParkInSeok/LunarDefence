@@ -9,6 +9,7 @@ public class PathNode
     public GameObject ground;
     public Material material;
     public bool walkable;
+    public bool isTower;
     public int gCost;
     public int hCost;
 
@@ -19,8 +20,28 @@ public class PathNode
 
     public int FCost { get { return gCost + hCost; } }
 
+    private UnitBase unit;
+
+    public UnitBase Unit { get { return unit; } }
+
+    public Color origineColor;
 
 
 
+    public void SetUnit(UnitBase _unit)
+    {
+        unit = _unit;
+        isTower = true;
+
+        unit.unitDieEventHandler += DieUnit;
+
+    }
+
+    public void DieUnit()
+    {
+        unit.unitDieEventHandler -= DieUnit;
+        unit = null;
+        isTower = false;
+    }
 
 }

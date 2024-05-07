@@ -306,7 +306,7 @@ public class DataManager : Singleton<DataManager>
     {
         for (int i = loadAssetList.Count - 1; i >= 0; i--)
         {
-            Addressables.Release(loadAssetList[i]);
+            Addressables.Release(loadAssetList[i].LoadedHandle.Result);
         }
 
         loadAssetList.Clear();
