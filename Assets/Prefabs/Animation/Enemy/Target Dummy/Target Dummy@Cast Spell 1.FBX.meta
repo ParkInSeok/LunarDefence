@@ -1,248 +1,140 @@
 fileFormatVersion: 2
-guid: 0c496455dc6cb774e8ed2d38093c1c3b
+guid: 02ee38ba144cafd48b097687d1ecb952
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       1: 100000
-    second: Rig
+    second: Dummy001
   - first:
       1: 100002
-    second: RigHead
+    second: Rig
   - first:
       1: 100004
-    second: RigJaw
+    second: RigLArm1
   - first:
       1: 100006
-    second: RigLBLeg1
+    second: RigLArm1Gizmo
   - first:
       1: 100008
-    second: RigLBLeg2
+    second: RigLArm2
   - first:
       1: 100010
-    second: RigLBLegAnkle
+    second: RigLArm2Gizmo
   - first:
       1: 100012
-    second: RigLBLegPlatform
+    second: RigLLeg1
   - first:
       1: 100014
-    second: RigLBLegToes1
+    second: RigLLegPlatform
   - first:
       1: 100016
-    second: RigLBLegToes2
-  - first:
-      1: 100018
-    second: RigLFLeg1
-  - first:
-      1: 100020
-    second: RigLFLeg2
-  - first:
-      1: 100022
-    second: RigLFLegAnkle
-  - first:
-      1: 100024
-    second: RigLFLegPlatform
-  - first:
-      1: 100026
-    second: RigLFLegToes1
-  - first:
-      1: 100028
-    second: RigLFLegToes2
-  - first:
-      1: 100030
-    second: RigNeck
-  - first:
-      1: 100032
     second: RigPelvis
   - first:
-      1: 100034
-    second: RigRBLeg1
+      1: 100018
+    second: RigPelvisGizmo
   - first:
-      1: 100036
-    second: RigRBLeg2
+      1: 100020
+    second: RigRArm1
   - first:
-      1: 100038
-    second: RigRBLegAnkle
+      1: 100022
+    second: RigRArm1Gizmo
   - first:
-      1: 100040
-    second: RigRBLegPlatform
+      1: 100024
+    second: RigRArm2
   - first:
-      1: 100042
-    second: RigRBLegToes1
+      1: 100026
+    second: RigRArm2Gizmo
   - first:
-      1: 100044
-    second: RigRBLegToes2
-  - first:
-      1: 100046
-    second: RigRFLeg1
-  - first:
-      1: 100048
-    second: RigRFLeg2
-  - first:
-      1: 100050
-    second: RigRFLegAnkle
-  - first:
-      1: 100052
-    second: RigRFLegPlatform
-  - first:
-      1: 100054
-    second: RigRFLegToes1
-  - first:
-      1: 100056
-    second: RigRFLegToes2
-  - first:
-      1: 100058
+      1: 100028
     second: RigRibcage
   - first:
-      1: 100060
-    second: RigSpine1
+      1: 100030
+    second: RigRibcageGizmo
   - first:
-      1: 100062
-    second: RigSpine2
+      1: 100032
+    second: RigRLeg1
   - first:
-      1: 100064
-    second: RigTail1
+      1: 100034
+    second: RigRLegPlatform
   - first:
-      1: 100066
-    second: RigTail2
+      1: 100036
+    second: RigSpine
   - first:
-      1: 100068
-    second: RigTail3
+      1: 100038
+    second: Target Dummy
   - first:
-      1: 100070
-    second: RigTail4
-  - first:
-      1: 100072
-    second: RigTail5
-  - first:
-      1: 100074
-    second: Wolf
-  - first:
-      1: 100076
+      1: 100040
     second: //RootNode
   - first:
       4: 400000
-    second: Rig
+    second: Dummy001
   - first:
       4: 400002
-    second: RigHead
+    second: Rig
   - first:
       4: 400004
-    second: RigJaw
+    second: RigLArm1
   - first:
       4: 400006
-    second: RigLBLeg1
+    second: RigLArm1Gizmo
   - first:
       4: 400008
-    second: RigLBLeg2
+    second: RigLArm2
   - first:
       4: 400010
-    second: RigLBLegAnkle
+    second: RigLArm2Gizmo
   - first:
       4: 400012
-    second: RigLBLegPlatform
+    second: RigLLeg1
   - first:
       4: 400014
-    second: RigLBLegToes1
+    second: RigLLegPlatform
   - first:
       4: 400016
-    second: RigLBLegToes2
-  - first:
-      4: 400018
-    second: RigLFLeg1
-  - first:
-      4: 400020
-    second: RigLFLeg2
-  - first:
-      4: 400022
-    second: RigLFLegAnkle
-  - first:
-      4: 400024
-    second: RigLFLegPlatform
-  - first:
-      4: 400026
-    second: RigLFLegToes1
-  - first:
-      4: 400028
-    second: RigLFLegToes2
-  - first:
-      4: 400030
-    second: RigNeck
-  - first:
-      4: 400032
     second: RigPelvis
   - first:
-      4: 400034
-    second: RigRBLeg1
+      4: 400018
+    second: RigPelvisGizmo
   - first:
-      4: 400036
-    second: RigRBLeg2
+      4: 400020
+    second: RigRArm1
   - first:
-      4: 400038
-    second: RigRBLegAnkle
+      4: 400022
+    second: RigRArm1Gizmo
   - first:
-      4: 400040
-    second: RigRBLegPlatform
+      4: 400024
+    second: RigRArm2
   - first:
-      4: 400042
-    second: RigRBLegToes1
+      4: 400026
+    second: RigRArm2Gizmo
   - first:
-      4: 400044
-    second: RigRBLegToes2
-  - first:
-      4: 400046
-    second: RigRFLeg1
-  - first:
-      4: 400048
-    second: RigRFLeg2
-  - first:
-      4: 400050
-    second: RigRFLegAnkle
-  - first:
-      4: 400052
-    second: RigRFLegPlatform
-  - first:
-      4: 400054
-    second: RigRFLegToes1
-  - first:
-      4: 400056
-    second: RigRFLegToes2
-  - first:
-      4: 400058
+      4: 400028
     second: RigRibcage
   - first:
-      4: 400060
-    second: RigSpine1
+      4: 400030
+    second: RigRibcageGizmo
   - first:
-      4: 400062
-    second: RigSpine2
+      4: 400032
+    second: RigRLeg1
   - first:
-      4: 400064
-    second: RigTail1
+      4: 400034
+    second: RigRLegPlatform
   - first:
-      4: 400066
-    second: RigTail2
+      4: 400036
+    second: RigSpine
   - first:
-      4: 400068
-    second: RigTail3
+      4: 400038
+    second: Target Dummy
   - first:
-      4: 400070
-    second: RigTail4
-  - first:
-      4: 400072
-    second: RigTail5
-  - first:
-      4: 400074
-    second: Wolf
-  - first:
-      4: 400076
+      4: 400040
     second: //RootNode
   - first:
       21: 2100000
-    second: 02 - Default
+    second: Material #25
   - first:
       43: 4300000
-    second: Wolf
+    second: Target Dummy
   - first:
       74: 7400000
     second: Cast Spell 1
@@ -251,7 +143,7 @@ ModelImporter:
     second: //RootNode
   - first:
       137: 13700000
-    second: Wolf
+    second: Target Dummy
   externalObjects: {}
   materials:
     materialImportMode: 0
@@ -286,7 +178,7 @@ ModelImporter:
       takeName: Take 001
       internalID: 7400000
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -306,7 +198,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.67653435
+      - time: 0.68156743
         functionName: SpawnedEvent
         data: 
         objectReferenceParameter: {instanceID: 0}

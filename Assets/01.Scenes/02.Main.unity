@@ -14769,7 +14769,11 @@ MonoBehaviour:
   gameData: {fileID: 11400000, guid: fb21b5a1147926d4e98dca177156bf1e, type: 2}
   selectedHeroUniqueKey: BlastRobotBlueHeroTest
   selectedTowerUniqueKeys:
-  - Tower_SunfloraPixie
+  - Tower_Angel Mage
+  - Tower_Death Mage
+  - Tower_Fire Mage
+  - Tower_Ice Mage
+  - Tower_Nightmare
 --- !u!4 &1648877114
 Transform:
   m_ObjectHideFlags: 0

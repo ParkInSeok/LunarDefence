@@ -10,17 +10,22 @@ public class Enemy : UnitBase
 
     public EnemyStat Stat { get { return stat; } }
 
+    int targetIndex = 0;
+    
+    Coroutine moveCoroutine;
+    
+    public Action<Enemy> dieEventHandler;
+    
+    List<PathNode> path;
+   
+
+
     [Header("Debugging")]
     public UnitBase target;
 
 
-    public Action<Enemy> dieEventHandler;
 
-    Coroutine moveCoroutine;
 
-    int targetIndex = 0;
-
-    List<PathNode> path;
 
     #region Init
 
@@ -28,6 +33,7 @@ public class Enemy : UnitBase
     {
         stat = new EnemyStat();
         stat.InitStat(_stat);
+
         unitState = UnitState.die;
         animateState = UnitAnimateState.Die;
         setModelCompletedEventHandler += BindEvents;
@@ -41,13 +47,23 @@ public class Enemy : UnitBase
     public void RecycleInit(EnemyData _stat)
     {
         this.gameObject.SetActive(true);
+        var regacyKey = stat.CurrentEnemyStat.uniqueKey;
         stat.InitStat(_stat);
         unitState = UnitState.alive;
         animateState = UnitAnimateState.None;
         setModelCompletedEventHandler = null;
         setModelCompletedEventHandler += BindEvents;
 
-        CreateModel(stat.CurrentEnemyStat.uniqueKey);
+        if (animatorControllerPool.ContainsKey(stat.CurrentEnemyStat.uniqueKey))
+        {
+            Debug.Log("animatorControllerPool ContainsKey ");
+            SetModel(animatorControllerPool[stat.CurrentEnemyStat.uniqueKey]);
+        }
+        else
+        {
+            Debug.Log("animatorControllerPool not ContainsKey ");
+            CreateModel(stat.CurrentEnemyStat.uniqueKey);
+        }
 
         targetIndex = 0;
         path = InfinityStageManager.Instance.PathController.TargetPath;
@@ -64,6 +80,10 @@ public class Enemy : UnitBase
         animatorContoller.dieEventHandler += DieEvent;
         animatorContoller.spawnedEventHandler += BindSpawnedEvent;
         animatorContoller.attackEventHandler += BindAttackEvent;
+
+        if (animatorControllerPool.ContainsKey(stat.CurrentEnemyStat.uniqueKey) == false)
+            animatorControllerPool.Add(stat.CurrentEnemyStat.uniqueKey, animatorContoller);
+
         RecycleBindEvents();
 
     }
@@ -130,6 +150,9 @@ public class Enemy : UnitBase
     protected override void CreateModel(string modelUniqueKey)
     {
         base.CreateModel(modelUniqueKey);
+
+       
+
     }
 
     protected override void SetModel(GameObject loadedObject)
@@ -141,7 +164,10 @@ public class Enemy : UnitBase
     public override void ResetModel()
     {
         if (model != null)
-            Destroy(model);
+        {
+            model.SetActive(false);
+            //Destroy(model);
+        }
 
         //씬에 하나라도 남아있으면 메모리 리셋 안함 -> 가지고있다가 게임 끝나면 초기화 큰차이없음
 
@@ -197,7 +223,7 @@ public class Enemy : UnitBase
 
             transform.position = Vector3.MoveTowards(transform.position, currentWaypoint,
                 stat.CurrentEnemyStat.moveSpeed * Time.deltaTime);
-            SetRotation(direction, currentWaypoint, targetRotation);
+            LootAtRotation(direction, currentWaypoint, targetRotation);
             yield return null;
         }
 
@@ -209,7 +235,7 @@ public class Enemy : UnitBase
 
     IEnumerator RotateAttackUnit(Vector3 direction, Vector3 currentWaypoint, Quaternion targetRotation)
     {
-        while (SetRotation(direction, currentWaypoint, targetRotation) == false)
+        while (LootAtRotation(direction, currentWaypoint, targetRotation) == false)
         {
             yield return null;
         }
@@ -217,7 +243,7 @@ public class Enemy : UnitBase
 
 
 
-    bool SetRotation(Vector3 direction, Vector3 currentWaypoint, Quaternion targetRotation)
+    bool LootAtRotation(Vector3 direction, Vector3 currentWaypoint, Quaternion targetRotation)
     {
         direction = currentWaypoint - transform.position;
         if (direction != Vector3.zero)

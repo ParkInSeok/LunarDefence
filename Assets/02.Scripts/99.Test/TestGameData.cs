@@ -30,7 +30,7 @@ public class TestGameData : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            InfinityStageManager.Instance.PathController.ReFindPath();
+            InfinityStageManager.Instance.ObjectPoolingController.GetEnemyPool("NormalMonster_Snake");
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
@@ -39,6 +39,7 @@ public class TestGameData : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F4))
         {
+            InfinityStageManager.Instance.PathController.ReFindPath();
         }
 
         if (Input.GetKeyDown(KeyCode.F5))

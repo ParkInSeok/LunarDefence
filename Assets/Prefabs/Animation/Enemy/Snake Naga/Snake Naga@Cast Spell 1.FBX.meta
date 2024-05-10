@@ -948,8 +948,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.3664789
-        functionName: AttackEvent
+      - time: 0.62627715
+        functionName: SpawnedEvent
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

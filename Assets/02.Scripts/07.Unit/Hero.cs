@@ -33,7 +33,16 @@ public class Hero : UnitBase
         setModelCompletedEventHandler = null;
         setModelCompletedEventHandler += BindEvents;
 
-        CreateModel(stat.CurrentHeroStat.uniqueKey);
+        if (animatorControllerPool.ContainsKey(stat.CurrentHeroStat.uniqueKey))
+        {
+            Debug.Log("animatorControllerPool ContainsKey ");
+            SetModel(animatorControllerPool[stat.CurrentHeroStat.uniqueKey].gameObject);
+        }
+        else
+        {
+            Debug.Log("animatorControllerPool not ContainsKey ");
+            CreateModel(stat.CurrentHeroStat.uniqueKey);
+        }
 
     }
 
@@ -45,8 +54,11 @@ public class Hero : UnitBase
         animatorContoller.dieEventHandler += DieEvent;
         animatorContoller.spawnedEventHandler += BindSpawnedEvent;
         //delay function 3f => spawn time
-        animatorContoller.noExistSpawnAnimEventHandler += BindSpawnedEvent;
         animatorContoller.attackEventHandler += BindAttackEvent;
+
+        if (animatorControllerPool.ContainsKey(stat.CurrentHeroStat.uniqueKey) == false)
+            animatorControllerPool.Add(stat.CurrentHeroStat.uniqueKey, animatorContoller);
+
         ChangeAnimateState(UnitAnimateState.Spawn);
 
     }
@@ -85,9 +97,11 @@ public class Hero : UnitBase
 
     public override void ResetModel()
     {
-        DataManager.Instance.ResetMemory(stat.CurrentHeroStat.uniqueKey);
         if (model != null)
-            Destroy(model);
+        {
+            model.SetActive(false);
+            //Destroy(model);
+        }
 
     }
 

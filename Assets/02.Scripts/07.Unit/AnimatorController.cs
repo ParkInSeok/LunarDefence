@@ -15,7 +15,6 @@ public class AnimatorController : MonoBehaviour
     public Action dieEventHandler;
     public Action spawnedEventHandler;
     public Action attackEventHandler;
-    public Action noExistSpawnAnimEventHandler;
 
     string dissolveValueKeyWord = "_DissolveValue";
 
@@ -43,22 +42,11 @@ public class AnimatorController : MonoBehaviour
 
         if (_state == UnitAnimateState.Spawn)
         {
-            if (stateinfo.IsTag("ExistSpawnAnimfalse") == true)
-            {
-                //spawnedEventHandler Action 실행 안함
-                //move state change 
-                //Debug.Log("current anim state " + _state);
-                StartCoroutine(SpawnDissolveEvent(-0.1f, 2f, true, 1));
-
-                //스폰 default 연출 이후 spawnedEventHandler Action 실행 
-            }
-            else
-            {
-               // Debug.Log("ExistSpawnAnimfalse " + _state);
-            }
+            StartCoroutine(DissolveEvent(-0.1f, 2f, true, 1));
         }
 
-       
+
+
 
     }
 
@@ -67,31 +55,10 @@ public class AnimatorController : MonoBehaviour
     {
         //Debug.Log("DieEvent");
 
-        StartCoroutine(DieDissolveEvent(1f,2f));
+        StartCoroutine(DissolveEvent(1, 2f, false, 0, dieEventHandler));
     }
 
-    IEnumerator DieDissolveEvent(float targetValue , float delayTime)
-    {
-        yield return null;
-
-        float t = 0;
-        float dissolveValue = meshRenderer.material.GetFloat(dissolveValueKeyWord);
-        float currentDissolveValue = meshRenderer.material.GetFloat(dissolveValueKeyWord);
-
-        while (t < delayTime)
-        {
-            t += Time.deltaTime;
-            dissolveValue = Mathf.Lerp(currentDissolveValue, targetValue, t);
-            meshRenderer.material.SetFloat(dissolveValueKeyWord, dissolveValue);
-            yield return null;
-        }
-
-        meshRenderer.material.SetFloat(dissolveValueKeyWord, targetValue);
-        dieEventHandler?.Invoke();
-
-    }
-
-    IEnumerator SpawnDissolveEvent(float targetValue, float delayTime, bool isCurrentValueSetting = false, float currentValue = 0)
+    IEnumerator DissolveEvent(float targetValue, float delayTime, bool isCurrentValueSetting = false, float currentValue = 0, Action action = null)
     {
         yield return null;
 
@@ -117,7 +84,7 @@ public class AnimatorController : MonoBehaviour
         }
 
         meshRenderer.material.SetFloat(dissolveValueKeyWord, targetValue);
-        noExistSpawnAnimEventHandler?.Invoke();
+        action?.Invoke();
 
     }
 

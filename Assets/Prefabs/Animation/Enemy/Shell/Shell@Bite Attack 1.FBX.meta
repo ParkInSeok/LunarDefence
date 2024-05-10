@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0c496455dc6cb774e8ed2d38093c1c3b
+guid: d1a1fc81e54ea8f4882b68d75f572fc6
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -8,10 +8,10 @@ ModelImporter:
     second: Rig
   - first:
       1: 100002
-    second: RigHead
+    second: RigHub
   - first:
       1: 100004
-    second: RigJaw
+    second: RigHubGizmo
   - first:
       1: 100006
     second: RigLBLeg1
@@ -26,10 +26,10 @@ ModelImporter:
     second: RigLBLegPlatform
   - first:
       1: 100014
-    second: RigLBLegToes1
+    second: RigLEye
   - first:
       1: 100016
-    second: RigLBLegToes2
+    second: RigLEyeGizmo
   - first:
       1: 100018
     second: RigLFLeg1
@@ -44,16 +44,16 @@ ModelImporter:
     second: RigLFLegPlatform
   - first:
       1: 100026
-    second: RigLFLegToes1
+    second: RigLMLeg1
   - first:
       1: 100028
-    second: RigLFLegToes2
+    second: RigLMLeg2
   - first:
       1: 100030
-    second: RigNeck
+    second: RigLMLegAnkle
   - first:
       1: 100032
-    second: RigPelvis
+    second: RigLMLegPlatform
   - first:
       1: 100034
     second: RigRBLeg1
@@ -68,10 +68,10 @@ ModelImporter:
     second: RigRBLegPlatform
   - first:
       1: 100042
-    second: RigRBLegToes1
+    second: RigREye
   - first:
       1: 100044
-    second: RigRBLegToes2
+    second: RigREyeGizmo
   - first:
       1: 100046
     second: RigRFLeg1
@@ -86,49 +86,37 @@ ModelImporter:
     second: RigRFLegPlatform
   - first:
       1: 100054
-    second: RigRFLegToes1
+    second: RigRMLeg1
   - first:
       1: 100056
-    second: RigRFLegToes2
+    second: RigRMLeg2
   - first:
       1: 100058
-    second: RigRibcage
+    second: RigRMLegAnkle
   - first:
       1: 100060
-    second: RigSpine1
+    second: RigRMLegPlatform
   - first:
       1: 100062
-    second: RigSpine2
+    second: RigShell
   - first:
       1: 100064
-    second: RigTail1
+    second: RigShellGizmo
   - first:
       1: 100066
-    second: RigTail2
+    second: Shell
   - first:
       1: 100068
-    second: RigTail3
-  - first:
-      1: 100070
-    second: RigTail4
-  - first:
-      1: 100072
-    second: RigTail5
-  - first:
-      1: 100074
-    second: Wolf
-  - first:
-      1: 100076
     second: //RootNode
   - first:
       4: 400000
     second: Rig
   - first:
       4: 400002
-    second: RigHead
+    second: RigHub
   - first:
       4: 400004
-    second: RigJaw
+    second: RigHubGizmo
   - first:
       4: 400006
     second: RigLBLeg1
@@ -143,10 +131,10 @@ ModelImporter:
     second: RigLBLegPlatform
   - first:
       4: 400014
-    second: RigLBLegToes1
+    second: RigLEye
   - first:
       4: 400016
-    second: RigLBLegToes2
+    second: RigLEyeGizmo
   - first:
       4: 400018
     second: RigLFLeg1
@@ -161,16 +149,16 @@ ModelImporter:
     second: RigLFLegPlatform
   - first:
       4: 400026
-    second: RigLFLegToes1
+    second: RigLMLeg1
   - first:
       4: 400028
-    second: RigLFLegToes2
+    second: RigLMLeg2
   - first:
       4: 400030
-    second: RigNeck
+    second: RigLMLegAnkle
   - first:
       4: 400032
-    second: RigPelvis
+    second: RigLMLegPlatform
   - first:
       4: 400034
     second: RigRBLeg1
@@ -185,10 +173,10 @@ ModelImporter:
     second: RigRBLegPlatform
   - first:
       4: 400042
-    second: RigRBLegToes1
+    second: RigREye
   - first:
       4: 400044
-    second: RigRBLegToes2
+    second: RigREyeGizmo
   - first:
       4: 400046
     second: RigRFLeg1
@@ -203,55 +191,43 @@ ModelImporter:
     second: RigRFLegPlatform
   - first:
       4: 400054
-    second: RigRFLegToes1
+    second: RigRMLeg1
   - first:
       4: 400056
-    second: RigRFLegToes2
+    second: RigRMLeg2
   - first:
       4: 400058
-    second: RigRibcage
+    second: RigRMLegAnkle
   - first:
       4: 400060
-    second: RigSpine1
+    second: RigRMLegPlatform
   - first:
       4: 400062
-    second: RigSpine2
+    second: RigShell
   - first:
       4: 400064
-    second: RigTail1
+    second: RigShellGizmo
   - first:
       4: 400066
-    second: RigTail2
+    second: Shell
   - first:
       4: 400068
-    second: RigTail3
-  - first:
-      4: 400070
-    second: RigTail4
-  - first:
-      4: 400072
-    second: RigTail5
-  - first:
-      4: 400074
-    second: Wolf
-  - first:
-      4: 400076
     second: //RootNode
   - first:
       21: 2100000
-    second: 02 - Default
+    second: Material #25
   - first:
       43: 4300000
-    second: Wolf
+    second: Shell
   - first:
       74: 7400000
-    second: Cast Spell 1
+    second: Bite Attack 1
   - first:
       95: 9500000
     second: //RootNode
   - first:
       137: 13700000
-    second: Wolf
+    second: Shell
   externalObjects: {}
   materials:
     materialImportMode: 0
@@ -282,11 +258,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Cast Spell 1
+      name: Bite Attack 1
       takeName: Take 001
       internalID: 7400000
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -306,8 +282,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.67653435
-        functionName: SpawnedEvent
+      - time: 0.62852746
+        functionName: AttackEvent
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

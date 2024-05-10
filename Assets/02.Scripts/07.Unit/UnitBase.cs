@@ -38,6 +38,10 @@ public abstract class UnitBase : MonoBehaviour
     public UnitAnimateState AnimateState { get { return animateState; } }
     public UnitState UnitState { get { return unitState; } }
 
+    protected Dictionary<string, AnimatorController> animatorControllerPool = new Dictionary<string, AnimatorController>();
+
+
+
     public Action setModelCompletedEventHandler;
     public Action unitDieEventHandler;
 
@@ -50,7 +54,7 @@ public abstract class UnitBase : MonoBehaviour
     protected virtual void SetModel(GameObject loadedObject)
     {
         model = loadedObject;
-
+        model.SetActive(true);
         model.transform.SetParent(modelParent);
         model.transform.localPosition = Vector3.zero;
         model.transform.localRotation = Quaternion.identity;
@@ -62,6 +66,22 @@ public abstract class UnitBase : MonoBehaviour
         setModelCompletedEventHandler?.Invoke();
 
     
+    }
+
+    protected virtual void SetModel(AnimatorController controller)
+    {
+        model = controller.gameObject;
+        model.SetActive(true);
+        model.transform.SetParent(modelParent);
+        model.transform.localPosition = Vector3.zero;
+        model.transform.localRotation = Quaternion.identity;
+
+        animatorContoller = controller;
+        animatorContoller.Init();
+
+        setModelCompletedEventHandler?.Invoke();
+
+
     }
 
 
@@ -91,7 +111,6 @@ public abstract class UnitBase : MonoBehaviour
 
     protected virtual void RecycleBindEvents()
     {
-        animatorContoller.noExistSpawnAnimEventHandler += BindSpawnedEvent;
         //delay function 3f => spawn time
         ChangeAnimateState(UnitAnimateState.Spawn);
     }

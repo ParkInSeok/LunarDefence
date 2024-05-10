@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0c496455dc6cb774e8ed2d38093c1c3b
+guid: a701cc25f64cc5f48822193b5c44ebff
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -8,250 +8,226 @@ ModelImporter:
     second: Rig
   - first:
       1: 100002
-    second: RigHead
+    second: RigHub
   - first:
       1: 100004
-    second: RigJaw
+    second: RigHubGizmo
   - first:
       1: 100006
-    second: RigLBLeg1
+    second: RigLArm1
   - first:
       1: 100008
-    second: RigLBLeg2
+    second: RigLArm2
   - first:
       1: 100010
-    second: RigLBLegAnkle
+    second: RigLArmPalm
   - first:
       1: 100012
-    second: RigLBLegPlatform
+    second: RigLBLeg1
   - first:
       1: 100014
-    second: RigLBLegToes1
+    second: RigLBLeg2
   - first:
       1: 100016
-    second: RigLBLegToes2
+    second: RigLBLegAnkle
   - first:
       1: 100018
-    second: RigLFLeg1
+    second: RigLBLegPlatform
   - first:
       1: 100020
-    second: RigLFLeg2
+    second: RigLEye01
   - first:
       1: 100022
-    second: RigLFLegAnkle
+    second: RigLEye02
   - first:
       1: 100024
-    second: RigLFLegPlatform
+    second: RigLEye03
   - first:
       1: 100026
-    second: RigLFLegToes1
+    second: RigLFLeg1
   - first:
       1: 100028
-    second: RigLFLegToes2
+    second: RigLFLeg2
   - first:
       1: 100030
-    second: RigNeck
+    second: RigLFLegAnkle
   - first:
       1: 100032
-    second: RigPelvis
+    second: RigLFLegPlatform
   - first:
       1: 100034
-    second: RigRBLeg1
+    second: RigRArm1
   - first:
       1: 100036
-    second: RigRBLeg2
+    second: RigRArm2
   - first:
       1: 100038
-    second: RigRBLegAnkle
+    second: RigRArmPalm
   - first:
       1: 100040
-    second: RigRBLegPlatform
+    second: RigRBLeg1
   - first:
       1: 100042
-    second: RigRBLegToes1
+    second: RigRBLeg2
   - first:
       1: 100044
-    second: RigRBLegToes2
+    second: RigRBLegAnkle
   - first:
       1: 100046
-    second: RigRFLeg1
+    second: RigRBLegPlatform
   - first:
       1: 100048
-    second: RigRFLeg2
+    second: RigREye01
   - first:
       1: 100050
-    second: RigRFLegAnkle
+    second: RigREye02
   - first:
       1: 100052
-    second: RigRFLegPlatform
+    second: RigREye03
   - first:
       1: 100054
-    second: RigRFLegToes1
+    second: RigRFLeg1
   - first:
       1: 100056
-    second: RigRFLegToes2
+    second: RigRFLeg2
   - first:
       1: 100058
-    second: RigRibcage
+    second: RigRFLegAnkle
   - first:
       1: 100060
-    second: RigSpine1
+    second: RigRFLegPlatform
   - first:
       1: 100062
-    second: RigSpine2
+    second: RigShell
   - first:
       1: 100064
-    second: RigTail1
+    second: RigShellGizmo
   - first:
       1: 100066
-    second: RigTail2
+    second: Spike
   - first:
       1: 100068
-    second: RigTail3
-  - first:
-      1: 100070
-    second: RigTail4
-  - first:
-      1: 100072
-    second: RigTail5
-  - first:
-      1: 100074
-    second: Wolf
-  - first:
-      1: 100076
     second: //RootNode
   - first:
       4: 400000
     second: Rig
   - first:
       4: 400002
-    second: RigHead
+    second: RigHub
   - first:
       4: 400004
-    second: RigJaw
+    second: RigHubGizmo
   - first:
       4: 400006
-    second: RigLBLeg1
+    second: RigLArm1
   - first:
       4: 400008
-    second: RigLBLeg2
+    second: RigLArm2
   - first:
       4: 400010
-    second: RigLBLegAnkle
+    second: RigLArmPalm
   - first:
       4: 400012
-    second: RigLBLegPlatform
+    second: RigLBLeg1
   - first:
       4: 400014
-    second: RigLBLegToes1
+    second: RigLBLeg2
   - first:
       4: 400016
-    second: RigLBLegToes2
+    second: RigLBLegAnkle
   - first:
       4: 400018
-    second: RigLFLeg1
+    second: RigLBLegPlatform
   - first:
       4: 400020
-    second: RigLFLeg2
+    second: RigLEye01
   - first:
       4: 400022
-    second: RigLFLegAnkle
+    second: RigLEye02
   - first:
       4: 400024
-    second: RigLFLegPlatform
+    second: RigLEye03
   - first:
       4: 400026
-    second: RigLFLegToes1
+    second: RigLFLeg1
   - first:
       4: 400028
-    second: RigLFLegToes2
+    second: RigLFLeg2
   - first:
       4: 400030
-    second: RigNeck
+    second: RigLFLegAnkle
   - first:
       4: 400032
-    second: RigPelvis
+    second: RigLFLegPlatform
   - first:
       4: 400034
-    second: RigRBLeg1
+    second: RigRArm1
   - first:
       4: 400036
-    second: RigRBLeg2
+    second: RigRArm2
   - first:
       4: 400038
-    second: RigRBLegAnkle
+    second: RigRArmPalm
   - first:
       4: 400040
-    second: RigRBLegPlatform
+    second: RigRBLeg1
   - first:
       4: 400042
-    second: RigRBLegToes1
+    second: RigRBLeg2
   - first:
       4: 400044
-    second: RigRBLegToes2
+    second: RigRBLegAnkle
   - first:
       4: 400046
-    second: RigRFLeg1
+    second: RigRBLegPlatform
   - first:
       4: 400048
-    second: RigRFLeg2
+    second: RigREye01
   - first:
       4: 400050
-    second: RigRFLegAnkle
+    second: RigREye02
   - first:
       4: 400052
-    second: RigRFLegPlatform
+    second: RigREye03
   - first:
       4: 400054
-    second: RigRFLegToes1
+    second: RigRFLeg1
   - first:
       4: 400056
-    second: RigRFLegToes2
+    second: RigRFLeg2
   - first:
       4: 400058
-    second: RigRibcage
+    second: RigRFLegAnkle
   - first:
       4: 400060
-    second: RigSpine1
+    second: RigRFLegPlatform
   - first:
       4: 400062
-    second: RigSpine2
+    second: RigShell
   - first:
       4: 400064
-    second: RigTail1
+    second: RigShellGizmo
   - first:
       4: 400066
-    second: RigTail2
+    second: Spike
   - first:
       4: 400068
-    second: RigTail3
-  - first:
-      4: 400070
-    second: RigTail4
-  - first:
-      4: 400072
-    second: RigTail5
-  - first:
-      4: 400074
-    second: Wolf
-  - first:
-      4: 400076
     second: //RootNode
   - first:
       21: 2100000
-    second: 02 - Default
+    second: 01 - Default
   - first:
       43: 4300000
-    second: Wolf
+    second: Spike
   - first:
       74: 7400000
-    second: Cast Spell 1
+    second: Claw Attack 1
   - first:
       95: 9500000
     second: //RootNode
   - first:
       137: 13700000
-    second: Wolf
+    second: Spike
   externalObjects: {}
   materials:
     materialImportMode: 0
@@ -282,11 +258,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Cast Spell 1
+      name: Claw Attack 1
       takeName: Take 001
       internalID: 7400000
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -306,8 +282,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.67653435
-        functionName: SpawnedEvent
+      - time: 0.4475984
+        functionName: AttackEvent
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

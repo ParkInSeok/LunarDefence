@@ -170,8 +170,9 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\UI\RadiusVisualizerController.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Towers\Placement\SingleTowerPlacementArea.cs" />
-    <Compile Include="Assets\02.Scripts\06.Datas\TowerStat.cs" />
+    <Compile Include="Assets\02.Scripts\08.Path\EventTrigger.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Agents\AgentSlower.cs" />
+    <Compile Include="Assets\02.Scripts\06.Datas\TowerStat.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Health\IAlignmentProvider.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Towers\Data\TowerLevelData.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\UI\PlayAnimation.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\ActionGameFramework\Projectiles\BallisticFireMode.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\ActionGameFramework\Spawning\HitObjectSpawner.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\UI\AnimatingMainMenuPage.cs" />
+    <Compile Include="Assets\02.Scripts\08.Path\TileEventTrigger.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Utilities\Singleton.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Components\ChromaticAberrationComponent.cs" />
@@ -309,8 +311,6 @@
     <Compile Include="Assets\02.Scripts\05.Managers\StageManager\InfinityStageManager.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Health\DamageableBehaviour.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\DitheringModel.cs" />
-    <Compile Include="Assets\02.Scripts\08.Path\EventTrigger.cs" />
-    <Compile Include="Assets\02.Scripts\08.Path\TileEventTrigger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TheBackend\Plugins\Android\TheBackend.iOS.dll" />

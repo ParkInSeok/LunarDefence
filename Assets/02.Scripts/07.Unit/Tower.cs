@@ -34,7 +34,14 @@ public class Tower : UnitBase
         setModelCompletedEventHandler = null;
         setModelCompletedEventHandler += BindEvents;
 
-        CreateModel(stat.CurrentTowerStat.uniqueKey);
+        if (animatorControllerPool.ContainsKey(stat.CurrentTowerStat.uniqueKey))
+        {
+            SetModel(animatorControllerPool[stat.CurrentTowerStat.uniqueKey].gameObject);
+        }
+        else
+        {
+            CreateModel(stat.CurrentTowerStat.uniqueKey);
+        }
 
     }
 
@@ -46,14 +53,23 @@ public class Tower : UnitBase
         stat.dieEventHandler += BindPlayDieAnimationEvent;
         animatorContoller.dieEventHandler += DieEvent;
         animatorContoller.spawnedEventHandler += BindSpawnedEvent;
-        animatorContoller.noExistSpawnAnimEventHandler += BindSpawnedEvent;
         animatorContoller.attackEventHandler += BindAttackEvent;
+
+        if (animatorControllerPool.ContainsKey(stat.CurrentTowerStat.uniqueKey) == false)
+            animatorControllerPool.Add(stat.CurrentTowerStat.uniqueKey, animatorContoller);
+
         ChangeAnimateState(UnitAnimateState.Spawn);
+
+
 
     }
 
     private void BindAttackEvent()
     {
+        //탄환발사 블렌드트리로 애니메이션 스킬 쏘는 것 처리 스킬에 따라서 다른스킬 처리
+
+
+
 
     }
 
@@ -91,9 +107,11 @@ public class Tower : UnitBase
 
     public override void ResetModel()
     {
-        DataManager.Instance.ResetMemory(stat.CurrentTowerStat.uniqueKey);
         if (model != null)
-            Destroy(model);
+        {
+            model.SetActive(false);
+            //Destroy(model);
+        }
 
     }
 

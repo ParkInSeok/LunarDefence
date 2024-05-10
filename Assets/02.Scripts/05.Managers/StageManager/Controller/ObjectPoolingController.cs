@@ -144,12 +144,12 @@ public class ObjectPoolingController : MonoBehaviour
     public void GetEnemyPool(string key)
     {
         Debug.Log("enemyPool count " + enemyPool.Count);
-        if(enemyPool.Count > 0)
+        if (enemyPool.Count > 0)
         {
             var enemy = enemyPool.Dequeue();
             enemy.ResetModel();
             enemy.RecycleInit(DataManager.Instance.GameData.GetEnemyData(key));
-          
+
         }
         else
         {
@@ -212,7 +212,22 @@ public class ObjectPoolingController : MonoBehaviour
     {
         towerPool.Enqueue(_tower);
     }
+    public void GetTowerPool(string key)
+    {
+        Debug.Log("enemyPool count " + enemyPool.Count);
+        if (enemyPool.Count > 0)
+        {
+            var tower = towerPool.Dequeue();
+            tower.ResetModel();
+            tower.RecycleInit(DataManager.Instance.GameData.GetTowerData(key));
 
+        }
+        else
+        {
+            CreateTower(key);
+        }
+
+    }
 
     #endregion
 
