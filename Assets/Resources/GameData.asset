@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6255ef670c3392d418230b1ffd93e108, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
+  version: 
   towerDatas:
   - uniqueKey: 
-    modelUniqueKey: 
     atk: 0
     hp: 0
     def: 0
@@ -22,12 +22,16 @@ MonoBehaviour:
     attackSpeed: 0
     propertyReinforcePower: 0
     propertyResistPower: 0
+    attackMotionLength: 0
+    propertyState: 0
+    damageType: 0
+    unitType: 0
     critical: 0
     criticalDamage: 0
     lifeBloodAbsorption: 0
+    skillUniqueKey: 
   enemyDatas:
   - uniqueKey: 
-    modelUniqueKey: 
     atk: 0
     hp: 0
     def: 0
@@ -35,7 +39,12 @@ MonoBehaviour:
     attackSpeed: 0
     propertyReinforcePower: 0
     propertyResistPower: 0
+    attackMotionLength: 0
+    propertyState: 0
+    damageType: 0
+    unitType: 0
     moveSpeed: 0
+    enemyType: 0
   heroDatas: []
   advantageDatas:
   - uniqueKey: 1
@@ -58,6 +67,12 @@ MonoBehaviour:
     title: 
     info: 
     level: 0
-  skillDatas: []
-  version: 
+  skillDatas:
+  - skillUniqueKey: 
+    skillIconUniqueKey: 
+    damageCoefficient: 0
+    skillLevel: 0
+    skillType: 0
+    buffStatType: 0
+    activationType: 0
   datas: []

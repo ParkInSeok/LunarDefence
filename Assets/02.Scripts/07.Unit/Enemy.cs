@@ -118,9 +118,16 @@ public class Enemy : UnitBase
 
     private void BindStunEndEvent(UnitAnimateState arg1, float arg2)
     {
-        if (target != null)
+        if(target.AnimateState !=  UnitAnimateState.Die)
         {
-            ChangeAnimateState(UnitAnimateState.Attack);
+            if (target != null)
+            {
+                Attack();
+            }
+            else
+            {
+                ChangeAnimateState(UnitAnimateState.Move);
+            }
         }
         else
         {
@@ -210,7 +217,7 @@ public class Enemy : UnitBase
                 {
                     yield return StartCoroutine(RotateAttackUnit(direction, currentWaypoint, targetRotation));
                     target = path[targetIndex].Unit;
-                    ChangeAnimateState(UnitAnimateState.Attack);
+                    Attack();
                     yield break;
                 }
 
@@ -233,40 +240,8 @@ public class Enemy : UnitBase
 
     }
 
-    IEnumerator RotateAttackUnit(Vector3 direction, Vector3 currentWaypoint, Quaternion targetRotation)
-    {
-        while (LootAtRotation(direction, currentWaypoint, targetRotation) == false)
-        {
-            yield return null;
-        }
-    }
 
-
-
-    bool LootAtRotation(Vector3 direction, Vector3 currentWaypoint, Quaternion targetRotation)
-    {
-        direction = currentWaypoint - transform.position;
-        if (direction != Vector3.zero)
-        {
-            targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
-        }
-
-        float differenceValue = Mathf.Abs(transform.rotation.eulerAngles.y) - Mathf.Abs(targetRotation.eulerAngles.y);
-        if(Mathf.Abs(differenceValue) < 3f)
-        {
-            //Debug.Log("differenceValue " + differenceValue);
-            return true;
-        }
-        return false;
-
-
-  
-    }
-
-
-
-    public override void ChangeAnimateState(UnitAnimateState _state, float animSpeed = 1)
+    public override void ChangeAnimateState(UnitAnimateState _state, float animSpeed = 1, float attackValue = 0)
     {
 
         if (animateState == UnitAnimateState.Die)
@@ -283,7 +258,7 @@ public class Enemy : UnitBase
 
         animateState = _state;
 
-        animatorContoller.ChangeAnimateState(_state, animSpeed);
+        animatorContoller.ChangeAnimateState(_state, animSpeed, attackValue);
 
     }
 
@@ -306,6 +281,16 @@ public class Enemy : UnitBase
     protected override float SetDamage()
     {
         return stat.CurrentEnemyStat.atk;
+    }
+
+    protected override bool IsSkillAttack()
+    {
+        return false;
+    }
+
+    protected override void SetAttackType()
+    {
+
     }
 
     #endregion

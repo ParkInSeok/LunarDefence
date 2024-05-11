@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class AnimatorController : MonoBehaviour
@@ -15,30 +16,33 @@ public class AnimatorController : MonoBehaviour
     public Action dieEventHandler;
     public Action spawnedEventHandler;
     public Action attackEventHandler;
+    public Action<float> skillEventHandler;
+
 
     string dissolveValueKeyWord = "_DissolveValue";
-
+    string attackValueKeyWord = "AttackValue";
 
 
     public void Init()
     {
         Material dummy = new Material(meshRenderer.material);
         meshRenderer.material = dummy;
+
+
     }
 
 
-    public void ChangeAnimateState(UnitAnimateState _state, float animSpeed)
+    public void ChangeAnimateState(UnitAnimateState _state, float animSpeed, float attackValue)
     {
         if (animator == null)
             animator = GetComponent<Animator>();
 
         animator.speed = animSpeed;
 
+        animator.SetFloat(attackValueKeyWord, attackValue);
         animator.SetTrigger(_state.ToString());
 
         changeAnimationEventHandler?.Invoke(_state, animSpeed);
-
-        var stateinfo = animator.GetCurrentAnimatorStateInfo(0);
 
         if (_state == UnitAnimateState.Spawn)
         {
@@ -50,6 +54,13 @@ public class AnimatorController : MonoBehaviour
 
     }
 
+    public void SetAttackValue(float _value)
+    {
+        animator.SetFloat(attackValueKeyWord, _value);
+    }
+
+
+    #region Animation Events
 
     public void DieEvent()
     {
@@ -101,6 +112,15 @@ public class AnimatorController : MonoBehaviour
         attackEventHandler?.Invoke();
     }
 
+    public void SkillEvent()
+    {
+        float attackValue = animator.GetFloat(attackValueKeyWord);
+
+        skillEventHandler?.Invoke(attackValue);
+    }
+
+
+    #endregion
 
 
 }

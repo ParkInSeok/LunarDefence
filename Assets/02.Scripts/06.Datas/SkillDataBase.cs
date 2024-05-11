@@ -4,6 +4,13 @@ using UnityEngine;
 using System;
 using System.Runtime.InteropServices;
 
+public enum SkillActivationType
+{
+    passive,
+    mana,
+}
+
+
 public enum SkillType
 {
     normalDamage,
@@ -32,13 +39,16 @@ public enum BuffStatType
 public class SkillDataBase
 {
     public string skillUniqueKey;                   //스킬 유니크키
-    public string skillModelUniqueKey;              //스킬 모델 유니크 키
     public string skillIconUniqueKey;               //스킬 아이콘
     public int damageCoefficient;                 //스킬계수 
+    public int activatePercent;                     //발동확률
 
     public int skillLevel;                          //스킬 레벨 
-    protected int skillType;                           //스킬 타입
-    protected int buffStatType;                        //버프 스탯타입
+    [SerializeField] protected int skillType;                           //스킬 타입
+    [SerializeField] protected int buffStatType;                        //버프 스탯타입
+    [SerializeField] protected int activationType;                       //발동 타입
+
+    
 
     //TODO 스킬 매커니즘 추가는 상속받아서 처리
 
@@ -46,22 +56,25 @@ public class SkillDataBase
 
     }
 
-    public SkillDataBase(string _skillUniqueKey, string _skillModelUniqueKey, string _skillIconUniqueKey, int _damageCoefficient,
-        int _skillLevel, int _skillType, int _buffStatType)
+    public SkillDataBase(string _skillUniqueKey, string _skillIconUniqueKey, int _damageCoefficient,
+        int _skillLevel, int _skillType, int _buffStatType, int _activationType, int _activatePercent)
     {
         skillUniqueKey = _skillUniqueKey;
-        skillModelUniqueKey = _skillModelUniqueKey;
         skillIconUniqueKey = _skillIconUniqueKey;
         damageCoefficient = _damageCoefficient;
         skillLevel = _skillLevel;
         skillType = _skillType;
         buffStatType = _buffStatType;
+        activationType = _activationType;
+        activatePercent = _activatePercent;
     }
-    public SkillDataBase(int _skillType, int _buffStatType)
+
+    public SkillDataBase(int _skillType, int _buffStatType, int _activationType)
     {
         skillLevel = 1;
         skillType = _skillType;
         buffStatType = _buffStatType;
+        activationType = _activationType;
     }
 
     public void LevelUpSkill(int _damageCoefficient)
@@ -95,10 +108,21 @@ public class SkillDataBase
         }
     }
 
+    public SkillActivationType SkillActivationType { 
+        get
+        {
+            if (activationType < System.Enum.GetValues(typeof(SkillActivationType)).Length && activationType >= 0)
+                return (SkillActivationType)activationType;
+            else
+                return SkillActivationType.passive;
+        } 
+    }
+
+
     public Skill SkillDataConvertToSkill()
     {
-        Skill skill = new Skill(skillUniqueKey, skillModelUniqueKey,skillIconUniqueKey,
-                        damageCoefficient, skillLevel, SkillType,BuffStatType);
+        Skill skill = new Skill(skillUniqueKey, skillIconUniqueKey,activatePercent,
+                        damageCoefficient, skillLevel, SkillType,BuffStatType,SkillActivationType);
 
         return skill;
 

@@ -115,13 +115,52 @@ public abstract class UnitBase : MonoBehaviour
         ChangeAnimateState(UnitAnimateState.Spawn);
     }
 
+    protected virtual IEnumerator RotateAttackUnit(Vector3 direction, Vector3 currentWaypoint, Quaternion targetRotation)
+    {
+        while (LootAtRotation(direction, currentWaypoint, targetRotation) == false)
+        {
+            yield return null;
+        }
+    }
+
+
+
+    protected virtual bool LootAtRotation(Vector3 direction, Vector3 currentWaypoint, Quaternion targetRotation)
+    {
+        direction = currentWaypoint - transform.position;
+        if (direction != Vector3.zero)
+        {
+            targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+        }
+
+        float differenceValue = Mathf.Abs(transform.rotation.eulerAngles.y) - Mathf.Abs(targetRotation.eulerAngles.y);
+        if (Mathf.Abs(differenceValue) < 3f)
+        {
+            //Debug.Log("differenceValue " + differenceValue);
+            return true;
+        }
+        return false;
+
+
+
+    }
+
+    protected virtual void Attack()
+    {
+        ChangeAnimateState(UnitAnimateState.Attack);
+    }
+
+
+
 
     public abstract void ResetModel();
 
-    public abstract void ChangeAnimateState(UnitAnimateState _state, float animSpeed = 1);
+    public abstract void ChangeAnimateState(UnitAnimateState _state, float animSpeed = 1, float attackValue = 0);
     public abstract void GetDamage(int _damage, DamageType _damageType);
     protected abstract float SetDamage();
 
-    
+    protected abstract bool IsSkillAttack();
+    protected abstract void SetAttackType();
 
 }

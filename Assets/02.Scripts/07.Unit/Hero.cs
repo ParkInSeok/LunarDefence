@@ -68,7 +68,7 @@ public class Hero : UnitBase
 
     }
 
-    public override void ChangeAnimateState(UnitAnimateState _state, float animSpeed = 1)
+    public override void ChangeAnimateState(UnitAnimateState _state, float animSpeed = 1, float attackValue = 0)
     {
         if (animateState == UnitAnimateState.Die)
             return;
@@ -78,7 +78,7 @@ public class Hero : UnitBase
 
         animateState = _state;
 
-        animatorContoller.ChangeAnimateState(_state, animSpeed);
+        animatorContoller.ChangeAnimateState(_state, animSpeed, attackValue);
     }
 
     public override void GetDamage(int _damage, DamageType _damageType)
@@ -141,5 +141,18 @@ public class Hero : UnitBase
         return _damage;
     }
 
+    protected override void Attack()
+    {
+        base.Attack();
+    }
 
+    protected override bool IsSkillAttack()
+    {
+        return true;
+    }
+
+    protected override void SetAttackType()
+    {
+
+    }
 }

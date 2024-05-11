@@ -93,7 +93,7 @@ public class DataManager : Singleton<DataManager>
             data.propertyReinforcePower = enemyData[index].Get<float>("propertyReinforcePower");
             data.propertyResistPower = enemyData[index].Get<float>("propertyResistPower");
             data.moveSpeed = enemyData[index].Get<float>("moveSpeed");
-
+            data.attackMotionLength = enemyData[index].Get<int>("attackMotionLength");
             gameData.SetData(data);
 
 
@@ -134,6 +134,7 @@ public class DataManager : Singleton<DataManager>
             data.criticalDamage = heroData[index].Get<int>("criticalDamage");
             data.lifeBloodAbsorption = heroData[index].Get<int>("lifeBloodAbsorption");
             data.skillUniqueKeys = heroData[index].Get<string>("skillUniqueKeys");
+            data.attackMotionLength = heroData[index].Get<int>("attackMotionLength");
 
             gameData.SetData(data);
 
@@ -176,6 +177,7 @@ public class DataManager : Singleton<DataManager>
             data.criticalDamage = towerData[index].Get<int>("criticalDamage");
             data.lifeBloodAbsorption = towerData[index].Get<int>("lifeBloodAbsorption");
             data.skillUniqueKey = towerData[index].Get<string>("skillUniqueKey");
+            data.attackMotionLength = towerData[index].Get<int>("attackMotionLength");
 
             gameData.SetData(data);
 
@@ -202,11 +204,12 @@ public class DataManager : Singleton<DataManager>
 
             var skillType = dbData[index].Get<int>("skillType");
             var buffStatType = dbData[index].Get<int>("buffStatType");
-            SkillDataBase data = new SkillDataBase(skillType, buffStatType);
+            var activationType = dbData[index].Get<int>("skillActivationType");
+            SkillDataBase data = new SkillDataBase(skillType, buffStatType, activationType);
             data.skillUniqueKey = _uniqueKey;
-            data.skillModelUniqueKey = dbData[index].Get<string>("skillModelUniqueKey");
             data.skillIconUniqueKey = dbData[index].Get<string>("skillIconUniqueKey");
             data.damageCoefficient = dbData[index].Get<int>("damageCoefficient");
+            data.activatePercent = dbData[index].Get<int>("activatePercent");
 
             gameData.SetData(data);
 

@@ -48,12 +48,15 @@ public class Tower : UnitBase
 
     #endregion
 
+    #region BindEvents
+
     protected override void BindEvents()
     {
         stat.dieEventHandler += BindPlayDieAnimationEvent;
         animatorContoller.dieEventHandler += DieEvent;
         animatorContoller.spawnedEventHandler += BindSpawnedEvent;
         animatorContoller.attackEventHandler += BindAttackEvent;
+        animatorContoller.skillEventHandler += BindSkillEvent;
 
         if (animatorControllerPool.ContainsKey(stat.CurrentTowerStat.uniqueKey) == false)
             animatorControllerPool.Add(stat.CurrentTowerStat.uniqueKey, animatorContoller);
@@ -64,35 +67,79 @@ public class Tower : UnitBase
 
     }
 
+    
+
     private void BindAttackEvent()
     {
         //탄환발사 블렌드트리로 애니메이션 스킬 쏘는 것 처리 스킬에 따라서 다른스킬 처리
+        //현재 타워의 공격에 따라 세팅
 
 
-
-
+        //next attack Type setting
+        SetAttackType();
     }
 
-    public override void ChangeAnimateState(UnitAnimateState _state, float animSpeed = 1)
+    
+
+    private void BindSkillEvent(float obj)
     {
-        if (animateState == UnitAnimateState.Die)
-            return;
+        //현재 타워의 스킬에 따라 세팅
 
-        if (animateState == _state)
-            return;
-
-        animateState = _state;
-
-        animatorContoller.ChangeAnimateState(_state, animSpeed);
+        //next attack Type setting
+        SetAttackType();
+    }
+    protected override void SetAttackType()
+    {
+        if (IsSkillAttack())
+        {
+            //next attack use skill 
+            int value = UnityEngine.Random.Range(0, stat.CurrentTowerStat.attackMotionLength);
+            animatorContoller.SetAttackValue((float)value);
+        }
+        else
+        {
+            animatorContoller.SetAttackValue(0);
+        }
+    }
+    protected override bool IsSkillAttack()
+    {
+        if(stat.Skill.activationType == SkillActivationType.mana)
+        {
+            //mana 가 max mana일떄 return true
+        }
+        else
+        {
+            int random = UnityEngine.Random.Range(0, 100);
+            if (random < stat.Skill.activatePercent)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public override void GetDamage(int _damage, DamageType _damageType)
+
+
+
+    private void BindStunEndEvent(UnitAnimateState arg1, float arg2)
     {
-        if (unitState == UnitState.die)
-            return;
+        //if (target.AnimateState != UnitAnimateState.Die)
+        //{
+        //    if (target != null)
+        //    {
+        //        Attack();
+        //    }
+        //    else
+        //    {
+        //        ChangeAnimateState(UnitAnimateState.Move);
+        //    }
+        //}
+        //else
+        //{
+        //    ChangeAnimateState(UnitAnimateState.Move);
+        //}
 
-        stat.GetDamage(_damage, _damageType);
-
+        animatorContoller.changeAnimationEventHandler -= BindStunEndEvent;
 
     }
 
@@ -101,17 +148,6 @@ public class Tower : UnitBase
         ChangeAnimateState(UnitAnimateState.Idle);
 
 
-
-    }
-
-
-    public override void ResetModel()
-    {
-        if (model != null)
-        {
-            model.SetActive(false);
-            //Destroy(model);
-        }
 
     }
 
@@ -126,6 +162,59 @@ public class Tower : UnitBase
         //현재 위치해있는 tileeventTrigger.DieUnit 
 
     }
+
+
+    #endregion
+
+    public override void ChangeAnimateState(UnitAnimateState _state, float animSpeed = 1, float attackValue = 0 )
+    {
+        if (animateState == UnitAnimateState.Die)
+            return;
+
+        if (animateState == _state)
+            return;
+
+        if (animateState == UnitAnimateState.Stun)
+        {
+            animatorContoller.changeAnimationEventHandler += BindStunEndEvent;
+        }
+        animateState = _state;
+
+        animatorContoller.ChangeAnimateState(_state, animSpeed, attackValue);
+    }
+
+    public override void GetDamage(int _damage, DamageType _damageType)
+    {
+        if (unitState == UnitState.die)
+            return;
+
+        stat.GetDamage(_damage, _damageType);
+
+
+    }
+
+  
+
+
+    public override void ResetModel()
+    {
+        if (model != null)
+        {
+            model.SetActive(false);
+            //Destroy(model);
+        }
+
+    }
+
+   
+    protected override void Attack()
+    {
+        //스킬 확률에 따라 attackvalue set 근데 공격 애니메이션이 돌때마다 value 셋해줘야함
+        SetAttackType();
+
+        ChangeAnimateState(UnitAnimateState.Attack,stat.CurrentTowerStat.attackSpeed);
+    }
+
 
     protected override float SetDamage()
     {

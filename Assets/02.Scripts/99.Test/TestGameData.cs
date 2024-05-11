@@ -34,12 +34,13 @@ public class TestGameData : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
-
+            InfinityStageManager.Instance.ObjectPoolingController.GetTowerPool("Tower_Angel Mage");
         }
 
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            InfinityStageManager.Instance.PathController.ReFindPath();
+            currentTower.ChangeAnimateState(UnitAnimateState.Attack);
+            //InfinityStageManager.Instance.PathController.ReFindPath();
         }
 
         if (Input.GetKeyDown(KeyCode.F5))
@@ -126,13 +127,13 @@ public class TestGameData : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 100f))
         {
 
-            print("raycast hit!");
+            //print("raycast hit!");
 
             hit.transform.TryGetComponent<TileEventTrigger>(out var tile);
             if (tile == null)
                 return;
 
-            Debug.Log("tile row " + tile.pathNode.row + " tile column " + tile.pathNode.column);
+          //  Debug.Log("tile row " + tile.pathNode.row + " tile column " + tile.pathNode.column);
 
         }
     }

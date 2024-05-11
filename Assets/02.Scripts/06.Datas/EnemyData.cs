@@ -35,6 +35,7 @@ public class EnemyData : DataBase
         this.unitType = data.unitType;
         this.enemyType = data.enemyType;
         this.moveSpeed = data.moveSpeed;
+        this.attackMotionLength = data.attackMotionLength;
     }
 
 

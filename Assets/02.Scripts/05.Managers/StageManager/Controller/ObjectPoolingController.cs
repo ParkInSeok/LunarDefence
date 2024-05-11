@@ -35,18 +35,6 @@ public class ObjectPoolingController : MonoBehaviour
 
 
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
     public void Init(PathNode _startNode, PathNode _targetNode)
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -230,6 +218,13 @@ public class ObjectPoolingController : MonoBehaviour
     }
 
     #endregion
+
+    #region Bullet
+
+
+    #endregion
+
+
 
 
     /*
