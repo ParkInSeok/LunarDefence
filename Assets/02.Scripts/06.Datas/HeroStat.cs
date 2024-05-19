@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class HeroStat : StatBase
+public class HeroStat : BaseStat
 {
     protected HeroData origineHeroStat;
     [SerializeField] protected HeroData currentHeroStat;

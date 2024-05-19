@@ -3,20 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero : UnitBase
+public class Hero : BaseUnit
 {
-
+    [Header("Hero")]
     [SerializeField] HeroStat stat;
 
     public HeroStat Stat { get { return stat; } }
 
     public Action<Hero> dieEventHandler;
 
+   
+
+
     #region Init
     public void Init(HeroData _stat)
     {
         stat.InitStat(_stat);
-
+        SetBulletSpawner();
         setModelCompletedEventHandler += BindEvents;
 
         CreateModel(stat.CurrentHeroStat.uniqueKey);

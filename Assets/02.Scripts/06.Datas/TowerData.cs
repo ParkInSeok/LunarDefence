@@ -6,7 +6,7 @@ using System;
 
 
 [Serializable]
-public class TowerData : TowerDataBase
+public class TowerData : BaseTowerData
 {
     public string skillUniqueKey;
 

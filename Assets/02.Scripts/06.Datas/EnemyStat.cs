@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 [Serializable]
-public class EnemyStat : StatBase
+public class EnemyStat : BaseStat
 {
     protected EnemyData origineEnemyStat;
     public EnemyData OrigineEnemyStat { get { return origineEnemyStat; } }

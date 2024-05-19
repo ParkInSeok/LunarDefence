@@ -6,7 +6,7 @@ using UnityEngine;
 
 
 [Serializable]
-public abstract class StatBase 
+public abstract class BaseStat 
 {
 
 

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class AnimatorController : MonoBehaviour
@@ -10,6 +9,10 @@ public class AnimatorController : MonoBehaviour
     [SerializeField] SkinnedMeshRenderer meshRenderer; 
 
     Animator animator;
+
+    [SerializeField] Transform attackPoint;
+    public Transform AttackPoint { get { return attackPoint; } }
+
 
     public Action<UnitAnimateState, float> changeAnimationEventHandler;
 

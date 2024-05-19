@@ -5,7 +5,7 @@ using System;
 
 
 [Serializable]
-public class HeroData : TowerDataBase
+public class HeroData : BaseTowerData
 {
     public string skillUniqueKeys;
     public List<string> skillUniqueKeyList = new List<string>();

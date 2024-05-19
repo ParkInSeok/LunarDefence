@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : UnitBase
+public class Enemy : BaseUnit
 {
     [Header("Enemy")]
     [SerializeField] EnemyStat stat;
@@ -21,7 +21,7 @@ public class Enemy : UnitBase
 
 
     [Header("Debugging")]
-    public UnitBase target;
+    public BaseUnit target;
 
 
 
@@ -33,7 +33,7 @@ public class Enemy : UnitBase
     {
         stat = new EnemyStat();
         stat.InitStat(_stat);
-
+        SetBulletSpawner();
         unitState = UnitState.die;
         animateState = UnitAnimateState.Die;
         setModelCompletedEventHandler += BindEvents;

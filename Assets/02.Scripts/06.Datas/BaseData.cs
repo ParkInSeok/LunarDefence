@@ -20,13 +20,14 @@ public enum UnitType{
     towerData,
     enemyData,
     heroData,
+    bullet,
 }
 
 
 
 
 [Serializable]
-public class DataBase
+public class BaseData
 {
     public string uniqueKey;                //유니크 키
     public float atk;                       //공격력
@@ -37,6 +38,9 @@ public class DataBase
     public float propertyReinforcePower;    //속강
     public float propertyResistPower;       //속저
     public int attackMotionLength;
+    public string flashUniqueKey;           //발사 이펙트
+    public string bulletUniqueKey;          //탄환 이펙트
+    public string hitUniqueKey;             //맞췃을때 이펙트
 
     [SerializeField] protected int propertyState;               //속성상태
     [SerializeField] protected int damageType;               //데미지 타입

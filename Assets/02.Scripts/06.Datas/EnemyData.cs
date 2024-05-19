@@ -11,7 +11,7 @@ public enum EnemyType
 }
 
 [Serializable]
-public class EnemyData : DataBase
+public class EnemyData : BaseData
 {
     public float moveSpeed;             //이동속도
 
@@ -36,6 +36,9 @@ public class EnemyData : DataBase
         this.enemyType = data.enemyType;
         this.moveSpeed = data.moveSpeed;
         this.attackMotionLength = data.attackMotionLength;
+        this.flashUniqueKey = data.flashUniqueKey;
+        this.bulletUniqueKey = data.bulletUniqueKey;
+        this.hitUniqueKey = data.hitUniqueKey;
     }
 
 

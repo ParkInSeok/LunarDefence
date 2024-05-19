@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,7 +35,9 @@ public class TestGameData : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
-            InfinityStageManager.Instance.ObjectPoolingController.GetTowerPool("Tower_Angel Mage");
+            //InfinityStageManager.Instance.ObjectPoolingController.GetTowerPool("Tower_Angel Mage");
+            InfinityStageManager.Instance.ObjectPoolingController.GetTowerPool("Tower_Ice Mage");
+        
         }
 
         if (Input.GetKeyDown(KeyCode.F4))
@@ -45,6 +48,7 @@ public class TestGameData : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F5))
         {
+            //InfinityStageManager.Instance.ObjectPoolingController.GetBulletAroundPool("Flash 1",SetTowerAttackPoint);
         }
 
         if (Input.GetKeyDown(KeyCode.F6))
@@ -76,8 +80,12 @@ public class TestGameData : MonoBehaviour
 
     }
 
-
-
+    private void SetTowerAttackPoint(ReturnToPool_Particle obj)
+    {
+        obj.transform.position = currentTower.CurrentAnimatorController.AttackPoint.position;
+        obj.transform.rotation = currentTower.CurrentAnimatorController.AttackPoint.rotation;
+        obj.StartParticle();
+    }
 
     public void SetSprite(Sprite set)
     {

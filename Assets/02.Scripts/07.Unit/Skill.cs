@@ -42,7 +42,7 @@ public class Skill
 
     }
 
-    public Skill(SkillDataBase _skillDataBase)
+    public Skill(BaseSkillData _skillDataBase)
     {
         skillUniqueKey = _skillDataBase.skillUniqueKey;
         skillIconUniqueKey = _skillDataBase.skillIconUniqueKey;

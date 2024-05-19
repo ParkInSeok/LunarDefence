@@ -36,7 +36,7 @@ public enum BuffStatType
 
 
 [Serializable]
-public class SkillDataBase
+public class BaseSkillData
 {
     public string skillUniqueKey;                   //스킬 유니크키
     public string skillIconUniqueKey;               //스킬 아이콘
@@ -52,11 +52,11 @@ public class SkillDataBase
 
     //TODO 스킬 매커니즘 추가는 상속받아서 처리
 
-    public SkillDataBase(){
+    public BaseSkillData(){
 
     }
 
-    public SkillDataBase(string _skillUniqueKey, string _skillIconUniqueKey, int _damageCoefficient,
+    public BaseSkillData(string _skillUniqueKey, string _skillIconUniqueKey, int _damageCoefficient,
         int _skillLevel, int _skillType, int _buffStatType, int _activationType, int _activatePercent)
     {
         skillUniqueKey = _skillUniqueKey;
@@ -69,7 +69,7 @@ public class SkillDataBase
         activatePercent = _activatePercent;
     }
 
-    public SkillDataBase(int _skillType, int _buffStatType, int _activationType)
+    public BaseSkillData(int _skillType, int _buffStatType, int _activationType)
     {
         skillLevel = 1;
         skillType = _skillType;

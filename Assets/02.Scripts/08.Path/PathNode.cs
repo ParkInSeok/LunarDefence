@@ -20,15 +20,15 @@ public class PathNode
 
     public int FCost { get { return gCost + hCost; } }
 
-    private UnitBase unit;
+    private BaseUnit unit;
 
-    public UnitBase Unit { get { return unit; } }
+    public BaseUnit Unit { get { return unit; } }
 
     public Color origineColor;
 
 
 
-    public void SetUnit(UnitBase _unit)
+    public void SetUnit(BaseUnit _unit)
     {
         unit = _unit;
         isTower = true;

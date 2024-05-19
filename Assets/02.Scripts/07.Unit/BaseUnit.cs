@@ -26,12 +26,19 @@ public enum UnitState
 
 
 
-public abstract class UnitBase : MonoBehaviour
+public abstract class BaseUnit : MonoBehaviour
 {
     [Header("UnitBase")]
     [SerializeField] protected Transform modelParent;
     protected GameObject model;
     protected AnimatorController animatorContoller;
+    public AnimatorController CurrentAnimatorController { get { return animatorContoller; } }
+
+    protected BulletSpawner bulletSpawner;
+
+    public BulletSpawner BulletSpawner { get { return bulletSpawner; } }
+
+
     [SerializeField] protected UnitAnimateState animateState;
     [SerializeField] protected UnitState unitState;
 
@@ -45,6 +52,13 @@ public abstract class UnitBase : MonoBehaviour
     public Action setModelCompletedEventHandler;
     public Action unitDieEventHandler;
 
+
+    protected virtual void SetBulletSpawner()
+    {
+        if(bulletSpawner == null)
+            bulletSpawner = GetComponentInChildren<BulletSpawner>();
+        bulletSpawner.Init();
+    }
 
     protected virtual void CreateModel(string modelUniqueKey)
     {

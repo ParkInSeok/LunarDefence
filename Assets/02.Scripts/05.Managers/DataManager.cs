@@ -94,6 +94,9 @@ public class DataManager : Singleton<DataManager>
             data.propertyResistPower = enemyData[index].Get<float>("propertyResistPower");
             data.moveSpeed = enemyData[index].Get<float>("moveSpeed");
             data.attackMotionLength = enemyData[index].Get<int>("attackMotionLength");
+            data.flashUniqueKey = enemyData[index].Get<string>("flashUniqueKey");
+            data.bulletUniqueKey = enemyData[index].Get<string>("bulletUniqueKey");
+            data.hitUniqueKey = enemyData[index].Get<string>("hitUniqueKey");
             gameData.SetData(data);
 
 
@@ -135,6 +138,9 @@ public class DataManager : Singleton<DataManager>
             data.lifeBloodAbsorption = heroData[index].Get<int>("lifeBloodAbsorption");
             data.skillUniqueKeys = heroData[index].Get<string>("skillUniqueKeys");
             data.attackMotionLength = heroData[index].Get<int>("attackMotionLength");
+            data.flashUniqueKey = heroData[index].Get<string>("flashUniqueKey");
+            data.bulletUniqueKey = heroData[index].Get<string>("bulletUniqueKey");
+            data.hitUniqueKey = heroData[index].Get<string>("hitUniqueKey");
 
             gameData.SetData(data);
 
@@ -178,6 +184,9 @@ public class DataManager : Singleton<DataManager>
             data.lifeBloodAbsorption = towerData[index].Get<int>("lifeBloodAbsorption");
             data.skillUniqueKey = towerData[index].Get<string>("skillUniqueKey");
             data.attackMotionLength = towerData[index].Get<int>("attackMotionLength");
+            data.flashUniqueKey = towerData[index].Get<string>("flashUniqueKey");
+            data.bulletUniqueKey = towerData[index].Get<string>("bulletUniqueKey");
+            data.hitUniqueKey = towerData[index].Get<string>("hitUniqueKey");
 
             gameData.SetData(data);
 
@@ -205,7 +214,7 @@ public class DataManager : Singleton<DataManager>
             var skillType = dbData[index].Get<int>("skillType");
             var buffStatType = dbData[index].Get<int>("buffStatType");
             var activationType = dbData[index].Get<int>("skillActivationType");
-            SkillDataBase data = new SkillDataBase(skillType, buffStatType, activationType);
+            BaseSkillData data = new BaseSkillData(skillType, buffStatType, activationType);
             data.skillUniqueKey = _uniqueKey;
             data.skillIconUniqueKey = dbData[index].Get<string>("skillIconUniqueKey");
             data.damageCoefficient = dbData[index].Get<int>("damageCoefficient");

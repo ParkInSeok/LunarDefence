@@ -97,6 +97,186 @@ MonoBehaviour:
     m_Address: Tower_Wind Mage
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: c21f26210c6e0a2499b58dfbbd1248ae
+    m_Address: Flash 1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 10c613e1082237641a42e756c747e889
+    m_Address: Hit 1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 46b7391af604e804eb4806f6661415dc
+    m_Address: Hit 10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 427d04d3b3cb18a48904fb31cae5abb8
+    m_Address: Hit 11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 04452db9f624e3841ad31b7e55022bed
+    m_Address: Hit 12
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 872fde2c82eafbe4198a293f84a440a9
+    m_Address: Hit 13
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d6ede624ebc30164ca95288948c614d0
+    m_Address: Hit 14
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c52d44bc4c91f10488738b30cf4d4d60
+    m_Address: Hit 15
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 39c3665f04ed8db48805864c89c41615
+    m_Address: Hit 2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 47eac9cab4a28894ab66ebace6ee98c7
+    m_Address: Hit 3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ca858ca9de522bd4cbef3877630d7a6b
+    m_Address: Hit 4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: def299f12dded754a85ef3d0436dc025
+    m_Address: Hit 5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0cac3a8be5b05db49862711349bc0e26
+    m_Address: Hit 6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 95a0666d57590fa4baa0c5fdaeab33b5
+    m_Address: Hit 7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 2d72a0814515cf749b758787fabfd8a1
+    m_Address: Hit 8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c912525b00c58ad4f969f5dd24b7358c
+    m_Address: Hit 9
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7699b3d128aed334d945d8d66ff81be5
+    m_Address: Flash 10
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5ab1dfac785d5e84a9bf742fe667a3bb
+    m_Address: Flash 11
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5fe81ed1589456d4d88699487bdc59e8
+    m_Address: Flash 12
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d99cb5806531c4b47abeec741daaac0e
+    m_Address: Flash 13
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9f1912617de09ae4286bed9243c01121
+    m_Address: Flash 14
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 3914966fa89dfe846a2601e106135545
+    m_Address: Flash 15
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d11aad86fd37f9142baaa9d2fd5d76cd
+    m_Address: Flash 2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 54bd6f0c62b871645863020a059badda
+    m_Address: Flash 3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8ee2b2cefdb7ec2408dead5d7030ec0d
+    m_Address: Flash 4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f9b7babfe9f02054da824c5f9c91bd6c
+    m_Address: Flash 5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d8c561d1588fffa48a8bc36dc52518f6
+    m_Address: Flash 6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0a86e4a8214edaf45a5ea84f5d60dd55
+    m_Address: Flash 7
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d3bfbc76b4c268048a333fc7bd361fc6
+    m_Address: Flash 8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e82d99b25000ab3479db808458d7e724
+    m_Address: Flash 9
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 19e199e5b0af20e4ea02751c67fd5f6b
+    m_Address: Projectile 1 bullet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 63897768aa69ead438a1e36c8b839ccb
+    m_Address: Projectile 10 explode
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5df041a5e7ec5574bb71befe59c1f5bb
+    m_Address: Projectile 11 triangle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 35622ae958efb7b40bc37991a73985e2
+    m_Address: Projectile 12 forest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7cddc6d4a1b932d4a8230cdca4f0dcc3
+    m_Address: Projectile 13 magic arrow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bff164c20b9752e429980c8b6a64738c
+    m_Address: Projectile 14 ice
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 19c8bbae51e1fac4cafe05213d982fde
+    m_Address: Projectile 15 red
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 677d5c2fadaef6f429ee0b505682ff5e
+    m_Address: Projectile 2 energy orb
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: dfa75fc8b8d5ebf4d91e318d81e5f226
+    m_Address: Projectile 3 cube
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d9b66422831a240438ab5bbf307d85be
+    m_Address: Projectile 4 red star
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f07cac8865f645546b69538a161d6dcc
+    m_Address: Projectile 5 arrow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 87fc5f18e998e6845b100970eb3abc4b
+    m_Address: Projectile 6 magic stone
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 02509c455a8b2a140ba918364862ebe6
+    m_Address: Projectile 7 wind
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 720a6c45591e4bf4f9d51204084ec77e
+    m_Address: Projectile 8 twist
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9f50e9b62dad23545a49cdc00f4e6886
+    m_Address: Projectile 9 cosmic
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 03e8369acbed02440b1688bef13b2ed2, type: 2}
   m_SchemaSet:

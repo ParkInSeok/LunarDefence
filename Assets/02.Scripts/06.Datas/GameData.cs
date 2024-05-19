@@ -12,7 +12,7 @@ public class GameData : ScriptableObject
     [SerializeField]protected List<EnemyData> enemyDatas = new List<EnemyData>();
     [SerializeField]protected List<HeroData> heroDatas = new List<HeroData>();
     [SerializeField]protected List<AdvantageData> advantageDatas = new List<AdvantageData>();
-    [SerializeField]protected List<SkillDataBase> skillDatas = new List<SkillDataBase>();
+    [SerializeField]protected List<BaseSkillData> skillDatas = new List<BaseSkillData>();
 
 
 
@@ -77,7 +77,7 @@ public class GameData : ScriptableObject
 
     public Skill GetSkill(string _uniqueKey)
     {
-        SkillDataBase _skillData = skillDatas.Find((x)=> x.skillUniqueKey.Equals(_uniqueKey) == true);
+        BaseSkillData _skillData = skillDatas.Find((x)=> x.skillUniqueKey.Equals(_uniqueKey) == true);
         if(_skillData != null)
         {
             Skill getSkill = new Skill(_skillData);
@@ -114,7 +114,7 @@ public class GameData : ScriptableObject
             return data;
     }
 
-    public SkillDataBase GetSkillData(string _uniqueKey)
+    public BaseSkillData GetSkillData(string _uniqueKey)
     {
         var data = skillDatas.Find((x) => x.skillUniqueKey.Equals(_uniqueKey));
         if (data == null)
@@ -145,7 +145,7 @@ public class GameData : ScriptableObject
     {
         towerDatas.Add(_data);
     }
-    public void SetData(SkillDataBase _data)
+    public void SetData(BaseSkillData _data)
     {
         skillDatas.Add(_data);
     }

@@ -29,11 +29,12 @@ public class ObjectPoolingController : MonoBehaviour
 
     List<Transform> unitTypeParent = new List<Transform>();
 
+    public List<Transform> UnitTypeParent { get { return unitTypeParent; } }
+
     PathNode startNode;
     PathNode targetNode;
 
-
-
+  
 
     public void Init(PathNode _startNode, PathNode _targetNode)
     {
@@ -56,7 +57,11 @@ public class ObjectPoolingController : MonoBehaviour
         }
 
         //tower recycle init 만들어야함
-       
+        //CreateBulletAround("Flash 1");
+        //CreateBulletAround("Hit 1");
+
+
+
     }
 
     public void BindEvents()
@@ -218,12 +223,6 @@ public class ObjectPoolingController : MonoBehaviour
     }
 
     #endregion
-
-    #region Bullet
-
-
-    #endregion
-
 
 
 

@@ -5568,6 +5568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 6618395775066740625}
+  attackPoint: {fileID: 7851667065286392835}
 --- !u!65 &4226753829427774079
 BoxCollider:
   m_ObjectHideFlags: 0

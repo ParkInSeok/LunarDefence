@@ -7,7 +7,7 @@ using  System;
 
 
 [Serializable]
-public class TowerStat : StatBase
+public class TowerStat : BaseStat
 {
 
     protected TowerData origineTowerStat;

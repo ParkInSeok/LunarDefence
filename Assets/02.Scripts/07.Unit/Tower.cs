@@ -3,19 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : UnitBase
+public class Tower : BaseUnit
 {
+    [Header("Tower")]
     [SerializeField] TowerStat stat;
 
     public TowerStat Stat { get { return stat; } }
 
     public Action<Tower> dieEventHandler;
 
+ 
+
     #region Init
 
     public void Init(TowerData _stat)
     {
         stat.InitStat(_stat);
+        
+        SetBulletSpawner();
+        bulletSpawner.CreateBulletAround(stat.CurrentTowerStat.flashUniqueKey);
+        bulletSpawner.CreateBulletAround(stat.CurrentTowerStat.hitUniqueKey);
+        bulletSpawner.CreateBullet(stat.CurrentTowerStat.bulletUniqueKey, SetHitBulletAround);
+
+
         unitState = UnitState.die;
         animateState = UnitAnimateState.Die;
 
@@ -25,12 +35,20 @@ public class Tower : UnitBase
 
         DieEvent();
     }
+
+  
+
     public void RecycleInit(TowerData _stat)
     {
         this.gameObject.SetActive(true);
         stat.InitStat(_stat);
+
+        bulletSpawner.CreateBulletAround(stat.CurrentTowerStat.flashUniqueKey);
+        bulletSpawner.CreateBullet(stat.CurrentTowerStat.bulletUniqueKey);
+
         unitState = UnitState.alive;
         animateState = UnitAnimateState.None;
+
         setModelCompletedEventHandler = null;
         setModelCompletedEventHandler += BindEvents;
 
@@ -73,7 +91,7 @@ public class Tower : UnitBase
     {
         //탄환발사 블렌드트리로 애니메이션 스킬 쏘는 것 처리 스킬에 따라서 다른스킬 처리
         //현재 타워의 공격에 따라 세팅
-
+       
 
         //next attack Type setting
         SetAttackType();
@@ -90,19 +108,28 @@ public class Tower : UnitBase
     }
     protected override void SetAttackType()
     {
+        bulletSpawner.GetBulletAroundPool(stat.CurrentTowerStat.flashUniqueKey, SetAttackPoint);
         if (IsSkillAttack())
         {
             //next attack use skill 
             int value = UnityEngine.Random.Range(0, stat.CurrentTowerStat.attackMotionLength);
             animatorContoller.SetAttackValue((float)value);
+
+            bulletSpawner.GetBulletPool(stat.CurrentTowerStat.bulletUniqueKey, 
+                (bullet)=>SetAttackPoint(bullet,true,stat.Skill));
         }
         else
         {
             animatorContoller.SetAttackValue(0);
+
+            bulletSpawner.GetBulletPool(stat.CurrentTowerStat.bulletUniqueKey,
+                (bullet)=> SetAttackPoint(bullet,false));
         }
     }
     protected override bool IsSkillAttack()
     {
+        if (stat.Skill == null)
+            return false;
         if(stat.Skill.activationType == SkillActivationType.mana)
         {
             //mana 가 max mana일떄 return true
@@ -240,5 +267,59 @@ public class Tower : UnitBase
 
         return _damage;
     }
+
+
+    #region Bullet
+
+    private void SetAttackPoint(ReturnToPool_Particle obj)
+    {
+        obj.transform.position = CurrentAnimatorController.AttackPoint.position;
+        obj.transform.rotation = CurrentAnimatorController.AttackPoint.rotation;
+        obj.StartParticle();
+    }
+
+    private void SetAttackPoint(Bullet bullet, bool isSkill = false, Skill skill = null)
+    {
+        bullet.transform.position = CurrentAnimatorController.AttackPoint.position;
+        bullet.transform.rotation = CurrentAnimatorController.AttackPoint.rotation;
+        bullet.StartParticle();
+        bullet.SetData(stat.CurrentTowerStat, isSkill,skill);
+    }
+
+    private void SetHitBulletAround(Bullet obj)
+    {
+        obj.hitEventHandler += BindHitEvent;
+    }
+
+    private void BindHitEvent(Vector3 pos, Quaternion rot, ContactPoint contact, 
+        bool UseFirePointRotation, Vector3 rotationOffset)
+    {
+        bulletSpawner.GetBulletAroundPool(stat.CurrentTowerStat.hitUniqueKey,
+            (particle)=> SetHitPoint(particle,pos,rot, contact, UseFirePointRotation , rotationOffset));
+
+    }
+
+    private void SetHitPoint(ReturnToPool_Particle obj, Vector3 pos, Quaternion rot, ContactPoint contact, 
+        bool UseFirePointRotation, Vector3 rotationOffset)
+    {
+        if (obj != null)
+        {
+           
+            obj.transform.position = pos;
+            obj.transform.rotation = rot;
+            if (UseFirePointRotation) { obj.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(0, 180f, 0); }
+            else if (rotationOffset != Vector3.zero) { obj.transform.rotation = Quaternion.Euler(rotationOffset); }
+            else { obj.transform.LookAt(contact.point + contact.normal); }
+
+            //Destroy hit effects depending on particle Duration time
+            obj.StartParticle();
+        }
+    }
+
+
+    #endregion
+
+
+
 
 }
