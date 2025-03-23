@@ -32,7 +32,8 @@ public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
         {
             go = obj.gameObject;
         }
-
+        if (go.transform.parent != null)
+            go.transform.parent = null;
         DontDestroyOnLoad(go);
         return go.GetComponent<U>();
     }

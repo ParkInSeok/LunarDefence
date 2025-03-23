@@ -114,6 +114,9 @@ public class PathController : MonoBehaviour
         // 0,column -1 ~ row-1, column -1
         var randomStartPosX = 0;
         var randomStartPosY = 0;
+
+        
+
         var randomDir = Random.Range(0, System.Enum.GetValues(typeof(NodeDirection)).Length);
         switch ((NodeDirection)randomDir)
         {

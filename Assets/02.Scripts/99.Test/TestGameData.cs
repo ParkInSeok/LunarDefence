@@ -17,6 +17,9 @@ public class TestGameData : MonoBehaviour
     public Tower currentTower;
     public Hero currentHero;
 
+    public float length;
+
+
     void Start()
     {
 
@@ -49,6 +52,12 @@ public class TestGameData : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F5))
         {
             //InfinityStageManager.Instance.ObjectPoolingController.GetBulletAroundPool("Flash 1",SetTowerAttackPoint);
+            NetworkManager.Instance.GetRandomNumber(1, 100, (randomNumber)=>
+            {
+                Debug.Log("Random Number: " + randomNumber);
+            });
+            
+
         }
 
         if (Input.GetKeyDown(KeyCode.F6))
@@ -126,25 +135,14 @@ public class TestGameData : MonoBehaviour
     }
 
 
-    private void OnDrawGizmos()
-    {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //private void OnDrawGizmos()
+    //{
+    //    RaycastHit hit;
+    //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        Debug.DrawRay(ray.origin, ray.direction* 70, Color.blue, 1f);
-        if (Physics.Raycast(ray, out hit, 100f))
-        {
-
-            //print("raycast hit!");
-
-            hit.transform.TryGetComponent<TileEventTrigger>(out var tile);
-            if (tile == null)
-                return;
-
-          //  Debug.Log("tile row " + tile.pathNode.row + " tile column " + tile.pathNode.column);
-
-        }
-    }
+    //    Debug.DrawRay(ray.origin, ray.direction* length, Color.blue, 1f);
+       
+    //}
 
 
 }
