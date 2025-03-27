@@ -26,6 +26,7 @@ public class PathNode
 
     public Color origineColor;
 
+    public BaseUnit GetUnit { get { return Unit; } }
 
 
     public void SetUnit(BaseUnit _unit)

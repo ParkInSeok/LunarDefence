@@ -11,6 +11,7 @@ public enum AdvantageType // uniquekey
 }
 
 
+
 public class AdvantageController : MonoBehaviour
 {
     // Start is called before the first frame update

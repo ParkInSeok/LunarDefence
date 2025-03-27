@@ -13,6 +13,10 @@ public class ItemTrigger : UIEventTrigger
 
     public Image ThumbnailImage { get { return thumbnail; } }
 
+    protected override void Awake()
+    {
+        base.Awake();
+    }
 
     public override void OnPointerDown(PointerEventData eventData)
     {

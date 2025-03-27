@@ -13,7 +13,13 @@ public class UIEventTrigger : MonoBehaviour ,  IPointerDownHandler, IPointerEnte
     public Action<PointerEventData> onPointerExitEventHandler;
 
     //PointerEventData  clickCount 클릭된 횟수  clickTime 클릭된 시간 delta 변화한 값  pointerId 포인터 ID position 현재 포인터 위치
+    public RectTransform rectTransform;
 
+    protected virtual void Awake()
+    {
+        if (rectTransform == null)
+            rectTransform = transform.GetComponent<RectTransform>();
+    }
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {

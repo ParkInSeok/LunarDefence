@@ -12,6 +12,8 @@ public class UIManager_StageMode : Singleton<UIManager_StageMode>
     RectTransform backCanvasRect;
 
     [SerializeField] StageBackUI backUI;
+    [SerializeField] CommonSelectUI commonSelectUI;
+    [SerializeField] UIEventTrigger fakeUI;
 
 
 
@@ -43,16 +45,37 @@ public class UIManager_StageMode : Singleton<UIManager_StageMode>
     protected void BindEvents()
     {
 
-        backUI.Init(backCanvasRect);
+        //backUI.Init(backCanvasRect);
 
+        LunarInputManager.Instance.selectTileEventHandler += BindOpenCommonSelectUIEvent;
+        fakeUI.onPointerDownEventHandler = (x) =>
+        {
+            UtilityManager.Instance.DelayFunction_EndOfFrame(() =>
+            {
+                fakeUI.gameObject.SetActive(false);
+                commonSelectUI.gameObject.SetActive(false);
 
-
+                LunarInputManager.Instance.isStopInput = false;
+            });
+        };
 
     }
 
+    private void BindOpenCommonSelectUIEvent(PathNode obj)
+    {
+        if (commonSelectUI.gameObject.activeSelf == false)
+        {
+            Vector3 screenPosition = Camera.main.WorldToScreenPoint(obj.position);
 
+            commonSelectUI.rectTransform.position = screenPosition;
+            commonSelectUI.gameObject.SetActive(true);
+            fakeUI.gameObject.SetActive(true);
+         
+            fakeUI.rectTransform.SetAsLastSibling();
+            commonSelectUI.rectTransform.SetAsLastSibling();
 
-   
+            LunarInputManager.Instance.isStopInput = true;
+        }
 
-
+    }
 }

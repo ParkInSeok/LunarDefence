@@ -18,6 +18,15 @@ public class UtilityManager : Singleton<UtilityManager>
 
 
 
+    public Coroutine DelayFunction_FixedUpdate(Action action)
+    {
+        return StartCoroutine(_DelayFunction_FixedUpdate(action));
+    }
+    public Coroutine DelayFunction_EndOfFrame(Action action)
+    {
+        return StartCoroutine(_DelayFunction_EndOfFrame(action));
+    }
+
     public Coroutine DelayFunction(Action action, float delayTime)
     {
         return StartCoroutine(_DelayFunction(action, delayTime));
@@ -39,9 +48,17 @@ public class UtilityManager : Singleton<UtilityManager>
         action?.Invoke();
     }
 
+    IEnumerator _DelayFunction_EndOfFrame(Action action)
+    {
+        yield return CoroutineHelper.WaitForEndOfFrame;
+        action?.Invoke();
+    }
 
-
-
+    IEnumerator _DelayFunction_FixedUpdate(Action action)
+    {
+        yield return CoroutineHelper.WaitForFixedUpdate;
+        action?.Invoke();
+    }
 
 }
 
@@ -87,8 +104,6 @@ static class CoroutineHelper
             _timeIntervalReal.Add(seconds, wfsReal = new WaitForSecondsRealtime(seconds));
         return wfsReal;
     }
-
-
 
 
 
