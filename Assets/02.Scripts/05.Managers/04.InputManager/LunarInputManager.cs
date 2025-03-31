@@ -12,7 +12,7 @@ public class LunarInputManager : Singleton<LunarInputManager>
 
     [SerializeField]LayerMask tileMapLayer;
 
-    public Action<PathNode> selectTileEventHandler;
+    public Action<Vector2> mouseDownEventHandler;
 
     public bool isStopInput = false;
 
@@ -46,23 +46,8 @@ public class LunarInputManager : Singleton<LunarInputManager>
     {
         if(Input.GetMouseButtonDown(0))
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 90f, tileMapLayer))
-            {
-                if (!hit.collider.tag.Equals("Tile"))
-                    return;
-                hit.transform.TryGetComponent<TileEventTrigger>(out var tile);
-                if (tile == null)
-                    return;
+            mouseDownEventHandler?.Invoke(Input.mousePosition);
 
-                selectTileEventHandler?.Invoke(tile.pathNode);
-
-               
-
-
-
-            }
         }
 
 
@@ -73,7 +58,6 @@ public class LunarInputManager : Singleton<LunarInputManager>
     {
         if (Input.GetMouseButton(0))
         {
-            RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             Debug.DrawRay(Camera.main.transform.position, ray.direction * 90, Color.red);
@@ -81,8 +65,7 @@ public class LunarInputManager : Singleton<LunarInputManager>
 
     }
 
-
-
+    
 
 
 

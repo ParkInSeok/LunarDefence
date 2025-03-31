@@ -30,11 +30,6 @@ public partial class DB_EnemyData : BGEntity
 		get => _uniqueKey[Index];
 		set => _uniqueKey[Index] = value;
 	}
-	public System.String modelUniqueKey
-	{
-		get => _modelUniqueKey[Index];
-		set => _modelUniqueKey[Index] = value;
-	}
 	public System.Single atk
 	{
 		get => _atk[Index];
@@ -70,6 +65,11 @@ public partial class DB_EnemyData : BGEntity
 		get => _propertyResistPower[Index];
 		set => _propertyResistPower[Index] = value;
 	}
+	public System.Single moveSpeed
+	{
+		get => _moveSpeed[Index];
+		set => _moveSpeed[Index] = value;
+	}
 	public System.Int32 propertyState
 	{
 		get => _propertyState[Index];
@@ -80,22 +80,35 @@ public partial class DB_EnemyData : BGEntity
 		get => _damageType[Index];
 		set => _damageType[Index] = value;
 	}
-	public System.Int32 unitType
+	public System.Int32 enemyType
 	{
-		get => _unitType[Index];
-		set => _unitType[Index] = value;
+		get => _enemyType[Index];
+		set => _enemyType[Index] = value;
 	}
-	public System.Single moveSpeed
+	public System.Int32 attackMotionLength
 	{
-		get => _moveSpeed[Index];
-		set => _moveSpeed[Index] = value;
+		get => _attackMotionLength[Index];
+		set => _attackMotionLength[Index] = value;
+	}
+	public System.String flashUniqueKey
+	{
+		get => _flashUniqueKey[Index];
+		set => _flashUniqueKey[Index] = value;
+	}
+	public System.String bulletUniqueKey
+	{
+		get => _bulletUniqueKey[Index];
+		set => _bulletUniqueKey[Index] = value;
+	}
+	public System.String hitUniqueKey
+	{
+		get => _hitUniqueKey[Index];
+		set => _hitUniqueKey[Index] = value;
 	}
 	private static BansheeGz.BGDatabase.BGFieldEntityName _ufle12jhs77_name;
 	public static BansheeGz.BGDatabase.BGFieldEntityName _name => _ufle12jhs77_name ?? (_ufle12jhs77_name = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldEntityName>(MetaDefault, new BGId(5605900727010448709UL, 3787759488153421470UL), () => _ufle12jhs77_name = null));
 	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_uniqueKey;
 	public static BansheeGz.BGDatabase.BGFieldString _uniqueKey => _ufle12jhs77_uniqueKey ?? (_ufle12jhs77_uniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5486584841661015506UL, 12724692272215307195UL), () => _ufle12jhs77_uniqueKey = null));
-	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_modelUniqueKey;
-	public static BansheeGz.BGDatabase.BGFieldString _modelUniqueKey => _ufle12jhs77_modelUniqueKey ?? (_ufle12jhs77_modelUniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5524714954711315365UL, 4778198609947570870UL), () => _ufle12jhs77_modelUniqueKey = null));
 	private static BansheeGz.BGDatabase.BGFieldFloat _ufle12jhs77_atk;
 	public static BansheeGz.BGDatabase.BGFieldFloat _atk => _ufle12jhs77_atk ?? (_ufle12jhs77_atk = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldFloat>(MetaDefault, new BGId(5396623800190823907UL, 13429253907522549162UL), () => _ufle12jhs77_atk = null));
 	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_hp;
@@ -110,17 +123,28 @@ public partial class DB_EnemyData : BGEntity
 	public static BansheeGz.BGDatabase.BGFieldFloat _propertyReinforcePower => _ufle12jhs77_propertyReinforcePower ?? (_ufle12jhs77_propertyReinforcePower = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldFloat>(MetaDefault, new BGId(4679697312434670283UL, 2365062557594840505UL), () => _ufle12jhs77_propertyReinforcePower = null));
 	private static BansheeGz.BGDatabase.BGFieldFloat _ufle12jhs77_propertyResistPower;
 	public static BansheeGz.BGDatabase.BGFieldFloat _propertyResistPower => _ufle12jhs77_propertyResistPower ?? (_ufle12jhs77_propertyResistPower = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldFloat>(MetaDefault, new BGId(4829432456652747363UL, 6484324445973017273UL), () => _ufle12jhs77_propertyResistPower = null));
-	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_propertyState;
-	public static BansheeGz.BGDatabase.BGFieldInt _propertyState => _ufle12jhs77_propertyState ?? (_ufle12jhs77_propertyState = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(4962329106411589224UL, 17090313909321595570UL), () => _ufle12jhs77_propertyState = null));
-	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_damageType;
-	public static BansheeGz.BGDatabase.BGFieldInt _damageType => _ufle12jhs77_damageType ?? (_ufle12jhs77_damageType = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5128066249638100564UL, 14153476527045546128UL), () => _ufle12jhs77_damageType = null));
-	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_unitType;
-	public static BansheeGz.BGDatabase.BGFieldInt _unitType => _ufle12jhs77_unitType ?? (_ufle12jhs77_unitType = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(4640297914052036150UL, 13930597463506407045UL), () => _ufle12jhs77_unitType = null));
 	private static BansheeGz.BGDatabase.BGFieldFloat _ufle12jhs77_moveSpeed;
 	public static BansheeGz.BGDatabase.BGFieldFloat _moveSpeed => _ufle12jhs77_moveSpeed ?? (_ufle12jhs77_moveSpeed = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldFloat>(MetaDefault, new BGId(5005368329512861673UL, 12986666523031679388UL), () => _ufle12jhs77_moveSpeed = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_propertyState;
+	public static BansheeGz.BGDatabase.BGFieldInt _propertyState => _ufle12jhs77_propertyState ?? (_ufle12jhs77_propertyState = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5041097375310221857UL, 13266922983921846688UL), () => _ufle12jhs77_propertyState = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_damageType;
+	public static BansheeGz.BGDatabase.BGFieldInt _damageType => _ufle12jhs77_damageType ?? (_ufle12jhs77_damageType = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5696670670636718669UL, 16966135255961089430UL), () => _ufle12jhs77_damageType = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_enemyType;
+	public static BansheeGz.BGDatabase.BGFieldInt _enemyType => _ufle12jhs77_enemyType ?? (_ufle12jhs77_enemyType = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5449097709603370813UL, 18009538480256369328UL), () => _ufle12jhs77_enemyType = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_attackMotionLength;
+	public static BansheeGz.BGDatabase.BGFieldInt _attackMotionLength => _ufle12jhs77_attackMotionLength ?? (_ufle12jhs77_attackMotionLength = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5280175375682984839UL, 8005126480145986973UL), () => _ufle12jhs77_attackMotionLength = null));
+	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_flashUniqueKey;
+	public static BansheeGz.BGDatabase.BGFieldString _flashUniqueKey => _ufle12jhs77_flashUniqueKey ?? (_ufle12jhs77_flashUniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5200915576465373923UL, 4939545622583304348UL), () => _ufle12jhs77_flashUniqueKey = null));
+	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_bulletUniqueKey;
+	public static BansheeGz.BGDatabase.BGFieldString _bulletUniqueKey => _ufle12jhs77_bulletUniqueKey ?? (_ufle12jhs77_bulletUniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5018199279622416498UL, 15488528089676679312UL), () => _ufle12jhs77_bulletUniqueKey = null));
+	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_hitUniqueKey;
+	public static BansheeGz.BGDatabase.BGFieldString _hitUniqueKey => _ufle12jhs77_hitUniqueKey ?? (_ufle12jhs77_hitUniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(4642670443236402200UL, 1989326421593632172UL), () => _ufle12jhs77_hitUniqueKey = null));
 	private static readonly DB_EnemyData.Factory _factory0_PFS = new DB_EnemyData.Factory();
 	private static readonly DB_TowerData.Factory _factory1_PFS = new DB_TowerData.Factory();
 	private static readonly DB_HeroData.Factory _factory2_PFS = new DB_HeroData.Factory();
+	private static readonly DB_PlayerData.Factory _factory3_PFS = new DB_PlayerData.Factory();
+	private static readonly DB_SkillData.Factory _factory4_PFS = new DB_SkillData.Factory();
+	private static readonly DB_AdvantageData.Factory _factory5_PFS = new DB_AdvantageData.Factory();
 	private DB_EnemyData() : base(MetaDefault) {}
 	private DB_EnemyData(BGId id) : base(MetaDefault, id) {}
 	private DB_EnemyData(BGMetaEntity meta) : base(meta) {}
@@ -158,11 +182,6 @@ public partial class DB_TowerData : BGEntity
 		get => _uniqueKey[Index];
 		set => _uniqueKey[Index] = value;
 	}
-	public System.String modelUniqueKey
-	{
-		get => _modelUniqueKey[Index];
-		set => _modelUniqueKey[Index] = value;
-	}
 	public System.Single atk
 	{
 		get => _atk[Index];
@@ -198,21 +217,6 @@ public partial class DB_TowerData : BGEntity
 		get => _propertyResistPower[Index];
 		set => _propertyResistPower[Index] = value;
 	}
-	public System.Int32 propertyState
-	{
-		get => _propertyState[Index];
-		set => _propertyState[Index] = value;
-	}
-	public System.Int32 damageType
-	{
-		get => _damageType[Index];
-		set => _damageType[Index] = value;
-	}
-	public System.Int32 unitType
-	{
-		get => _unitType[Index];
-		set => _unitType[Index] = value;
-	}
 	public System.Int32 critical
 	{
 		get => _critical[Index];
@@ -233,12 +237,40 @@ public partial class DB_TowerData : BGEntity
 		get => _skillUniqueKey[Index];
 		set => _skillUniqueKey[Index] = value;
 	}
+	public System.Int32 propertyState
+	{
+		get => _propertyState[Index];
+		set => _propertyState[Index] = value;
+	}
+	public System.Int32 damageType
+	{
+		get => _damageType[Index];
+		set => _damageType[Index] = value;
+	}
+	public System.Int32 attackMotionLength
+	{
+		get => _attackMotionLength[Index];
+		set => _attackMotionLength[Index] = value;
+	}
+	public System.String flashUniqueKey
+	{
+		get => _flashUniqueKey[Index];
+		set => _flashUniqueKey[Index] = value;
+	}
+	public System.String bulletUniqueKey
+	{
+		get => _bulletUniqueKey[Index];
+		set => _bulletUniqueKey[Index] = value;
+	}
+	public System.String hitUniqueKey
+	{
+		get => _hitUniqueKey[Index];
+		set => _hitUniqueKey[Index] = value;
+	}
 	private static BansheeGz.BGDatabase.BGFieldEntityName _ufle12jhs77_name;
 	public static BansheeGz.BGDatabase.BGFieldEntityName _name => _ufle12jhs77_name ?? (_ufle12jhs77_name = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldEntityName>(MetaDefault, new BGId(4941108061083073772UL, 6017762372021851288UL), () => _ufle12jhs77_name = null));
 	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_uniqueKey;
 	public static BansheeGz.BGDatabase.BGFieldString _uniqueKey => _ufle12jhs77_uniqueKey ?? (_ufle12jhs77_uniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(4828490049767187860UL, 13100746407448126643UL), () => _ufle12jhs77_uniqueKey = null));
-	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_modelUniqueKey;
-	public static BansheeGz.BGDatabase.BGFieldString _modelUniqueKey => _ufle12jhs77_modelUniqueKey ?? (_ufle12jhs77_modelUniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5568638574695843986UL, 11297087621485972100UL), () => _ufle12jhs77_modelUniqueKey = null));
 	private static BansheeGz.BGDatabase.BGFieldFloat _ufle12jhs77_atk;
 	public static BansheeGz.BGDatabase.BGFieldFloat _atk => _ufle12jhs77_atk ?? (_ufle12jhs77_atk = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldFloat>(MetaDefault, new BGId(4909830404343411534UL, 14754681351723998387UL), () => _ufle12jhs77_atk = null));
 	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_hp;
@@ -253,12 +285,6 @@ public partial class DB_TowerData : BGEntity
 	public static BansheeGz.BGDatabase.BGFieldFloat _propertyReinforcePower => _ufle12jhs77_propertyReinforcePower ?? (_ufle12jhs77_propertyReinforcePower = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldFloat>(MetaDefault, new BGId(5201509573395865833UL, 14929759093742407072UL), () => _ufle12jhs77_propertyReinforcePower = null));
 	private static BansheeGz.BGDatabase.BGFieldFloat _ufle12jhs77_propertyResistPower;
 	public static BansheeGz.BGDatabase.BGFieldFloat _propertyResistPower => _ufle12jhs77_propertyResistPower ?? (_ufle12jhs77_propertyResistPower = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldFloat>(MetaDefault, new BGId(4754163384060404509UL, 5301017864747725482UL), () => _ufle12jhs77_propertyResistPower = null));
-	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_propertyState;
-	public static BansheeGz.BGDatabase.BGFieldInt _propertyState => _ufle12jhs77_propertyState ?? (_ufle12jhs77_propertyState = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5402496191556378243UL, 10024595714572684455UL), () => _ufle12jhs77_propertyState = null));
-	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_damageType;
-	public static BansheeGz.BGDatabase.BGFieldInt _damageType => _ufle12jhs77_damageType ?? (_ufle12jhs77_damageType = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5676910790904751021UL, 5153086813139453569UL), () => _ufle12jhs77_damageType = null));
-	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_unitType;
-	public static BansheeGz.BGDatabase.BGFieldInt _unitType => _ufle12jhs77_unitType ?? (_ufle12jhs77_unitType = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5409446417320340000UL, 15792562398279814273UL), () => _ufle12jhs77_unitType = null));
 	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_critical;
 	public static BansheeGz.BGDatabase.BGFieldInt _critical => _ufle12jhs77_critical ?? (_ufle12jhs77_critical = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(4720049083284349323UL, 2690949299795753351UL), () => _ufle12jhs77_critical = null));
 	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_criticalDamage;
@@ -267,9 +293,24 @@ public partial class DB_TowerData : BGEntity
 	public static BansheeGz.BGDatabase.BGFieldInt _lifeBloodAbsorption => _ufle12jhs77_lifeBloodAbsorption ?? (_ufle12jhs77_lifeBloodAbsorption = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(4874692608475918203UL, 16951523883899290504UL), () => _ufle12jhs77_lifeBloodAbsorption = null));
 	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_skillUniqueKey;
 	public static BansheeGz.BGDatabase.BGFieldString _skillUniqueKey => _ufle12jhs77_skillUniqueKey ?? (_ufle12jhs77_skillUniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5563077167881212240UL, 11781104253017428148UL), () => _ufle12jhs77_skillUniqueKey = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_propertyState;
+	public static BansheeGz.BGDatabase.BGFieldInt _propertyState => _ufle12jhs77_propertyState ?? (_ufle12jhs77_propertyState = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5081624204317911449UL, 6063835351223786663UL), () => _ufle12jhs77_propertyState = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_damageType;
+	public static BansheeGz.BGDatabase.BGFieldInt _damageType => _ufle12jhs77_damageType ?? (_ufle12jhs77_damageType = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5075369154924547404UL, 13438636916839548549UL), () => _ufle12jhs77_damageType = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_attackMotionLength;
+	public static BansheeGz.BGDatabase.BGFieldInt _attackMotionLength => _ufle12jhs77_attackMotionLength ?? (_ufle12jhs77_attackMotionLength = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(4704188111629394858UL, 854596001091053188UL), () => _ufle12jhs77_attackMotionLength = null));
+	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_flashUniqueKey;
+	public static BansheeGz.BGDatabase.BGFieldString _flashUniqueKey => _ufle12jhs77_flashUniqueKey ?? (_ufle12jhs77_flashUniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(4961423731459407352UL, 17414992718928255625UL), () => _ufle12jhs77_flashUniqueKey = null));
+	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_bulletUniqueKey;
+	public static BansheeGz.BGDatabase.BGFieldString _bulletUniqueKey => _ufle12jhs77_bulletUniqueKey ?? (_ufle12jhs77_bulletUniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5059740928602105079UL, 7079432124169486271UL), () => _ufle12jhs77_bulletUniqueKey = null));
+	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_hitUniqueKey;
+	public static BansheeGz.BGDatabase.BGFieldString _hitUniqueKey => _ufle12jhs77_hitUniqueKey ?? (_ufle12jhs77_hitUniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5752610762060045583UL, 14492952923079621519UL), () => _ufle12jhs77_hitUniqueKey = null));
 	private static readonly DB_EnemyData.Factory _factory0_PFS = new DB_EnemyData.Factory();
 	private static readonly DB_TowerData.Factory _factory1_PFS = new DB_TowerData.Factory();
 	private static readonly DB_HeroData.Factory _factory2_PFS = new DB_HeroData.Factory();
+	private static readonly DB_PlayerData.Factory _factory3_PFS = new DB_PlayerData.Factory();
+	private static readonly DB_SkillData.Factory _factory4_PFS = new DB_SkillData.Factory();
+	private static readonly DB_AdvantageData.Factory _factory5_PFS = new DB_AdvantageData.Factory();
 	private DB_TowerData() : base(MetaDefault) {}
 	private DB_TowerData(BGId id) : base(MetaDefault, id) {}
 	private DB_TowerData(BGMetaEntity meta) : base(meta) {}
@@ -307,11 +348,6 @@ public partial class DB_HeroData : BGEntity
 		get => _uniqueKey[Index];
 		set => _uniqueKey[Index] = value;
 	}
-	public System.String modelUniqueKey
-	{
-		get => _modelUniqueKey[Index];
-		set => _modelUniqueKey[Index] = value;
-	}
 	public System.Single atk
 	{
 		get => _atk[Index];
@@ -347,21 +383,6 @@ public partial class DB_HeroData : BGEntity
 		get => _propertyResistPower[Index];
 		set => _propertyResistPower[Index] = value;
 	}
-	public System.Int32 propertyState
-	{
-		get => _propertyState[Index];
-		set => _propertyState[Index] = value;
-	}
-	public System.Int32 damageType
-	{
-		get => _damageType[Index];
-		set => _damageType[Index] = value;
-	}
-	public System.Int32 unitType
-	{
-		get => _unitType[Index];
-		set => _unitType[Index] = value;
-	}
 	public System.Int32 critical
 	{
 		get => _critical[Index];
@@ -382,12 +403,40 @@ public partial class DB_HeroData : BGEntity
 		get => _skillUniqueKeys[Index];
 		set => _skillUniqueKeys[Index] = value;
 	}
+	public System.Int32 propertyState
+	{
+		get => _propertyState[Index];
+		set => _propertyState[Index] = value;
+	}
+	public System.Int32 damageType
+	{
+		get => _damageType[Index];
+		set => _damageType[Index] = value;
+	}
+	public System.Int32 attackMotionLength
+	{
+		get => _attackMotionLength[Index];
+		set => _attackMotionLength[Index] = value;
+	}
+	public System.String flashUniqueKey
+	{
+		get => _flashUniqueKey[Index];
+		set => _flashUniqueKey[Index] = value;
+	}
+	public System.String bulletUniqueKey
+	{
+		get => _bulletUniqueKey[Index];
+		set => _bulletUniqueKey[Index] = value;
+	}
+	public System.String hitUniqueKey
+	{
+		get => _hitUniqueKey[Index];
+		set => _hitUniqueKey[Index] = value;
+	}
 	private static BansheeGz.BGDatabase.BGFieldEntityName _ufle12jhs77_name;
 	public static BansheeGz.BGDatabase.BGFieldEntityName _name => _ufle12jhs77_name ?? (_ufle12jhs77_name = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldEntityName>(MetaDefault, new BGId(4935204605815414357UL, 14203226851579194013UL), () => _ufle12jhs77_name = null));
 	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_uniqueKey;
 	public static BansheeGz.BGDatabase.BGFieldString _uniqueKey => _ufle12jhs77_uniqueKey ?? (_ufle12jhs77_uniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5439179755775953358UL, 10732270685346369166UL), () => _ufle12jhs77_uniqueKey = null));
-	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_modelUniqueKey;
-	public static BansheeGz.BGDatabase.BGFieldString _modelUniqueKey => _ufle12jhs77_modelUniqueKey ?? (_ufle12jhs77_modelUniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5464261943357582103UL, 14683487545478790051UL), () => _ufle12jhs77_modelUniqueKey = null));
 	private static BansheeGz.BGDatabase.BGFieldFloat _ufle12jhs77_atk;
 	public static BansheeGz.BGDatabase.BGFieldFloat _atk => _ufle12jhs77_atk ?? (_ufle12jhs77_atk = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldFloat>(MetaDefault, new BGId(5338260521116776823UL, 14898268849904829604UL), () => _ufle12jhs77_atk = null));
 	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_hp;
@@ -402,12 +451,6 @@ public partial class DB_HeroData : BGEntity
 	public static BansheeGz.BGDatabase.BGFieldFloat _propertyReinforcePower => _ufle12jhs77_propertyReinforcePower ?? (_ufle12jhs77_propertyReinforcePower = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldFloat>(MetaDefault, new BGId(5400108535498627408UL, 17068153071783811480UL), () => _ufle12jhs77_propertyReinforcePower = null));
 	private static BansheeGz.BGDatabase.BGFieldFloat _ufle12jhs77_propertyResistPower;
 	public static BansheeGz.BGDatabase.BGFieldFloat _propertyResistPower => _ufle12jhs77_propertyResistPower ?? (_ufle12jhs77_propertyResistPower = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldFloat>(MetaDefault, new BGId(5716331577956536733UL, 16786679276793332619UL), () => _ufle12jhs77_propertyResistPower = null));
-	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_propertyState;
-	public static BansheeGz.BGDatabase.BGFieldInt _propertyState => _ufle12jhs77_propertyState ?? (_ufle12jhs77_propertyState = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5316587393862505442UL, 8021622467166588851UL), () => _ufle12jhs77_propertyState = null));
-	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_damageType;
-	public static BansheeGz.BGDatabase.BGFieldInt _damageType => _ufle12jhs77_damageType ?? (_ufle12jhs77_damageType = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5122176571119634641UL, 12209163275397784251UL), () => _ufle12jhs77_damageType = null));
-	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_unitType;
-	public static BansheeGz.BGDatabase.BGFieldInt _unitType => _ufle12jhs77_unitType ?? (_ufle12jhs77_unitType = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5485082440525957567UL, 10567072265464693649UL), () => _ufle12jhs77_unitType = null));
 	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_critical;
 	public static BansheeGz.BGDatabase.BGFieldInt _critical => _ufle12jhs77_critical ?? (_ufle12jhs77_critical = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5132095929583390287UL, 2348104840047443872UL), () => _ufle12jhs77_critical = null));
 	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_criticalDamage;
@@ -416,9 +459,24 @@ public partial class DB_HeroData : BGEntity
 	public static BansheeGz.BGDatabase.BGFieldInt _lifeBloodAbsorption => _ufle12jhs77_lifeBloodAbsorption ?? (_ufle12jhs77_lifeBloodAbsorption = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(4962294969390550658UL, 15230492131813120677UL), () => _ufle12jhs77_lifeBloodAbsorption = null));
 	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_skillUniqueKeys;
 	public static BansheeGz.BGDatabase.BGFieldString _skillUniqueKeys => _ufle12jhs77_skillUniqueKeys ?? (_ufle12jhs77_skillUniqueKeys = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(4903934387925721988UL, 5166175781583776177UL), () => _ufle12jhs77_skillUniqueKeys = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_propertyState;
+	public static BansheeGz.BGDatabase.BGFieldInt _propertyState => _ufle12jhs77_propertyState ?? (_ufle12jhs77_propertyState = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(4943019337901466909UL, 9327914826452324534UL), () => _ufle12jhs77_propertyState = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_damageType;
+	public static BansheeGz.BGDatabase.BGFieldInt _damageType => _ufle12jhs77_damageType ?? (_ufle12jhs77_damageType = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5218332509445678620UL, 12277172964680407228UL), () => _ufle12jhs77_damageType = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_attackMotionLength;
+	public static BansheeGz.BGDatabase.BGFieldInt _attackMotionLength => _ufle12jhs77_attackMotionLength ?? (_ufle12jhs77_attackMotionLength = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5737854075363236203UL, 15653868600054142889UL), () => _ufle12jhs77_attackMotionLength = null));
+	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_flashUniqueKey;
+	public static BansheeGz.BGDatabase.BGFieldString _flashUniqueKey => _ufle12jhs77_flashUniqueKey ?? (_ufle12jhs77_flashUniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(4640074454789481845UL, 2403697135934310551UL), () => _ufle12jhs77_flashUniqueKey = null));
+	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_bulletUniqueKey;
+	public static BansheeGz.BGDatabase.BGFieldString _bulletUniqueKey => _ufle12jhs77_bulletUniqueKey ?? (_ufle12jhs77_bulletUniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5436352665073865745UL, 6055888648998962063UL), () => _ufle12jhs77_bulletUniqueKey = null));
+	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_hitUniqueKey;
+	public static BansheeGz.BGDatabase.BGFieldString _hitUniqueKey => _ufle12jhs77_hitUniqueKey ?? (_ufle12jhs77_hitUniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5388033315673973251UL, 6258696627887330488UL), () => _ufle12jhs77_hitUniqueKey = null));
 	private static readonly DB_EnemyData.Factory _factory0_PFS = new DB_EnemyData.Factory();
 	private static readonly DB_TowerData.Factory _factory1_PFS = new DB_TowerData.Factory();
 	private static readonly DB_HeroData.Factory _factory2_PFS = new DB_HeroData.Factory();
+	private static readonly DB_PlayerData.Factory _factory3_PFS = new DB_PlayerData.Factory();
+	private static readonly DB_SkillData.Factory _factory4_PFS = new DB_SkillData.Factory();
+	private static readonly DB_AdvantageData.Factory _factory5_PFS = new DB_AdvantageData.Factory();
 	private DB_HeroData() : base(MetaDefault) {}
 	private DB_HeroData(BGId id) : base(MetaDefault, id) {}
 	private DB_HeroData(BGMetaEntity meta) : base(meta) {}
@@ -432,5 +490,216 @@ public partial class DB_HeroData : BGEntity
 	public static DB_HeroData NewEntity() => (DB_HeroData) MetaDefault.NewEntity();
 	public static DB_HeroData NewEntity(BGId entityId) => (DB_HeroData) MetaDefault.NewEntity(entityId);
 	public static DB_HeroData NewEntity(Action<DB_HeroData> callback) => (DB_HeroData) MetaDefault.NewEntity(new BGMetaEntity.NewEntityContext(entity => callback((DB_HeroData)entity)));
+}
+
+public partial class DB_PlayerData : BGEntity
+{
+
+	public class Factory : BGEntity.EntityFactory
+	{
+		public BGEntity NewEntity(BGMetaEntity meta) => new DB_PlayerData(meta);
+		public BGEntity NewEntity(BGMetaEntity meta, BGId id) => new DB_PlayerData(meta, id);
+	}
+	private static BansheeGz.BGDatabase.BGMetaRow _metaDefault;
+	public static BansheeGz.BGDatabase.BGMetaRow MetaDefault => _metaDefault ?? (_metaDefault = BGCodeGenUtils.GetMeta<BansheeGz.BGDatabase.BGMetaRow>(new BGId(4929081271021191836UL,13575233030331231146UL), () => _metaDefault = null));
+	public static BansheeGz.BGDatabase.BGRepoEvents Events => BGRepo.I.Events;
+	public static int CountEntities => MetaDefault.CountEntities;
+	public System.String name
+	{
+		get => _name[Index];
+		set => _name[Index] = value;
+	}
+	private static BansheeGz.BGDatabase.BGFieldEntityName _ufle12jhs77_name;
+	public static BansheeGz.BGDatabase.BGFieldEntityName _name => _ufle12jhs77_name ?? (_ufle12jhs77_name = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldEntityName>(MetaDefault, new BGId(5074384705678563915UL, 10357069751896886669UL), () => _ufle12jhs77_name = null));
+	private static readonly DB_EnemyData.Factory _factory0_PFS = new DB_EnemyData.Factory();
+	private static readonly DB_TowerData.Factory _factory1_PFS = new DB_TowerData.Factory();
+	private static readonly DB_HeroData.Factory _factory2_PFS = new DB_HeroData.Factory();
+	private static readonly DB_PlayerData.Factory _factory3_PFS = new DB_PlayerData.Factory();
+	private static readonly DB_SkillData.Factory _factory4_PFS = new DB_SkillData.Factory();
+	private static readonly DB_AdvantageData.Factory _factory5_PFS = new DB_AdvantageData.Factory();
+	private DB_PlayerData() : base(MetaDefault) {}
+	private DB_PlayerData(BGId id) : base(MetaDefault, id) {}
+	private DB_PlayerData(BGMetaEntity meta) : base(meta) {}
+	private DB_PlayerData(BGMetaEntity meta, BGId id) : base(meta, id) {}
+	public static DB_PlayerData FindEntity(Predicate<DB_PlayerData> filter) => BGCodeGenUtils.FindEntity(MetaDefault, filter);
+	public static List<DB_PlayerData> FindEntities(Predicate<DB_PlayerData> filter, List<DB_PlayerData> result=null, Comparison<DB_PlayerData> sort=null) => BGCodeGenUtils.FindEntities(MetaDefault, filter, result, sort);
+	public static void ForEachEntity(Action<DB_PlayerData> action, Predicate<DB_PlayerData> filter=null, Comparison<DB_PlayerData> sort=null) => BGCodeGenUtils.ForEachEntity(MetaDefault, action, filter, sort);
+	public static DB_PlayerData GetEntity(BGId entityId) => (DB_PlayerData) MetaDefault.GetEntity(entityId);
+	public static DB_PlayerData GetEntity(int index) => (DB_PlayerData) MetaDefault[index];
+	public static DB_PlayerData GetEntity(string entityName) => (DB_PlayerData) MetaDefault.GetEntity(entityName);
+	public static DB_PlayerData NewEntity() => (DB_PlayerData) MetaDefault.NewEntity();
+	public static DB_PlayerData NewEntity(BGId entityId) => (DB_PlayerData) MetaDefault.NewEntity(entityId);
+	public static DB_PlayerData NewEntity(Action<DB_PlayerData> callback) => (DB_PlayerData) MetaDefault.NewEntity(new BGMetaEntity.NewEntityContext(entity => callback((DB_PlayerData)entity)));
+}
+
+public partial class DB_SkillData : BGEntity
+{
+
+	public class Factory : BGEntity.EntityFactory
+	{
+		public BGEntity NewEntity(BGMetaEntity meta) => new DB_SkillData(meta);
+		public BGEntity NewEntity(BGMetaEntity meta, BGId id) => new DB_SkillData(meta, id);
+	}
+	private static BansheeGz.BGDatabase.BGMetaRow _metaDefault;
+	public static BansheeGz.BGDatabase.BGMetaRow MetaDefault => _metaDefault ?? (_metaDefault = BGCodeGenUtils.GetMeta<BansheeGz.BGDatabase.BGMetaRow>(new BGId(5636927001252946689UL,13306190789002916502UL), () => _metaDefault = null));
+	public static BansheeGz.BGDatabase.BGRepoEvents Events => BGRepo.I.Events;
+	public static int CountEntities => MetaDefault.CountEntities;
+	public System.String name
+	{
+		get => _name[Index];
+		set => _name[Index] = value;
+	}
+	public System.String skillUniqueKey
+	{
+		get => _skillUniqueKey[Index];
+		set => _skillUniqueKey[Index] = value;
+	}
+	public System.String skillIconUniqueKey
+	{
+		get => _skillIconUniqueKey[Index];
+		set => _skillIconUniqueKey[Index] = value;
+	}
+	public System.Int32 damageCoefficient
+	{
+		get => _damageCoefficient[Index];
+		set => _damageCoefficient[Index] = value;
+	}
+	public System.Int32 skillLevel
+	{
+		get => _skillLevel[Index];
+		set => _skillLevel[Index] = value;
+	}
+	public System.Int32 skillType
+	{
+		get => _skillType[Index];
+		set => _skillType[Index] = value;
+	}
+	public System.Int32 buffStatType
+	{
+		get => _buffStatType[Index];
+		set => _buffStatType[Index] = value;
+	}
+	public System.Int32 skillActivationType
+	{
+		get => _skillActivationType[Index];
+		set => _skillActivationType[Index] = value;
+	}
+	public System.Int32 activatePercent
+	{
+		get => _activatePercent[Index];
+		set => _activatePercent[Index] = value;
+	}
+	private static BansheeGz.BGDatabase.BGFieldEntityName _ufle12jhs77_name;
+	public static BansheeGz.BGDatabase.BGFieldEntityName _name => _ufle12jhs77_name ?? (_ufle12jhs77_name = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldEntityName>(MetaDefault, new BGId(5511802321483559429UL, 14509230395399739022UL), () => _ufle12jhs77_name = null));
+	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_skillUniqueKey;
+	public static BansheeGz.BGDatabase.BGFieldString _skillUniqueKey => _ufle12jhs77_skillUniqueKey ?? (_ufle12jhs77_skillUniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(4622513823341193139UL, 8026225125218051235UL), () => _ufle12jhs77_skillUniqueKey = null));
+	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_skillIconUniqueKey;
+	public static BansheeGz.BGDatabase.BGFieldString _skillIconUniqueKey => _ufle12jhs77_skillIconUniqueKey ?? (_ufle12jhs77_skillIconUniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5332479042963561174UL, 315030171395552948UL), () => _ufle12jhs77_skillIconUniqueKey = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_damageCoefficient;
+	public static BansheeGz.BGDatabase.BGFieldInt _damageCoefficient => _ufle12jhs77_damageCoefficient ?? (_ufle12jhs77_damageCoefficient = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5359073480700244822UL, 13230768239788631447UL), () => _ufle12jhs77_damageCoefficient = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_skillLevel;
+	public static BansheeGz.BGDatabase.BGFieldInt _skillLevel => _ufle12jhs77_skillLevel ?? (_ufle12jhs77_skillLevel = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(4876951917019678010UL, 11597697864805183648UL), () => _ufle12jhs77_skillLevel = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_skillType;
+	public static BansheeGz.BGDatabase.BGFieldInt _skillType => _ufle12jhs77_skillType ?? (_ufle12jhs77_skillType = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5721526319122687716UL, 11427024087525192125UL), () => _ufle12jhs77_skillType = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_buffStatType;
+	public static BansheeGz.BGDatabase.BGFieldInt _buffStatType => _ufle12jhs77_buffStatType ?? (_ufle12jhs77_buffStatType = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(4893576932315331907UL, 8177112511545056167UL), () => _ufle12jhs77_buffStatType = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_skillActivationType;
+	public static BansheeGz.BGDatabase.BGFieldInt _skillActivationType => _ufle12jhs77_skillActivationType ?? (_ufle12jhs77_skillActivationType = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5618024752133021862UL, 14431869321769659326UL), () => _ufle12jhs77_skillActivationType = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_activatePercent;
+	public static BansheeGz.BGDatabase.BGFieldInt _activatePercent => _ufle12jhs77_activatePercent ?? (_ufle12jhs77_activatePercent = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(5653111144573450751UL, 11404826966922502549UL), () => _ufle12jhs77_activatePercent = null));
+	private static readonly DB_EnemyData.Factory _factory0_PFS = new DB_EnemyData.Factory();
+	private static readonly DB_TowerData.Factory _factory1_PFS = new DB_TowerData.Factory();
+	private static readonly DB_HeroData.Factory _factory2_PFS = new DB_HeroData.Factory();
+	private static readonly DB_PlayerData.Factory _factory3_PFS = new DB_PlayerData.Factory();
+	private static readonly DB_SkillData.Factory _factory4_PFS = new DB_SkillData.Factory();
+	private static readonly DB_AdvantageData.Factory _factory5_PFS = new DB_AdvantageData.Factory();
+	private DB_SkillData() : base(MetaDefault) {}
+	private DB_SkillData(BGId id) : base(MetaDefault, id) {}
+	private DB_SkillData(BGMetaEntity meta) : base(meta) {}
+	private DB_SkillData(BGMetaEntity meta, BGId id) : base(meta, id) {}
+	public static DB_SkillData FindEntity(Predicate<DB_SkillData> filter) => BGCodeGenUtils.FindEntity(MetaDefault, filter);
+	public static List<DB_SkillData> FindEntities(Predicate<DB_SkillData> filter, List<DB_SkillData> result=null, Comparison<DB_SkillData> sort=null) => BGCodeGenUtils.FindEntities(MetaDefault, filter, result, sort);
+	public static void ForEachEntity(Action<DB_SkillData> action, Predicate<DB_SkillData> filter=null, Comparison<DB_SkillData> sort=null) => BGCodeGenUtils.ForEachEntity(MetaDefault, action, filter, sort);
+	public static DB_SkillData GetEntity(BGId entityId) => (DB_SkillData) MetaDefault.GetEntity(entityId);
+	public static DB_SkillData GetEntity(int index) => (DB_SkillData) MetaDefault[index];
+	public static DB_SkillData GetEntity(string entityName) => (DB_SkillData) MetaDefault.GetEntity(entityName);
+	public static DB_SkillData NewEntity() => (DB_SkillData) MetaDefault.NewEntity();
+	public static DB_SkillData NewEntity(BGId entityId) => (DB_SkillData) MetaDefault.NewEntity(entityId);
+	public static DB_SkillData NewEntity(Action<DB_SkillData> callback) => (DB_SkillData) MetaDefault.NewEntity(new BGMetaEntity.NewEntityContext(entity => callback((DB_SkillData)entity)));
+}
+
+public partial class DB_AdvantageData : BGEntity
+{
+
+	public class Factory : BGEntity.EntityFactory
+	{
+		public BGEntity NewEntity(BGMetaEntity meta) => new DB_AdvantageData(meta);
+		public BGEntity NewEntity(BGMetaEntity meta, BGId id) => new DB_AdvantageData(meta, id);
+	}
+	private static BansheeGz.BGDatabase.BGMetaRow _metaDefault;
+	public static BansheeGz.BGDatabase.BGMetaRow MetaDefault => _metaDefault ?? (_metaDefault = BGCodeGenUtils.GetMeta<BansheeGz.BGDatabase.BGMetaRow>(new BGId(4855196826854489143UL,12613373900546777241UL), () => _metaDefault = null));
+	public static BansheeGz.BGDatabase.BGRepoEvents Events => BGRepo.I.Events;
+	public static int CountEntities => MetaDefault.CountEntities;
+	public System.String name
+	{
+		get => _name[Index];
+		set => _name[Index] = value;
+	}
+	public System.String uniqueKey
+	{
+		get => _uniqueKey[Index];
+		set => _uniqueKey[Index] = value;
+	}
+	public System.String iconUniqueKey
+	{
+		get => _iconUniqueKey[Index];
+		set => _iconUniqueKey[Index] = value;
+	}
+	public System.String title
+	{
+		get => _title[Index];
+		set => _title[Index] = value;
+	}
+	public System.String info
+	{
+		get => _info[Index];
+		set => _info[Index] = value;
+	}
+	public System.Int32 level
+	{
+		get => _level[Index];
+		set => _level[Index] = value;
+	}
+	private static BansheeGz.BGDatabase.BGFieldEntityName _ufle12jhs77_name;
+	public static BansheeGz.BGDatabase.BGFieldEntityName _name => _ufle12jhs77_name ?? (_ufle12jhs77_name = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldEntityName>(MetaDefault, new BGId(5054544457854468087UL, 4690751953750760865UL), () => _ufle12jhs77_name = null));
+	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_uniqueKey;
+	public static BansheeGz.BGDatabase.BGFieldString _uniqueKey => _ufle12jhs77_uniqueKey ?? (_ufle12jhs77_uniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5190082791967316364UL, 16023965664538673034UL), () => _ufle12jhs77_uniqueKey = null));
+	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_iconUniqueKey;
+	public static BansheeGz.BGDatabase.BGFieldString _iconUniqueKey => _ufle12jhs77_iconUniqueKey ?? (_ufle12jhs77_iconUniqueKey = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5109369170933807735UL, 5895382228830347922UL), () => _ufle12jhs77_iconUniqueKey = null));
+	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_title;
+	public static BansheeGz.BGDatabase.BGFieldString _title => _ufle12jhs77_title ?? (_ufle12jhs77_title = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5200876589001154414UL, 6088440385739527847UL), () => _ufle12jhs77_title = null));
+	private static BansheeGz.BGDatabase.BGFieldString _ufle12jhs77_info;
+	public static BansheeGz.BGDatabase.BGFieldString _info => _ufle12jhs77_info ?? (_ufle12jhs77_info = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldString>(MetaDefault, new BGId(5639418059539466110UL, 13553233777043208320UL), () => _ufle12jhs77_info = null));
+	private static BansheeGz.BGDatabase.BGFieldInt _ufle12jhs77_level;
+	public static BansheeGz.BGDatabase.BGFieldInt _level => _ufle12jhs77_level ?? (_ufle12jhs77_level = BGCodeGenUtils.GetField<BansheeGz.BGDatabase.BGFieldInt>(MetaDefault, new BGId(4733128919286906590UL, 7089071724492593031UL), () => _ufle12jhs77_level = null));
+	private static readonly DB_EnemyData.Factory _factory0_PFS = new DB_EnemyData.Factory();
+	private static readonly DB_TowerData.Factory _factory1_PFS = new DB_TowerData.Factory();
+	private static readonly DB_HeroData.Factory _factory2_PFS = new DB_HeroData.Factory();
+	private static readonly DB_PlayerData.Factory _factory3_PFS = new DB_PlayerData.Factory();
+	private static readonly DB_SkillData.Factory _factory4_PFS = new DB_SkillData.Factory();
+	private static readonly DB_AdvantageData.Factory _factory5_PFS = new DB_AdvantageData.Factory();
+	private DB_AdvantageData() : base(MetaDefault) {}
+	private DB_AdvantageData(BGId id) : base(MetaDefault, id) {}
+	private DB_AdvantageData(BGMetaEntity meta) : base(meta) {}
+	private DB_AdvantageData(BGMetaEntity meta, BGId id) : base(meta, id) {}
+	public static DB_AdvantageData FindEntity(Predicate<DB_AdvantageData> filter) => BGCodeGenUtils.FindEntity(MetaDefault, filter);
+	public static List<DB_AdvantageData> FindEntities(Predicate<DB_AdvantageData> filter, List<DB_AdvantageData> result=null, Comparison<DB_AdvantageData> sort=null) => BGCodeGenUtils.FindEntities(MetaDefault, filter, result, sort);
+	public static void ForEachEntity(Action<DB_AdvantageData> action, Predicate<DB_AdvantageData> filter=null, Comparison<DB_AdvantageData> sort=null) => BGCodeGenUtils.ForEachEntity(MetaDefault, action, filter, sort);
+	public static DB_AdvantageData GetEntity(BGId entityId) => (DB_AdvantageData) MetaDefault.GetEntity(entityId);
+	public static DB_AdvantageData GetEntity(int index) => (DB_AdvantageData) MetaDefault[index];
+	public static DB_AdvantageData GetEntity(string entityName) => (DB_AdvantageData) MetaDefault.GetEntity(entityName);
+	public static DB_AdvantageData NewEntity() => (DB_AdvantageData) MetaDefault.NewEntity();
+	public static DB_AdvantageData NewEntity(BGId entityId) => (DB_AdvantageData) MetaDefault.NewEntity(entityId);
+	public static DB_AdvantageData NewEntity(Action<DB_AdvantageData> callback) => (DB_AdvantageData) MetaDefault.NewEntity(new BGMetaEntity.NewEntityContext(entity => callback((DB_AdvantageData)entity)));
 }
 #pragma warning restore 414

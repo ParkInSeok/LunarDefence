@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class InfinityStageManager : StageManager
+public class CommonSelectUI : MonoBehaviour
 {
+    public RectTransform rectTransform;
+
+
 
 
     void Start()
     {
-        
+        if (rectTransform == null)
+            rectTransform = GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -20,14 +23,6 @@ public class InfinityStageManager : StageManager
 
 
 
-    protected override void Init()
-    {
-        base.Init();
-    }
-  
-
-
-  
 
 
 }

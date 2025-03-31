@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,15 +16,29 @@ public enum NodeDirection
 public class PathController : MonoBehaviour
 {
     [Header("Setting")]
-    public int maxRow;
-    public int maxColumn;
+    [SerializeField] int maxRow;
+    [SerializeField] int maxColumn;
 
     public Color color;
     [SerializeField] private GameObject tilePrefab;
     [SerializeField] private GameObject wallPrefab;
 
 
+    [SerializeField] float ui_tile_width = 0;
+    public float UI_Tile_Width { get { return ui_tile_width; } }
+    [SerializeField] float ui_tile_height = 0;
+    public float UI_Tile_Height { get { return ui_tile_height; } }
+
+
+    public Action<PathNode> selectPathNodeEventHandler;
+
+
+
+
     [Header("Debugging")]
+
+
+
     [SerializeField] private PathNode startPathNode;
     [SerializeField] private PathNode targetPathNode;
 
@@ -57,9 +72,38 @@ public class PathController : MonoBehaviour
 
 
         targetPath = FindPath(startPathNode, targetPathNode);
+        
+      
         DrawPathTileColor(targetPath);
+
+        var size = new Vector2(Screen.width, Screen.height - 300);
+
+        ui_tile_width = size.x / maxRow;
+        ui_tile_height = size.y / maxColumn;
+        BindEvents();
     }
 
+    void BindEvents()
+    {
+        LunarInputManager.Instance.mouseDownEventHandler += BindClickEvent;
+    }
+
+    private void BindClickEvent(Vector2 obj)
+    {
+        var nodeindex_x = (int)(obj.x / ui_tile_width);
+        var nodeindex_y = (int)((obj.y - 300) / ui_tile_height);
+
+        if (nodeindex_x > maxRow || nodeindex_x < 0)
+            return;
+
+        if (nodeindex_y > maxColumn || nodeindex_y < 0)
+            return;
+
+        var targetNodex = grid[nodeindex_x, nodeindex_y];
+
+        // click ui 가 오른쪽 화면을 넘어갈떄 예외처리 ex) 왼쪽 버전
+        selectPathNodeEventHandler?.Invoke(targetNodex);
+    }
 
     void CreateGrid(int _row, int _colomn)
     {
@@ -117,23 +161,23 @@ public class PathController : MonoBehaviour
 
         
 
-        var randomDir = Random.Range(0, System.Enum.GetValues(typeof(NodeDirection)).Length);
+        var randomDir = UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(NodeDirection)).Length);
         switch ((NodeDirection)randomDir)
         {
             case NodeDirection.left:
                 randomStartPosX = 0;
-                randomStartPosY = Random.Range(0, maxColumn - 1);
+                randomStartPosY = UnityEngine.Random.Range(0, maxColumn - 1);
                 break;
             case NodeDirection.right:
                 randomStartPosX = maxRow - 1;
-                randomStartPosY = Random.Range(0, maxColumn - 1);
+                randomStartPosY = UnityEngine.Random.Range(0, maxColumn - 1);
                 break;
             case NodeDirection.bottom:
-                randomStartPosX = Random.Range(0, maxRow - 1);
+                randomStartPosX = UnityEngine.Random.Range(0, maxRow - 1);
                 randomStartPosY = 0;
                 break;
             case NodeDirection.top:
-                randomStartPosX = Random.Range(0, maxRow - 1);
+                randomStartPosX = UnityEngine.Random.Range(0, maxRow - 1);
                 randomStartPosY = maxColumn - 1;
                 break;
         }
@@ -144,8 +188,8 @@ public class PathController : MonoBehaviour
 
     private void SetTargetPathNode()
     {
-        var radomTargetPosX = Random.Range(maxRow / 2 - 1, maxRow / 2 + 2);
-        var radomTargetPosY = Random.Range(maxColumn / 2 - 1, maxColumn / 2 + 2);
+        var radomTargetPosX = UnityEngine.Random.Range(maxRow / 2 - 1, maxRow / 2 + 2);
+        var radomTargetPosY = UnityEngine.Random.Range(maxColumn / 2 - 1, maxColumn / 2 + 2);
 
         targetPathNode = grid[radomTargetPosX, radomTargetPosY];
         targetPathNode.material.color = Color.black;
@@ -368,7 +412,8 @@ public class PathController : MonoBehaviour
 
     void ResetPathTileColor(List<PathNode> list)
     {
-        //debugging 용 함수
+        if (StageManager.Instance.isDevelopMode == false)
+            return;
         if (list.Count < 1)
             return;
 
@@ -382,6 +427,9 @@ public class PathController : MonoBehaviour
 
     void DrawPathTileColor(List<PathNode> list)
     {
+        if (StageManager.Instance.isDevelopMode == false)
+            return;
+
         if (list.Count < 1)
             return;
 
@@ -393,6 +441,8 @@ public class PathController : MonoBehaviour
 
 
     }
+
+
 
 
 

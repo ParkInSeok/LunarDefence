@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager_StageMode : Singleton<UIManager_StageMode>
+public class UIManager_StageMode : UIManager
 {
 
     public List<CanvasScaler> canvasScalers = new List<CanvasScaler>();
@@ -42,12 +42,12 @@ public class UIManager_StageMode : Singleton<UIManager_StageMode>
 
 
 
-    protected void BindEvents()
+    protected override void BindEvents()
     {
 
         //backUI.Init(backCanvasRect);
 
-        LunarInputManager.Instance.selectTileEventHandler += BindOpenCommonSelectUIEvent;
+        StageManager.Instance.PathController.selectPathNodeEventHandler += BindOpenCommonSelectUIEvent;
         fakeUI.onPointerDownEventHandler = (x) =>
         {
             UtilityManager.Instance.DelayFunction_EndOfFrame(() =>
