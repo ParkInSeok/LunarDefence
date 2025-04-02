@@ -6230,6 +6230,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 1116284446}
+  parent_right: {fileID: 1021008131}
+  right_type_one: {fileID: 440386754}
+  right_type_two: {fileID: 1401147228}
+  right_type_three: {fileID: 101996756}
+  parent_left: {fileID: 24526706}
+  left_type_one: {fileID: 841993153}
+  left_type_two: {fileID: 1732675189}
+  left_type_three: {fileID: 1194069886}
 --- !u!1 &1118273476
 GameObject:
   m_ObjectHideFlags: 0

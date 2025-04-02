@@ -93,10 +93,10 @@ public class PathController : MonoBehaviour
         var nodeindex_x = (int)(obj.x / ui_tile_width);
         var nodeindex_y = (int)((obj.y - 300) / ui_tile_height);
 
-        if (nodeindex_x > maxRow || nodeindex_x < 0)
+        if (nodeindex_x > maxRow - 1 || nodeindex_x < 0)
             return;
 
-        if (nodeindex_y > maxColumn || nodeindex_y < 0)
+        if (nodeindex_y > maxColumn - 1 || nodeindex_y < 0)
             return;
 
         var targetNodex = grid[nodeindex_x, nodeindex_y];

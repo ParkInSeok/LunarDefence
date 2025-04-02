@@ -15,7 +15,7 @@ public class UIManager_StageMode : UIManager
     [SerializeField] CommonSelectUI commonSelectUI;
     [SerializeField] UIEventTrigger fakeUI;
 
-
+   // [SerializeField] CommonSelectUIType selectuitype;
 
 
 
@@ -53,7 +53,7 @@ public class UIManager_StageMode : UIManager
             UtilityManager.Instance.DelayFunction_EndOfFrame(() =>
             {
                 fakeUI.gameObject.SetActive(false);
-                commonSelectUI.gameObject.SetActive(false);
+                commonSelectUI.HideCommonSelectUI();
 
                 LunarInputManager.Instance.isStopInput = false;
             });
@@ -67,8 +67,23 @@ public class UIManager_StageMode : UIManager
         {
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(obj.position);
 
-            commonSelectUI.rectTransform.position = screenPosition;
-            commonSelectUI.gameObject.SetActive(true);
+            var vaildUI_max = screenPosition.x + commonSelectUI.rectTransform.sizeDelta.x;
+
+            DirectionType dirType = vaildUI_max > Screen.currentResolution.width ? DirectionType.left : DirectionType.right;
+
+            //var targetuitype = ((int)selectuitype) + 1;
+
+            //if (targetuitype >= System.Enum.GetValues(typeof(CommonSelectUIType)).Length)
+            //    targetuitype = 0;
+            //selectuitype = (CommonSelectUIType)targetuitype;
+            commonSelectUI.ShowCommonSelectUI(screenPosition,  CommonSelectUIType.two, dirType,(x)=> 
+            {
+                Debug.Log("first Btn Click");
+            }, (x)=>
+            {
+                Debug.Log("second Btn Click");
+            });
+
             fakeUI.gameObject.SetActive(true);
          
             fakeUI.rectTransform.SetAsLastSibling();
