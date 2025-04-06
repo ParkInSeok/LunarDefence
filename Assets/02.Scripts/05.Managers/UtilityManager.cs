@@ -26,7 +26,10 @@ public class UtilityManager : Singleton<UtilityManager>
     {
         return StartCoroutine(_DelayFunction_EndOfFrame(action));
     }
-
+    public Coroutine DelayFunction_NextEndOfFrame(Action action)
+    {
+        return StartCoroutine(_DelayFunction_NextEndOfFrame(action));
+    }
     public Coroutine DelayFunction(Action action, float delayTime)
     {
         return StartCoroutine(_DelayFunction(action, delayTime));
@@ -57,6 +60,13 @@ public class UtilityManager : Singleton<UtilityManager>
     IEnumerator _DelayFunction_FixedUpdate(Action action)
     {
         yield return CoroutineHelper.WaitForFixedUpdate;
+        action?.Invoke();
+    }
+
+    IEnumerator _DelayFunction_NextEndOfFrame(Action action)
+    {
+        yield return null;
+        yield return CoroutineHelper.WaitForEndOfFrame;
         action?.Invoke();
     }
 

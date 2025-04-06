@@ -57,6 +57,13 @@ public class DataManager : Singleton<DataManager>
 
     }
 
+    public string GetRandomTowerKey()
+    {
+        int random = UnityEngine.Random.Range(0, selectedTowerUniqueKeys.Count);
+        return selectedTowerUniqueKeys[random];
+    }
+
+
 
     #region SetDatas
 

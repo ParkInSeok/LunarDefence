@@ -58,11 +58,12 @@ public class CommonSelectUI : MonoBehaviour
 
 
     public void ShowCommonSelectUI(Vector3 pos, CommonSelectUIType type, DirectionType dirType, Action<PointerEventData> action_one = null,
-        Action<PointerEventData> action_two = null, Action<PointerEventData> action_three = null)
+        Action<PointerEventData> action_two = null, Action<PointerEventData> action_three = null, string firstText = "",
+        string secondText = "", string thirdText = "")
     {
         rectTransform.position = pos;
         gameObject.SetActive(true);
-        SetCommonSelectUIType(type, dirType, action_one, action_two, action_three);
+        SetCommonSelectUIType(type, dirType, action_one, action_two, action_three,firstText,secondText,thirdText);
 
 
     }

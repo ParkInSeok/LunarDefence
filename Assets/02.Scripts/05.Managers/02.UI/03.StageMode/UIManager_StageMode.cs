@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIManager_StageMode : UIManager
@@ -76,13 +77,47 @@ public class UIManager_StageMode : UIManager
             //if (targetuitype >= System.Enum.GetValues(typeof(CommonSelectUIType)).Length)
             //    targetuitype = 0;
             //selectuitype = (CommonSelectUIType)targetuitype;
-            commonSelectUI.ShowCommonSelectUI(screenPosition,  CommonSelectUIType.two, dirType,(x)=> 
+
+            //walkable empty wall
+            //unitState empty tower hero
+            // empty + empty = create wall / create tower   //create tower 함수는 타워만들고 오브젝트풀에 등록
+            // empty + tower || hero = show tower/hero info 
+            // wall + empty = create tower
+            // wall + tower = show tower/hero info
+            // wall + hero X
+
+            switch (obj.walkable)
             {
-                Debug.Log("first Btn Click");
-            }, (x)=>
-            {
-                Debug.Log("second Btn Click");
-            });
+                case TileWallState.empty:
+                    switch (obj.unitState)
+                    {
+                        case TileUnitState.empty:
+                            commonSelectUI.ShowCommonSelectUI(screenPosition, CommonSelectUIType.two, dirType,
+                               (x)=> CreateTowerClick(x,obj), (x)=>CreateWallClick(x,obj),null,"Create Tower", "Create Wall");
+                            break;
+                        case TileUnitState.tower:
+                        case TileUnitState.hero:
+                            commonSelectUI.ShowCommonSelectUI(screenPosition, CommonSelectUIType.one, dirType,
+                              (x)=> ShowInfoClick(x, obj), null, null, "Show Info");
+                            break;
+                    }
+                    break;
+                case TileWallState.wall:
+                    switch (obj.unitState)
+                    {
+                        case TileUnitState.empty:
+                            commonSelectUI.ShowCommonSelectUI(screenPosition, CommonSelectUIType.one, dirType,
+                           (x) => CreateTowerClick(x, obj), null, null, "Create Tower");
+                            break;
+                        case TileUnitState.tower:
+                            commonSelectUI.ShowCommonSelectUI(screenPosition, CommonSelectUIType.one, dirType,
+                                   (x) => CreateTowerClick(x, obj), null, null, "Show Info");
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
 
             fakeUI.gameObject.SetActive(true);
          
@@ -91,6 +126,47 @@ public class UIManager_StageMode : UIManager
 
             LunarInputManager.Instance.isStopInput = true;
         }
+
+    }
+
+    private void ShowInfoClick(PointerEventData obj, PathNode node)
+    {
+
+
+
+        commonSelectUI.HideCommonSelectUI();
+
+    }
+
+    private void CreateWallClick(PointerEventData obj, PathNode node)
+    {
+
+
+
+        commonSelectUI.HideCommonSelectUI();
+
+    }
+
+    private void CreateTowerClick(PointerEventData obj, PathNode node)
+    {
+        //재화 유효성 체크
+
+        if (node.unitState != TileUnitState.empty)
+            return;
+
+        var selectedKey = DataManager.Instance.GetRandomTowerKey();
+
+        StageManager.Instance.ObjectPoolingController.GetTowerPool(selectedKey, node);
+
+        UtilityManager.Instance.DelayFunction_NextEndOfFrame(() =>
+        {
+            commonSelectUI.HideCommonSelectUI();
+            fakeUI.gameObject.SetActive(false);
+
+            LunarInputManager.Instance.isStopInput = false;
+        });
+
+       
 
     }
 }

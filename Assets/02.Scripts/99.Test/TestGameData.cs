@@ -30,16 +30,16 @@ public class TestGameData : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            InfinityStageManager.Instance.ObjectPoolingController.GetEnemyPool("BossMonster_Dragon Fire");
+            StageManager.Instance.ObjectPoolingController.GetEnemyPool("BossMonster_Dragon Fire");
         }
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            InfinityStageManager.Instance.ObjectPoolingController.GetEnemyPool("NormalMonster_Snake");
+            StageManager.Instance.ObjectPoolingController.GetEnemyPool("NormalMonster_Snake");
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {
             //InfinityStageManager.Instance.ObjectPoolingController.GetTowerPool("Tower_Angel Mage");
-            InfinityStageManager.Instance.ObjectPoolingController.GetTowerPool("Tower_Ice Mage");
+            StageManager.Instance.ObjectPoolingController.GetTowerPool("Tower_Ice Mage");
         
         }
 

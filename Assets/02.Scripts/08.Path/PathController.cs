@@ -120,7 +120,7 @@ public class PathController : MonoBehaviour
             for (int y = 0; y < _colomn; y++)
             {
                 Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * size) + Vector3.forward * (y * size);
-                bool walkable = !Physics.CheckSphere(worldPoint, 0.1f * size, mapMask); // Adjust the radius as needed
+                TileWallState walkable = !Physics.CheckSphere(worldPoint, 0.1f * size, mapMask) ? TileWallState.empty : TileWallState.wall; // Adjust the radius as needed
                 
                 var tile = Instantiate(tilePrefab, worldPoint, Quaternion.Euler(90, 0, 0));
                 tile.transform.parent = this.transform;
@@ -128,15 +128,8 @@ public class PathController : MonoBehaviour
                 var tileEventTrigger = tile.GetComponent<TileEventTrigger>();
                 Material dummy = new Material(tileEventTrigger.meshRenderer.material);
                 tileEventTrigger.meshRenderer.material = dummy;
-                grid[x, y] = new PathNode()
-                {
-                    position = worldPoint,
-                    walkable = walkable,
-                    ground = tile,
-                    material = tileEventTrigger.meshRenderer.material,
-                    row = x,
-                    column = y
-                };
+                grid[x, y] = new PathNode(worldPoint, walkable, tile, tileEventTrigger.meshRenderer.material, x, y);
+          
                 tileEventTrigger.pathNode = grid[x, y];
 
                 SetTileColor(x, y, tileEventTrigger, color);
@@ -347,7 +340,7 @@ public class PathController : MonoBehaviour
 
             foreach (PathNode neighbor in GetPathNode(currentPathNode))
             {
-                if (!neighbor.walkable || closedSet.Contains(neighbor))
+                if (neighbor.walkable == TileWallState.wall || closedSet.Contains(neighbor))
                     continue;
 
                 int newCostToNeighbor = currentPathNode.gCost + GetDistance(currentPathNode, neighbor);
@@ -372,13 +365,13 @@ public class PathController : MonoBehaviour
         List<PathNode> neighbors = new List<PathNode>();
 
         // Check neighboring nodes in cardinal directions
-        if (current.row > 0 && grid[current.row - 1, current.column].walkable)
+        if (current.row > 0 && grid[current.row - 1, current.column].walkable == TileWallState.empty)
             neighbors.Add(grid[current.row - 1, current.column]); // Left neighbor
-        if (current.row < maxRow - 1 && grid[current.row + 1, current.column].walkable)
+        if (current.row < maxRow - 1 && grid[current.row + 1, current.column].walkable == TileWallState.empty)
             neighbors.Add(grid[current.row + 1, current.column]); // Right neighbor
-        if (current.column > 0 && grid[current.row, current.column - 1].walkable)
+        if (current.column > 0 && grid[current.row, current.column - 1].walkable == TileWallState.empty)
             neighbors.Add(grid[current.row, current.column - 1]); // Bottom neighbor
-        if (current.column < maxColumn -1 && grid[current.row, current.column + 1].walkable)
+        if (current.column < maxColumn -1 && grid[current.row, current.column + 1].walkable == TileWallState.empty)
             neighbors.Add(grid[current.row, current.column + 1]); // Top neighbor
 
         return neighbors;

@@ -213,10 +213,12 @@ public class Enemy : BaseUnit
                 targetIndex++;
                 currentWaypoint = path[targetIndex].position;
 
-                if (path[targetIndex].isTower)
+                if (path[targetIndex].unitState != TileUnitState.empty && path[targetIndex].walkable == TileWallState.empty)
                 {
                     yield return StartCoroutine(RotateAttackUnit(direction, currentWaypoint, targetRotation));
-                    target = path[targetIndex].Unit;
+                    target = StageManager.Instance.ObjectPoolingController.GetTargetTower( path[targetIndex].row,path[targetIndex].column);
+                    if (target == null)
+                        yield break;
                     Attack();
                     yield break;
                 }

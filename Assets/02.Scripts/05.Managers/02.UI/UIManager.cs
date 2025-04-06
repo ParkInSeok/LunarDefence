@@ -32,8 +32,10 @@ public abstract class UIManager : Singleton<UIManager>
 
     }
 
-    protected abstract void BindEvents();
- 
+    protected virtual void BindEvents()
+    {
+
+    }
 
 
 

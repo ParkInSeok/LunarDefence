@@ -11,7 +11,21 @@ public enum PoolType
 
 }
 
-
+[Serializable]
+public class ActiveTowers
+{
+    public int row;
+    public int column;
+    public BaseUnit unit;
+    public bool isHero = false;
+    public ActiveTowers(int row, int column, BaseUnit unit, bool isHero = false)
+    {
+        this.row = row;
+        this.column = column;
+        this.unit = unit;
+        this.isHero = isHero;
+    }
+}
 
 public class ObjectPoolingController : MonoBehaviour 
 {
@@ -34,7 +48,9 @@ public class ObjectPoolingController : MonoBehaviour
     PathNode startNode;
     PathNode targetNode;
 
-  
+    private List<ActiveTowers> activeTowers = new List<ActiveTowers>();
+
+    public List<ActiveTowers> ActiveTowerList { get { return activeTowers; } }
 
     public void Init(PathNode _startNode, PathNode _targetNode)
     {
@@ -53,7 +69,7 @@ public class ObjectPoolingController : MonoBehaviour
         var selectedTowers = DataManager.Instance.SelectedTowers;
         for (int i = 0; i < selectedTowers.Count; i++)
         {
-            CreateTower(selectedTowers[i]);
+            CreateTower(selectedTowers[i], startNode, false);
         }
 
         //tower recycle init 만들어야함
@@ -171,26 +187,28 @@ public class ObjectPoolingController : MonoBehaviour
         hero.transform.SetParent(unitTypeParent[(int)hero.Stat.CurrentHeroStat.UnitType]);
         hero.transform.position = targetNode.position;
         hero.transform.localRotation = Quaternion.Euler(0, 180, 0);
-        targetNode.SetUnit(hero);
+        ActiveTowers data = new ActiveTowers(targetNode.row, targetNode.column, hero, true);
+        activeTowers.Add(data);
+        targetNode.SetUnit(TileUnitState.hero);
         //currentHero = hero;
     }
 
     private void DieHeroEvent(Hero obj)
     {
         //게임 패배
-        InfinityStageManager.Instance.GameOver();
+        StageManager.Instance.GameOver();
     }
 
     #endregion
 
     #region Tower
-    void CreateTower(string key)
+    void CreateTower(string key, PathNode node, bool isActive)
     {
-        DataManager.Instance.GetGameObject("Tower", (obj) => SetTower(obj, key));
+        DataManager.Instance.GetGameObject("Tower", (obj) => SetTower(obj, key, node, isActive));
 
     }
 
-    void SetTower(GameObject obj, string key)
+    void SetTower(GameObject obj, string key, PathNode node, bool isActive)
     {
         var tower = obj.GetComponent<Tower>();
 
@@ -199,32 +217,89 @@ public class ObjectPoolingController : MonoBehaviour
 
         tower.transform.SetParent(unitTypeParent[(int)tower.Stat.CurrentTowerStat.UnitType]);
         tower.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        tower.transform.position = node.position;
+        tower.gameObject.SetActive(isActive);
+
+        if(isActive)
+        {
+            var existData = activeTowers.Find((x) => x.row == node.row && x.column == node.column);
+            if(existData != null)
+            {
+                activeTowers.Remove(existData);
+            }
+            ActiveTowers data = new ActiveTowers(node.row, node.column, tower);
+            activeTowers.Add(data);
+            node.SetUnit(TileUnitState.tower);
+        }
+
     }
 
     private void DieTowerEvent(Tower _tower)
     {
         towerPool.Enqueue(_tower);
     }
-    public void GetTowerPool(string key)
+    public void GetTowerPool(string key, PathNode node = null)
     {
-        Debug.Log("enemyPool count " + enemyPool.Count);
-        if (enemyPool.Count > 0)
+        Debug.Log("towerPool count " + towerPool.Count);
+        if (towerPool.Count > 0)
         {
             var tower = towerPool.Dequeue();
             tower.ResetModel();
             tower.RecycleInit(DataManager.Instance.GameData.GetTowerData(key));
+            if (node == null)
+                node = startNode;
+            tower.transform.position = node.position;
+            tower.gameObject.SetActive(true);
 
+            var existData = activeTowers.Find((x) => x.row == node.row && x.column == node.column);
+            if (existData != null)
+            {
+                activeTowers.Remove(existData);
+            }
+            ActiveTowers data = new ActiveTowers(node.row, node.column, tower);
+            activeTowers.Add(data);
+
+            node.SetUnit(TileUnitState.tower);
         }
         else
         {
-            CreateTower(key);
+            CreateTower(key,node,true);
         }
 
     }
 
     #endregion
 
+    #region GetTowerHero
+    public Hero GetCurrentHero()
+    {
+        var hero = activeTowers.Find((x) => x.row == targetNode.row && x.column == targetNode.column);
 
+        if (hero == null)
+            return null;
+
+        var currentHero = (Hero)hero.unit;
+
+        return currentHero;
+
+    }
+
+    public BaseUnit GetTargetTower(int row, int column)
+    {
+        var activeTower = activeTowers.Find((x) => x.row == row && x.column == column);
+
+        if (activeTower == null)
+            return null;
+
+        var targetTower = activeTower.unit;
+
+        return targetTower;
+
+    }
+
+
+
+    #endregion
 
     /*
 
