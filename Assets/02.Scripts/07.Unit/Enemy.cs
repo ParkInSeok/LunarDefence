@@ -29,7 +29,7 @@ public class Enemy : BaseUnit
 
     #region Init
 
-    public void Init(EnemyData _stat)
+    public void Init(EnemyData _stat, bool isActive = false)
     {
         stat = new EnemyStat();
         stat.InitStat(_stat);
@@ -42,7 +42,8 @@ public class Enemy : BaseUnit
 
         targetIndex = 0;
 
-        DieEvent();
+        if(!isActive)   
+            DieEvent();
     }
     public void RecycleInit(EnemyData _stat)
     {

@@ -16,7 +16,7 @@ public class Tower : BaseUnit
 
     #region Init
 
-    public void Init(TowerData _stat)
+    public void Init(TowerData _stat, bool isActive = false)
     {
         stat.InitStat(_stat);
         
@@ -32,8 +32,8 @@ public class Tower : BaseUnit
         setModelCompletedEventHandler += BindEvents;
 
         CreateModel(stat.CurrentTowerStat.uniqueKey);
-
-        DieEvent();
+        if(!isActive)
+            DieEvent();
     }
 
   

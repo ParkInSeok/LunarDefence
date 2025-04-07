@@ -93,11 +93,11 @@ public class ObjectPoolingController : MonoBehaviour
     }
 
   
-    void SubscribeSetEnemy(GameObject obj, string key)
+    void SubscribeSetEnemy(GameObject obj, string key, bool isActive = false)
     {
         var enemy = obj.GetComponent<Enemy>();
         enemy.dieEventHandler += DieEnemyEvent;
-        enemy.Init(DataManager.Instance.GameData.GetEnemyData(key));
+        enemy.Init(DataManager.Instance.GameData.GetEnemyData(key), isActive);
 
         enemy.transform.position = startNode.position;
         var path = InfinityStageManager.Instance.PathController.TargetPath;
@@ -116,7 +116,7 @@ public class ObjectPoolingController : MonoBehaviour
     {
         for (int i = 0; i < maxPoolSize - 1; i++)
         {
-            CreateEnemy("NormalMonster_Snake");
+            CreateEnemy("NormalMonster_Snake",false);
         }
         _enemy.setModelCompletedEventHandler -= () =>
         {
@@ -124,23 +124,30 @@ public class ObjectPoolingController : MonoBehaviour
         };
     }
 
-    void CreateEnemy(string key)
+    void CreateEnemy(string key, bool isActive)
     {
-        DataManager.Instance.GetGameObject("Enemy", (obj) => SetEnemy(obj, key));
+        DataManager.Instance.GetGameObject("Enemy", (obj) => SetEnemy(obj, key, isActive));
     }
 
 
-    void SetEnemy(GameObject obj, string key)
+    void SetEnemy(GameObject obj, string key, bool isActive)
     {
         var enemy = obj.GetComponent<Enemy>();
         enemy.dieEventHandler += DieEnemyEvent;
-        enemy.Init(DataManager.Instance.GameData.GetEnemyData(key));
+        enemy.Init(DataManager.Instance.GameData.GetEnemyData(key), isActive);
     
         enemy.transform.SetParent(unitTypeParent[(int)enemy.Stat.CurrentEnemyStat.UnitType]);
         enemy.transform.position = startNode.position;
 
         var path = InfinityStageManager.Instance.PathController.TargetPath;
         enemy.transform.LookAt(path[0].position);
+
+        enemy.gameObject.SetActive(isActive);
+
+        if (isActive)
+        {
+            enemy.RecycleInit(DataManager.Instance.GameData.GetEnemyData(key));
+        }
     }
 
 
@@ -162,7 +169,7 @@ public class ObjectPoolingController : MonoBehaviour
         }
         else
         {
-            CreateEnemy(key);
+            CreateEnemy(key,true);
         }
 
     }
@@ -213,7 +220,7 @@ public class ObjectPoolingController : MonoBehaviour
         var tower = obj.GetComponent<Tower>();
 
         tower.dieEventHandler += DieTowerEvent;
-        tower.Init(DataManager.Instance.GameData.GetTowerData(key));
+        tower.Init(DataManager.Instance.GameData.GetTowerData(key), isActive);
 
         tower.transform.SetParent(unitTypeParent[(int)tower.Stat.CurrentTowerStat.UnitType]);
         tower.transform.localRotation = Quaternion.Euler(0, 180, 0);
@@ -222,6 +229,8 @@ public class ObjectPoolingController : MonoBehaviour
 
         if(isActive)
         {
+            tower.RecycleInit(DataManager.Instance.GameData.GetTowerData(key));
+
             var existData = activeTowers.Find((x) => x.row == node.row && x.column == node.column);
             if(existData != null)
             {
@@ -240,7 +249,6 @@ public class ObjectPoolingController : MonoBehaviour
     }
     public void GetTowerPool(string key, PathNode node = null)
     {
-        Debug.Log("towerPool count " + towerPool.Count);
         if (towerPool.Count > 0)
         {
             var tower = towerPool.Dequeue();
