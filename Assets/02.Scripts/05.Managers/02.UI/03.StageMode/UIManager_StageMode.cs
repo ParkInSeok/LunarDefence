@@ -86,16 +86,38 @@ public class UIManager_StageMode : UIManager
             // wall + tower = show tower/hero info
             // wall + hero X
 
+            bool isCanCreateTower = StageManager.Instance.PathController.isCanCreateWall(obj);
+
             switch (obj.walkable)
             {
                 case TileWallState.empty:
                     switch (obj.unitState)
                     {
                         case TileUnitState.empty:
-                            commonSelectUI.ShowCommonSelectUI(screenPosition, CommonSelectUIType.two, dirType,
-                               (x) => CreateTowerClick(x, obj), (x) => CreateWallClick(x, obj), null, "Create Tower", "Create Wall");
+                            //벽 설치 유효성 체크 후 true 라면
+                            if (isCanCreateTower)
+                            {
+                                commonSelectUI.ShowCommonSelectUI(screenPosition, CommonSelectUIType.two, dirType,
+                                   (x) => CreateTowerClick(x, obj), (x) => CreateWallClick(x, obj), null, "Create Tower", "Create Wall");
+                            }
+                            else
+                            {
+                                commonSelectUI.ShowCommonSelectUI(screenPosition, CommonSelectUIType.one, dirType,
+                                    (x) => CreateTowerClick(x, obj), null, null, "Create Tower");
+                            }
                             break;
                         case TileUnitState.tower:
+                            if (isCanCreateTower)
+                            {
+                                commonSelectUI.ShowCommonSelectUI(screenPosition, CommonSelectUIType.two, dirType,
+                                (x) => ShowInfoClick(x, obj), (x) => CreateWallClick(x, obj), null, "Show Info", "Create Wall");
+                            }
+                            else
+                            {
+                                commonSelectUI.ShowCommonSelectUI(screenPosition, CommonSelectUIType.one, dirType,
+                                    (x) => ShowInfoClick(x, obj), null, null, "Show Info");
+                            }
+                            break;
                         case TileUnitState.hero:
                             commonSelectUI.ShowCommonSelectUI(screenPosition, CommonSelectUIType.one, dirType,
                               (x) => ShowInfoClick(x, obj), null, null, "Show Info");
@@ -106,12 +128,12 @@ public class UIManager_StageMode : UIManager
                     switch (obj.unitState)
                     {
                         case TileUnitState.empty:
-                            commonSelectUI.ShowCommonSelectUI(screenPosition, CommonSelectUIType.one, dirType,
-                           (x) => CreateTowerClick(x, obj), null, null, "Create Tower");
+                            commonSelectUI.ShowCommonSelectUI(screenPosition, CommonSelectUIType.two, dirType,
+                           (x) => CreateTowerClick(x, obj), (x) => DestroyWall(x, obj), null, "Create Tower", "Destroy Wall");
                             break;
                         case TileUnitState.tower:
                             commonSelectUI.ShowCommonSelectUI(screenPosition, CommonSelectUIType.one, dirType,
-                                   (x) => CreateTowerClick(x, obj), null, null, "Show Info");
+                                   (x) => CreateTowerClick(x, obj), (x) => DestroyWall(x, obj), null, "Show Info", "Destroy Wall");
                             break;
                     }
                     break;
@@ -129,21 +151,33 @@ public class UIManager_StageMode : UIManager
 
     }
 
+    private void DestroyWall(PointerEventData obj, PathNode node)
+    {
+        //재화 30% 돌려주기
+        node.ChangeWalkable(TileWallState.empty);
+        StageManager.Instance.PathController.ReFindPath();
+        if (StageManager.Instance.isDevelopMode)
+            node.material.color = node.origineColor;
+
+        HideCommonSelectUI();
+    }
+
     private void ShowInfoClick(PointerEventData obj, PathNode node)
     {
 
 
-
-        commonSelectUI.HideCommonSelectUI();
+        HideCommonSelectUI();
 
     }
 
     private void CreateWallClick(PointerEventData obj, PathNode node)
     {
+        node.ChangeWalkable(TileWallState.wall);
+        StageManager.Instance.PathController.ReFindPath();
+        if (StageManager.Instance.isDevelopMode)
+            node.material.color = Color.blue;
 
-
-
-        commonSelectUI.HideCommonSelectUI();
+        HideCommonSelectUI();
 
     }
 
@@ -158,6 +192,14 @@ public class UIManager_StageMode : UIManager
 
         StageManager.Instance.ObjectPoolingController.GetTowerPool(selectedKey, node);
 
+        HideCommonSelectUI();
+
+
+
+    }
+
+    void HideCommonSelectUI()
+    {
         UtilityManager.Instance.DelayFunction_NextEndOfFrame(() =>
         {
             commonSelectUI.HideCommonSelectUI();
@@ -165,8 +207,9 @@ public class UIManager_StageMode : UIManager
 
             LunarInputManager.Instance.isStopInput = false;
         });
-
-
-
     }
+
+
+
+
 }

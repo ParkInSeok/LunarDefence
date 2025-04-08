@@ -69,10 +69,11 @@ public class PathNode
         buffState = state;
         onvalueChangedBuffStateEventHandler?.Invoke(state);
     }
-    public void ChangeWalkable(TileWallState state)
+    public void ChangeWalkable(TileWallState state, bool isTryVirtual = false)
     {
         walkable = state;
-        onvalueChangedWakableEventHandler?.Invoke(state);
+        if (!isTryVirtual)
+            onvalueChangedWakableEventHandler?.Invoke(state);
     }
 
 

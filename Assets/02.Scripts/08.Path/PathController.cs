@@ -276,29 +276,30 @@ public class PathController : MonoBehaviour
         return new Color(originalColor.r / 2, originalColor.g / 2, originalColor.b / 2, originalColor.a);
     }
 
-    public void ReFindPath(TileEventTrigger trigger)
+    public bool isCanCreateWall(PathNode pathNode)
     {
-        //벽 건설이 targetPath에 있는 경로 타일에 건설된다면
         PathNode node =
-            targetPath.Find((node) => node.row == trigger.pathNode.row && node.column == trigger.pathNode.column);
+        targetPath.Find((node) => node.row == pathNode.row && node.column == pathNode.column);
         if (node == null)
-            return;
+            return true;
 
-        // 해당 타일이 막혔을때 경로가 없으면 건설 못하게 해야함
-        List<PathNode> prePath = targetPath;
-        targetPath = FindPath(startPathNode, targetPathNode);
+        List<PathNode> prePath = new List<PathNode>();
 
-        if (targetPath == null)
+        pathNode.ChangeWalkable(TileWallState.wall, true);
+
+        prePath = FindPath(startPathNode, targetPathNode);
+
+        if (prePath == null)
         {
             //건설못하게 처리
-            targetPath = prePath;
-            return;
+            pathNode.ChangeWalkable(TileWallState.empty, true);
+            return false;
         }
+        pathNode.ChangeWalkable(TileWallState.empty, true);
+        return true;
 
-        ResetPathTileColor(prePath);
-
-        DrawPathTileColor(targetPath);
     }
+
     public void ReFindPath()
     {
         ResetPathTileColor(targetPath);
