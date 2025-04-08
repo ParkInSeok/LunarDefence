@@ -16,7 +16,7 @@ public class UIManager_StageMode : UIManager
     [SerializeField] CommonSelectUI commonSelectUI;
     [SerializeField] UIEventTrigger fakeUI;
 
-   // [SerializeField] CommonSelectUIType selectuitype;
+    // [SerializeField] CommonSelectUIType selectuitype;
 
 
 
@@ -29,7 +29,7 @@ public class UIManager_StageMode : UIManager
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
@@ -38,7 +38,7 @@ public class UIManager_StageMode : UIManager
 
         backCanvasRect = canvasScalers[(int)CanvasLayerType.backType].GetComponent<RectTransform>();
 
-      
+
     }
 
 
@@ -93,12 +93,12 @@ public class UIManager_StageMode : UIManager
                     {
                         case TileUnitState.empty:
                             commonSelectUI.ShowCommonSelectUI(screenPosition, CommonSelectUIType.two, dirType,
-                               (x)=> CreateTowerClick(x,obj), (x)=>CreateWallClick(x,obj),null,"Create Tower", "Create Wall");
+                               (x) => CreateTowerClick(x, obj), (x) => CreateWallClick(x, obj), null, "Create Tower", "Create Wall");
                             break;
                         case TileUnitState.tower:
                         case TileUnitState.hero:
                             commonSelectUI.ShowCommonSelectUI(screenPosition, CommonSelectUIType.one, dirType,
-                              (x)=> ShowInfoClick(x, obj), null, null, "Show Info");
+                              (x) => ShowInfoClick(x, obj), null, null, "Show Info");
                             break;
                     }
                     break;
@@ -120,7 +120,7 @@ public class UIManager_StageMode : UIManager
             }
 
             fakeUI.gameObject.SetActive(true);
-         
+
             fakeUI.rectTransform.SetAsLastSibling();
             commonSelectUI.rectTransform.SetAsLastSibling();
 
@@ -166,7 +166,7 @@ public class UIManager_StageMode : UIManager
             LunarInputManager.Instance.isStopInput = false;
         });
 
-       
+
 
     }
 }

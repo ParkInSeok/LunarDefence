@@ -9,7 +9,7 @@ public enum NodeDirection
     right,
     bottom,
     top,
-        
+
 }
 
 
@@ -68,12 +68,12 @@ public class PathController : MonoBehaviour
 
         SetStartPathNode();
         SetTargetPathNode();
-        
+
 
 
         targetPath = FindPath(startPathNode, targetPathNode);
-        
-      
+
+
         DrawPathTileColor(targetPath);
 
         var size = new Vector2(Screen.width, Screen.height - 300);
@@ -121,7 +121,7 @@ public class PathController : MonoBehaviour
             {
                 Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * size) + Vector3.forward * (y * size);
                 TileWallState walkable = !Physics.CheckSphere(worldPoint, 0.1f * size, mapMask) ? TileWallState.empty : TileWallState.wall; // Adjust the radius as needed
-                
+
                 var tile = Instantiate(tilePrefab, worldPoint, Quaternion.Euler(90, 0, 0));
                 tile.transform.parent = this.transform;
 
@@ -129,7 +129,7 @@ public class PathController : MonoBehaviour
                 Material dummy = new Material(tileEventTrigger.meshRenderer.material);
                 tileEventTrigger.meshRenderer.material = dummy;
                 grid[x, y] = new PathNode(worldPoint, walkable, tile, tileEventTrigger.meshRenderer.material, x, y);
-          
+
                 tileEventTrigger.pathNode = grid[x, y];
 
                 SetTileColor(x, y, tileEventTrigger, color);
@@ -137,7 +137,7 @@ public class PathController : MonoBehaviour
             }
         }
 
-        
+
 
     }
 
@@ -152,7 +152,7 @@ public class PathController : MonoBehaviour
         var randomStartPosX = 0;
         var randomStartPosY = 0;
 
-        
+
 
         var randomDir = UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(NodeDirection)).Length);
         switch ((NodeDirection)randomDir)
@@ -220,7 +220,7 @@ public class PathController : MonoBehaviour
     private void CreateLeftWall()
     {
         GameObject wall = Instantiate(wallPrefab);
-        wall.transform.rotation = Quaternion.Euler(0,-90, 0);
+        wall.transform.rotation = Quaternion.Euler(0, -90, 0);
         wall.transform.parent = this.transform;
         float tileSize = tilePrefab.transform.localScale.x;
         wall.transform.localScale = new Vector3((maxColumn + 1) * tileSize, 30, 1);
@@ -273,7 +273,7 @@ public class PathController : MonoBehaviour
 
     Color InvertColor(Color originalColor)
     {
-        return new Color(originalColor.r /2 , originalColor.g / 2, originalColor.b / 2, originalColor.a);
+        return new Color(originalColor.r / 2, originalColor.g / 2, originalColor.b / 2, originalColor.a);
     }
 
     public void ReFindPath(TileEventTrigger trigger)
@@ -283,12 +283,12 @@ public class PathController : MonoBehaviour
             targetPath.Find((node) => node.row == trigger.pathNode.row && node.column == trigger.pathNode.column);
         if (node == null)
             return;
-       
+
         // 해당 타일이 막혔을때 경로가 없으면 건설 못하게 해야함
         List<PathNode> prePath = targetPath;
         targetPath = FindPath(startPathNode, targetPathNode);
 
-        if(targetPath == null)
+        if (targetPath == null)
         {
             //건설못하게 처리
             targetPath = prePath;
@@ -349,7 +349,7 @@ public class PathController : MonoBehaviour
                     neighbor.gCost = newCostToNeighbor;
                     neighbor.hCost = GetDistance(neighbor, targetPathNode);
                     neighbor.parent = currentPathNode;
-              
+
 
                     if (!openSet.Contains(neighbor))
                         openSet.Add(neighbor);
@@ -371,7 +371,7 @@ public class PathController : MonoBehaviour
             neighbors.Add(grid[current.row + 1, current.column]); // Right neighbor
         if (current.column > 0 && grid[current.row, current.column - 1].walkable == TileWallState.empty)
             neighbors.Add(grid[current.row, current.column - 1]); // Bottom neighbor
-        if (current.column < maxColumn -1 && grid[current.row, current.column + 1].walkable == TileWallState.empty)
+        if (current.column < maxColumn - 1 && grid[current.row, current.column + 1].walkable == TileWallState.empty)
             neighbors.Add(grid[current.row, current.column + 1]); // Top neighbor
 
         return neighbors;
@@ -381,7 +381,7 @@ public class PathController : MonoBehaviour
 
 
 
-   List<PathNode> RetracePath(PathNode startPathNode, PathNode endPathNode)
+    List<PathNode> RetracePath(PathNode startPathNode, PathNode endPathNode)
     {
         List<PathNode> path = new List<PathNode>();
         PathNode currentPathNode = endPathNode;
