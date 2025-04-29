@@ -48,7 +48,9 @@ public class UIManager_StageMode : UIManager
 
         //backUI.Init(backCanvasRect);
 
-        StageManager.Instance.PathController.selectPathNodeEventHandler += BindOpenCommonSelectUIEvent;
+        StageManager.Instance.PathController.selectPathNodeEventHandler_mouseDown += BindOpenCommonSelectUIEvent;
+       
+        //StageManager.Instance.PathController.selectPathNodeEventHandler_mouseUp += BindCloseCommonSelectUIEvent;
         fakeUI.onPointerDownEventHandler = (x) =>
         {
             UtilityManager.Instance.DelayFunction_EndOfFrame(() =>
@@ -56,9 +58,25 @@ public class UIManager_StageMode : UIManager
                 fakeUI.gameObject.SetActive(false);
                 commonSelectUI.HideCommonSelectUI();
 
-                LunarInputManager.Instance.isStopInput = false;
+               // LunarInputManager.Instance.isStopInput = false;
             });
         };
+
+    }
+
+    private void BindCloseCommonSelectUIEvent(bool arg2)
+    {
+        if(arg2 == false)
+        {
+            Debug.Log("BindCloseCommonSelectUIEvent");
+            //°°Àº ³ëµå°¡ ¾Æ´Ò¶§ ui ²ô±â
+            if (fakeUI.gameObject.activeSelf)
+            {
+                fakeUI.gameObject.SetActive(false);
+                commonSelectUI.HideCommonSelectUI();
+            }
+            StageManager.Instance.PathController.selectPathNodeEventHandler_mouse_nodeChanged = null;
+        }
 
     }
 
@@ -146,7 +164,10 @@ public class UIManager_StageMode : UIManager
             fakeUI.rectTransform.SetAsLastSibling();
             commonSelectUI.rectTransform.SetAsLastSibling();
 
-            LunarInputManager.Instance.isStopInput = true;
+
+            StageManager.Instance.PathController.selectPathNodeEventHandler_mouse_nodeChanged = BindCloseCommonSelectUIEvent;
+
+            //LunarInputManager.Instance.isStopInput = true;
         }
 
     }
@@ -205,7 +226,7 @@ public class UIManager_StageMode : UIManager
             commonSelectUI.HideCommonSelectUI();
             fakeUI.gameObject.SetActive(false);
 
-            LunarInputManager.Instance.isStopInput = false;
+            //LunarInputManager.InstanceisStopInput = false;
         });
     }
 

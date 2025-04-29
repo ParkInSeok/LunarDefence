@@ -29,10 +29,17 @@ public class PathController : MonoBehaviour
     [SerializeField] float ui_tile_height = 0;
     public float UI_Tile_Height { get { return ui_tile_height; } }
 
+    
 
-    public Action<PathNode> selectPathNodeEventHandler;
+    public Action<PathNode> selectPathNodeEventHandler_mouseDown;
+    //현재 마우스 위치 노드 
+    public Action<PathNode> selectPathNodeEventHandler_mouse;
+    //다운햇을때노드와 일치하는지 bool
+    public Action<bool> selectPathNodeEventHandler_mouse_nodeChanged;
+    //마우스 업했을때 마우스위치에있는 노드
+    public Action<PathNode,PathNode> selectPathNodeEventHandler_mouseUp;
 
-
+    PathNode[] compareNode = { null, null };
 
 
     [Header("Debugging")]
@@ -85,24 +92,70 @@ public class PathController : MonoBehaviour
 
     void BindEvents()
     {
-        LunarInputManager.Instance.mouseDownEventHandler += BindClickEvent;
+        LunarInputManager.Instance.mouseDownEventHandler += BindClickDownEvent;
+        LunarInputManager.Instance.mouseEventHandler += BindClickEvent;
+        LunarInputManager.Instance.mouseUpEventHandler += BindClickUpEvent;
+    }
+
+    PathNode GetPathNodeByMousePosition(Vector2 pos)
+    {
+        var nodeindex_x = (int)(pos.x / ui_tile_width);
+        var nodeindex_y = (int)((pos.y - 300) / ui_tile_height);
+
+        if (nodeindex_x > maxRow - 1 || nodeindex_x < 0)
+            return null;
+
+        if (nodeindex_y > maxColumn - 1 || nodeindex_y < 0)
+            return null;
+
+        var targetNodex = grid[nodeindex_x, nodeindex_y];
+
+        return targetNodex;
+
+    }
+
+    private void BindClickDownEvent(Vector2 obj)
+    {
+
+        var targetNodex = GetPathNodeByMousePosition(obj);
+
+        if (targetNodex == null)
+            return;
+
+        compareNode[0] = targetNodex;
+
+        selectPathNodeEventHandler_mouseDown?.Invoke(compareNode[0]);
     }
 
     private void BindClickEvent(Vector2 obj)
     {
-        var nodeindex_x = (int)(obj.x / ui_tile_width);
-        var nodeindex_y = (int)((obj.y - 300) / ui_tile_height);
 
-        if (nodeindex_x > maxRow - 1 || nodeindex_x < 0)
+        var targetNodex = GetPathNodeByMousePosition(obj);
+
+        if (targetNodex == null )
+            return;
+        bool isEqual = false;
+        if (targetNodex == compareNode[0])
+            isEqual = true;
+
+        selectPathNodeEventHandler_mouse?.Invoke(targetNodex);
+        selectPathNodeEventHandler_mouse_nodeChanged?.Invoke(isEqual);
+    }
+
+    private void BindClickUpEvent(Vector2 obj)
+    {
+
+        var targetNodex = GetPathNodeByMousePosition(obj);
+
+        if (targetNodex == null)
             return;
 
-        if (nodeindex_y > maxColumn - 1 || nodeindex_y < 0)
-            return;
+        compareNode[1] = targetNodex;
 
-        var targetNodex = grid[nodeindex_x, nodeindex_y];
+        selectPathNodeEventHandler_mouseUp?.Invoke(compareNode[0], compareNode[1]);
 
-        // click ui 가 오른쪽 화면을 넘어갈떄 예외처리 ex) 왼쪽 버전
-        selectPathNodeEventHandler?.Invoke(targetNodex);
+        compareNode[0] = null;
+        compareNode[1] = null;
     }
 
     void CreateGrid(int _row, int _colomn)

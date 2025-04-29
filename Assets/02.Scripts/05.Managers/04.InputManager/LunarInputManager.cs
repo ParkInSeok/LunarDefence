@@ -7,22 +7,27 @@ public class LunarInputManager : Singleton<LunarInputManager>
 {
 
 
-    LunarInputController _input = new LunarInputController();
-    public LunarInputController _Input { get { return Instance._input; } }
+    //LunarInputController _input = new LunarInputController();
+    //public LunarInputController _Input { get { return Instance._input; } }
 
-    [SerializeField]LayerMask tileMapLayer;
 
     public Action<Vector2> mouseDownEventHandler;
+    public Action<Vector2> mouseUpEventHandler;
+    public Action<Vector2> mouseEventHandler;
 
-    public bool isStopInput = false;
+    //public bool isStopInput = false;
+
+    Vector3 preMousePos;
 
 
     private void Update()
     {
-        if (isStopInput)
-            return;
+        //if (isStopInput)
+        //    return;
 
-        _input.OnUpdate();
+        //_input.OnUpdate();
+
+        BindMouseDownEvnet();
     }
 
     protected override void Init()
@@ -33,39 +38,40 @@ public class LunarInputManager : Singleton<LunarInputManager>
 
     void BindEvents()
     {
-        _Input.keyaction += BindMouseDownEvnet;
+        //_Input.keyaction += BindMouseDownEvnet;
     }
 
 
     private void OnDestroy()
     {
-        _Input.keyaction -= BindMouseDownEvnet;
+        //_Input.keyaction -= BindMouseDownEvnet;
     }
 
     private void BindMouseDownEvnet()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             mouseDownEventHandler?.Invoke(Input.mousePosition);
 
         }
-
-
-
-    }
-
-    void OnGUI()
-    {
-        if (Input.GetMouseButton(0))
+        else if (Input.GetMouseButton(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (preMousePos == Input.mousePosition)
+                return;
+            mouseEventHandler?.Invoke(Input.mousePosition);
+            preMousePos = Input.mousePosition;
 
-            Debug.DrawRay(Camera.main.transform.position, ray.direction * 90, Color.red);
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            mouseUpEventHandler?.Invoke(Input.mousePosition);
         }
 
+
+
     }
 
-    
+
 
 
 
