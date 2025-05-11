@@ -76,13 +76,17 @@ public class PathNode
             onvalueChangedWakableEventHandler?.Invoke(state);
     }
 
+    public void ChangeUnitState(TileUnitState state)
+    {
+        unitState = state;
+        onvalueChangedUnitStateEventHandler?.Invoke(unitState);
+    }
 
     public void SetUnit(TileUnitState state)
     {
         // unit = _unit;
         var unit = StageManager.Instance.ObjectPoolingController.GetTargetTower(row, column).unitDieEventHandler += DieUnit;
-        unitState = state;
-        onvalueChangedUnitStateEventHandler?.Invoke(unitState);
+        ChangeUnitState(state);
         //unit.unitDieEventHandler += DieUnit;
 
     }
@@ -91,8 +95,7 @@ public class PathNode
     {
         //unit.unitDieEventHandler -= DieUnit;
         //unit = null;
-        unitState = TileUnitState.empty;
-        onvalueChangedUnitStateEventHandler?.Invoke(unitState);
+        ChangeUnitState(TileUnitState.empty);
     }
 
 }

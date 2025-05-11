@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 using Newtonsoft.Json.Linq;
 using System;
 
-public class NetworkManager : Singleton<NetworkManager>
+public class NetworkManager : SingletonMono<NetworkManager>
 {
     private string apiKey = "283af007-324b-43b0-8d8d-18a0951877e0";
     //private string apiKey = "MROERxM2NuHm/BizgS6zc/yEU6MLqUryMdj+5j6DZEBRYTuh2JqtFRD2HcrT3AHD2FPpmnkt4U9eG8lwXUXcDw==";

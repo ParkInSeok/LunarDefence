@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class UIManager : Singleton<UIManager>
+public abstract class UIManager : SingletonMono<UIManager>
 {
     // 각 씬마다 상속받은 uimanager가 존재하며 dont destroy false setting
 

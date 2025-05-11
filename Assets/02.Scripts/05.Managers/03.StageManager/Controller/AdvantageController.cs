@@ -12,19 +12,11 @@ public enum AdvantageType // uniquekey
 
 
 
-public class AdvantageController : MonoBehaviour
+[Serializable]
+public class AdvantageController
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] List<string> getAdvantageKeys = new List<string>();
 
     public void Init()
     {

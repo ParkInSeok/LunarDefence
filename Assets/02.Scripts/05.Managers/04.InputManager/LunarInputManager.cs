@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LunarInputManager : Singleton<LunarInputManager>
+public class LunarInputManager : SingletonMono<LunarInputManager>
 {
 
 

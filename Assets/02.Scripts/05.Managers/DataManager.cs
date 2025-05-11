@@ -12,7 +12,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using BansheeGz.BGDatabase;
 
-public class DataManager : Singleton<DataManager>
+public class DataManager : SingletonMono<DataManager>
 {
 
     [SerializeField] List<LoadClass> loadAssetList = new List<LoadClass>();

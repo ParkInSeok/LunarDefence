@@ -276,6 +276,40 @@ public class ObjectPoolingController : MonoBehaviour
 
     }
 
+    public void ChangeTowerPathNode(PathNode node_from, PathNode node_to)
+    {
+        if (node_from.row == node_to.row && node_from.column == node_to.column)
+            return;
+
+        var activeTower1 = activeTowers.Find((x) => x.row == node_from.row && x.column == node_from.column);
+        var activeTower2 = activeTowers.Find((x) => x.row == node_to.row && x.column == node_to.column);
+
+        if(activeTower1 != null && activeTower2 != null)
+        {
+            activeTower1.row = node_to.row;
+            activeTower1.column = node_to.column;
+            activeTower1.unit.transform.position = node_to.position;
+
+            activeTower2.row = node_from.row;
+            activeTower2.column = node_from.column;
+            activeTower2.unit.transform.position = node_from.position;
+        }
+        else
+        {
+            if (activeTower2 == null)
+            {
+                activeTower1.row = node_to.row;
+                activeTower1.column = node_to.column;
+                activeTower1.unit.transform.position = node_to.position;
+            }
+        }
+
+
+
+
+    }
+
+
     #endregion
 
     #region GetTowerHero
@@ -309,81 +343,6 @@ public class ObjectPoolingController : MonoBehaviour
 
     #endregion
 
-    /*
-
-    IObjectPool<ParticleSystem> m_Pool;
-
-    public IObjectPool<ParticleSystem> Pool
-    {
-        get
-        {
-            if (m_Pool == null)
-            {
-                if (poolType == PoolType.Stack)
-                    m_Pool = new ObjectPool<ParticleSystem>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, 10, maxPoolSize);
-                else
-                    m_Pool = new LinkedPool<ParticleSystem>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, maxPoolSize);
-            }
-            return m_Pool;
-        }
-    }
-
-
-
-
-
-    ParticleSystem CreatePooledItem()
-    {
-        var go = new GameObject("Pooled Particle System");
-        var ps = go.AddComponent<ParticleSystem>();
-        ps.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-
-        var main = ps.main;
-        main.duration = 1;
-        main.startLifetime = 1;
-        main.loop = false;
-
-        // This is used to return ParticleSystems to the pool when they have stopped.
-        var returnToPool = go.AddComponent<ReturnToPool_Particle>();
-        returnToPool.pool = Pool;
-
-        return ps;
-    }
-
-
-    void OnReturnedToPool(ParticleSystem system)
-    {
-        system.gameObject.SetActive(false);
-    }
-
-    // Called when an item is taken from the pool using Get
-    void OnTakeFromPool(ParticleSystem system)
-    {
-        system.gameObject.SetActive(true);
-    }
-
-    // If the pool capacity is reached then any items returned will be destroyed.
-    // We can control what the destroy behavior does, here we destroy the GameObject.
-    void OnDestroyPoolObject(ParticleSystem system)
-    {
-        Destroy(system.gameObject);
-    }
-
-    void OnGUI()
-    {
-        GUILayout.Label("Pool size: " + Pool.CountInactive);
-        if (GUILayout.Button("Create Particles"))
-        {
-            var amount = Random.Range(1, 10);
-            for (int i = 0; i < amount; ++i)
-            {
-                var ps = Pool.Get();
-                ps.transform.position = Random.insideUnitSphere * 10;
-                ps.Play();
-            }
-        }
-    }
-    */
 
 
 }

@@ -16,7 +16,8 @@ public enum RoundState
 }
 
 
-public class RoundController : MonoBehaviour
+[Serializable]
+public class RoundController 
 {
 
     [SerializeField] RoundState state;
@@ -41,17 +42,6 @@ public class RoundController : MonoBehaviour
     public Action selectedAdvantageEventHandler;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void Init()
     {

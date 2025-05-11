@@ -80,7 +80,6 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\UI\ScorePanel.cs" />
     <Compile Include="Assets\02.Scripts\06.Datas\EnemyData.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Towers\TowerLaunchers\Launcher.cs" />
-    <Compile Include="Assets\02.Scripts\05.Managers\01.Generic\Singleton.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Components\EyeAdaptationComponent.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Agents\AttackingAgent.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\ActionGameFramework\Health\DamageZone.cs" />
@@ -111,6 +110,7 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Towers\Placement\TowerFitStatus.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Components\ScreenSpaceReflectionComponent.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Input\InputSchemeSwitcher.cs" />
+    <Compile Include="Assets\02.Scripts\05.Managers\03.StageManager\Controller\FusionController.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Utilities\SerializableInterface.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Towers\Placement\SingleTowerPlacementArea.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Towers\TowerLaunchers\HomingLauncher.cs" />
@@ -255,6 +255,7 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Economy\CurrencyGainer.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Input\MouseButtonInfo.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Nodes\NodeSelector.cs" />
+    <Compile Include="Assets\02.Scripts\05.Managers\01.Generic\SingletonMoNo.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\ActionGameFramework\Audio\HealthChangeSoundSelector.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Game\LevelList.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\UI\PlayAnimation.cs" />
@@ -285,7 +286,6 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\Game\LevelItem.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\UI\SceneLoader.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\Level\PlayerHomeBase.cs" />
-    <Compile Include="Assets\02.Scripts\05.Managers\UtilityManager.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
     <Compile Include="Assets\02.Scripts\05.Managers\02.UI\05.Common\CommonSelectUI.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
@@ -315,6 +315,7 @@
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\UI\HUD\CurrencyUI.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\ScreenSpaceReflectionModel.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\Core\UI\SimpleMainMenuPage.cs" />
+    <Compile Include="Assets\02.Scripts\05.Managers\Utility.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\Scripts\TowerDefense\UI\HUD\TowerInfoDisplay.cs" />
     <Compile Include="Assets\99.OtherAsset\UnityTechnologies\TowerDefenseTemplate\PostProcessing\Runtime\Models\DepthOfFieldModel.cs" />
     <Compile Include="Assets\02.Scripts\05.Managers\02.UI\03.StageMode\UIManager_StageMode.cs" />

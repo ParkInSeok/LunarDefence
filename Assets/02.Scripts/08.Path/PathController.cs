@@ -89,6 +89,7 @@ public class PathController : MonoBehaviour
         ui_tile_height = size.y / maxColumn;
         BindEvents();
     }
+    #region Bind Function
 
     void BindEvents()
     {
@@ -116,7 +117,8 @@ public class PathController : MonoBehaviour
 
     private void BindClickDownEvent(Vector2 obj)
     {
-
+        //if (StageManager.Instance.RoundController.State != RoundState.TowerPlacement)
+        //    return;
         var targetNodex = GetPathNodeByMousePosition(obj);
 
         if (targetNodex == null)
@@ -129,7 +131,8 @@ public class PathController : MonoBehaviour
 
     private void BindClickEvent(Vector2 obj)
     {
-
+        //if (StageManager.Instance.RoundController.State != RoundState.TowerPlacement)
+        //    return;
         var targetNodex = GetPathNodeByMousePosition(obj);
 
         if (targetNodex == null )
@@ -144,6 +147,8 @@ public class PathController : MonoBehaviour
 
     private void BindClickUpEvent(Vector2 obj)
     {
+        //if (StageManager.Instance.RoundController.State != RoundState.TowerPlacement)
+        //    return;
 
         var targetNodex = GetPathNodeByMousePosition(obj);
 
@@ -152,12 +157,53 @@ public class PathController : MonoBehaviour
 
         compareNode[1] = targetNodex;
 
+        if (compareNode[0].column != compareNode[1].column || compareNode[0].row != compareNode[1].row)
+        {
+            if (compareNode[0].unitState == TileUnitState.tower)
+            {
+                Tower tower1 = StageManager.Instance.ObjectPoolingController.GetTargetTower(compareNode[0].row, compareNode[0].column) as Tower;
+                switch (compareNode[1].unitState)
+                {
+                    case TileUnitState.empty:
+                        //node1 unit 옮기기
+                        StageManager.Instance.ObjectPoolingController.ChangeTowerPathNode(compareNode[0], compareNode[1]);
+                        compareNode[0].ChangeUnitState(TileUnitState.empty);
+                        compareNode[1].ChangeUnitState(TileUnitState.tower);
+                        break;
+                    case TileUnitState.tower:
+                       
+                      
+                        Tower tower2 = StageManager.Instance.ObjectPoolingController.GetTargetTower(compareNode[1].row, compareNode[1].column) as Tower;
+                        if (tower1.Stat.CurrentTowerStat.uniqueKey.Equals(tower2.Stat.CurrentTowerStat.uniqueKey) && 
+                            tower1.Stat.CurrentTowerStat.Star == tower2.Stat.CurrentTowerStat.Star)
+                        {
+                            //node 1, 2 unit 같은 계열 + 성급이 동일한 유닛이면 조합 
+                            StageManager.Instance.FusionController.TryFusion(tower1, tower2);
+                            compareNode[0].ChangeUnitState(TileUnitState.empty);
+                            compareNode[1].ChangeUnitState(TileUnitState.tower);
+                        }
+                        else
+                        {
+                            //node 1, 2 unit 다른계열 유닛 서로 자리 옮기기
+                            StageManager.Instance.ObjectPoolingController.ChangeTowerPathNode(compareNode[0], compareNode[1]);
+                        }
+
+                        break;
+                    case TileUnitState.hero:
+                        //타워를 먹이는 로직이 적용되어있다면 타워 먹이기 아니라면 return;
+                        break;
+                }
+            }
+        }
         selectPathNodeEventHandler_mouseUp?.Invoke(compareNode[0], compareNode[1]);
 
         compareNode[0] = null;
         compareNode[1] = null;
     }
 
+    #endregion
+
+    #region Create Function
     void CreateGrid(int _row, int _colomn)
     {
         grid = new PathNode[_row, _colomn];
@@ -192,53 +238,6 @@ public class PathController : MonoBehaviour
 
 
 
-    }
-
-    private void SetStartPathNode()
-    {
-        // var randomStartPosX = Random.Range();
-        //var randomStartPosY = Random.Range();
-        // 0,0 ~ row - 1,0
-        // 0,0 ~ 0,column - 1
-        // row-1 , 0 ~ row -1 , column -1
-        // 0,column -1 ~ row-1, column -1
-        var randomStartPosX = 0;
-        var randomStartPosY = 0;
-
-
-
-        var randomDir = UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(NodeDirection)).Length);
-        switch ((NodeDirection)randomDir)
-        {
-            case NodeDirection.left:
-                randomStartPosX = 0;
-                randomStartPosY = UnityEngine.Random.Range(0, maxColumn - 1);
-                break;
-            case NodeDirection.right:
-                randomStartPosX = maxRow - 1;
-                randomStartPosY = UnityEngine.Random.Range(0, maxColumn - 1);
-                break;
-            case NodeDirection.bottom:
-                randomStartPosX = UnityEngine.Random.Range(0, maxRow - 1);
-                randomStartPosY = 0;
-                break;
-            case NodeDirection.top:
-                randomStartPosX = UnityEngine.Random.Range(0, maxRow - 1);
-                randomStartPosY = maxColumn - 1;
-                break;
-        }
-
-        startPathNode = grid[randomStartPosX, randomStartPosY];
-        startPathNode.material.color = Color.white;
-    }
-
-    private void SetTargetPathNode()
-    {
-        var radomTargetPosX = UnityEngine.Random.Range(maxRow / 2 - 1, maxRow / 2 + 2);
-        var radomTargetPosY = UnityEngine.Random.Range(maxColumn / 2 - 1, maxColumn / 2 + 2);
-
-        targetPathNode = grid[radomTargetPosX, radomTargetPosY];
-        targetPathNode.material.color = Color.black;
     }
 
     void CreateWall()
@@ -292,43 +291,10 @@ public class PathController : MonoBehaviour
         float bottomX = tileSize / 2;
         wall.transform.position = new Vector3(-bottomX, -0.1f, -bottomZ);
     }
-
-    private void SetTileColor(int x, int y, TileEventTrigger tile, Color color)
-    {
-        if (x % 2 == 0)
-        {
-            if (y % 2 == 0)
-            {
-                tile.pathNode.material.color = color;
-                tile.pathNode.origineColor = color;
-            }
-            else
-            {
-                tile.pathNode.material.color = InvertColor(color);
-                tile.pathNode.origineColor = InvertColor(color);
-            }
-        }
-        else
-        {
-            if (y % 2 == 0)
-            {
-                tile.pathNode.material.color = InvertColor(color);
-                tile.pathNode.origineColor = InvertColor(color);
-            }
-            else
-            {
-                tile.pathNode.material.color = color;
-                tile.pathNode.origineColor = color;
-            }
-        }
-    }
+    #endregion
 
 
-    Color InvertColor(Color originalColor)
-    {
-        return new Color(originalColor.r / 2, originalColor.g / 2, originalColor.b / 2, originalColor.a);
-    }
-
+    #region Find Function
     public bool isCanCreateWall(PathNode pathNode)
     {
         PathNode node =
@@ -352,7 +318,52 @@ public class PathController : MonoBehaviour
         return true;
 
     }
+    private void SetStartPathNode()
+    {
+        // var randomStartPosX = Random.Range();
+        //var randomStartPosY = Random.Range();
+        // 0,0 ~ row - 1,0
+        // 0,0 ~ 0,column - 1
+        // row-1 , 0 ~ row -1 , column -1
+        // 0,column -1 ~ row-1, column -1
+        var randomStartPosX = 0;
+        var randomStartPosY = 0;
 
+
+
+        var randomDir = UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(NodeDirection)).Length);
+        switch ((NodeDirection)randomDir)
+        {
+            case NodeDirection.left:
+                randomStartPosX = 0;
+                randomStartPosY = UnityEngine.Random.Range(0, maxColumn - 1);
+                break;
+            case NodeDirection.right:
+                randomStartPosX = maxRow - 1;
+                randomStartPosY = UnityEngine.Random.Range(0, maxColumn - 1);
+                break;
+            case NodeDirection.bottom:
+                randomStartPosX = UnityEngine.Random.Range(0, maxRow - 1);
+                randomStartPosY = 0;
+                break;
+            case NodeDirection.top:
+                randomStartPosX = UnityEngine.Random.Range(0, maxRow - 1);
+                randomStartPosY = maxColumn - 1;
+                break;
+        }
+
+        startPathNode = grid[randomStartPosX, randomStartPosY];
+        startPathNode.material.color = Color.white;
+    }
+
+    private void SetTargetPathNode()
+    {
+        var radomTargetPosX = UnityEngine.Random.Range(maxRow / 2 - 1, maxRow / 2 + 2);
+        var radomTargetPosY = UnityEngine.Random.Range(maxColumn / 2 - 1, maxColumn / 2 + 2);
+
+        targetPathNode = grid[radomTargetPosX, radomTargetPosY];
+        targetPathNode.material.color = Color.black;
+    }
     public void ReFindPath()
     {
         ResetPathTileColor(targetPath);
@@ -431,10 +442,6 @@ public class PathController : MonoBehaviour
         return neighbors;
     }
 
-
-
-
-
     List<PathNode> RetracePath(PathNode startPathNode, PathNode endPathNode)
     {
         List<PathNode> path = new List<PathNode>();
@@ -456,6 +463,9 @@ public class PathController : MonoBehaviour
         return Mathf.RoundToInt(Vector3.Distance(PathNodeA.position, PathNodeB.position));
     }
 
+    #endregion
+
+    #region develop mode Function
 
     void ResetPathTileColor(List<PathNode> list)
     {
@@ -489,7 +499,42 @@ public class PathController : MonoBehaviour
 
     }
 
+    Color InvertColor(Color originalColor)
+    {
+        return new Color(originalColor.r / 2, originalColor.g / 2, originalColor.b / 2, originalColor.a);
+    }
 
+    private void SetTileColor(int x, int y, TileEventTrigger tile, Color color)
+    {
+        if (x % 2 == 0)
+        {
+            if (y % 2 == 0)
+            {
+                tile.pathNode.material.color = color;
+                tile.pathNode.origineColor = color;
+            }
+            else
+            {
+                tile.pathNode.material.color = InvertColor(color);
+                tile.pathNode.origineColor = InvertColor(color);
+            }
+        }
+        else
+        {
+            if (y % 2 == 0)
+            {
+                tile.pathNode.material.color = InvertColor(color);
+                tile.pathNode.origineColor = InvertColor(color);
+            }
+            else
+            {
+                tile.pathNode.material.color = color;
+                tile.pathNode.origineColor = color;
+            }
+        }
+    }
+
+    #endregion
 
 
 

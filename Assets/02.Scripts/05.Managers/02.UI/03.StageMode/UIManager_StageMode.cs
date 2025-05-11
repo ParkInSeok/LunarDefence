@@ -53,13 +53,13 @@ public class UIManager_StageMode : UIManager
         //StageManager.Instance.PathController.selectPathNodeEventHandler_mouseUp += BindCloseCommonSelectUIEvent;
         fakeUI.onPointerDownEventHandler = (x) =>
         {
-            UtilityManager.Instance.DelayFunction_EndOfFrame(() =>
+            StartCoroutine(Utility.CoroutineHelper.DelayFunction_EndOfFrame(() =>
             {
                 fakeUI.gameObject.SetActive(false);
                 commonSelectUI.HideCommonSelectUI();
 
-               // LunarInputManager.Instance.isStopInput = false;
-            });
+                // LunarInputManager.Instance.isStopInput = false;
+            }));
         };
 
     }
@@ -82,6 +82,9 @@ public class UIManager_StageMode : UIManager
 
     private void BindOpenCommonSelectUIEvent(PathNode obj)
     {
+        //if (StageManager.Instance.RoundController.State != RoundState.TowerPlacement)
+        //    return;
+
         if (commonSelectUI.gameObject.activeSelf == false)
         {
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(obj.position);
@@ -221,13 +224,13 @@ public class UIManager_StageMode : UIManager
 
     void HideCommonSelectUI()
     {
-        UtilityManager.Instance.DelayFunction_NextEndOfFrame(() =>
-        {
-            commonSelectUI.HideCommonSelectUI();
-            fakeUI.gameObject.SetActive(false);
+        StartCoroutine(Utility.CoroutineHelper.DelayFunction_NextEndOfFrame(() =>
+       {
+           commonSelectUI.HideCommonSelectUI();
+           fakeUI.gameObject.SetActive(false);
 
             //LunarInputManager.InstanceisStopInput = false;
-        });
+        }));
     }
 
 

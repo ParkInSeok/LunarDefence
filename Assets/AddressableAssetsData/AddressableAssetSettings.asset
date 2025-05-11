@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
   m_DefaultGroup: df2d4ab7ae02e3144bb14dd9b5642d52
-  m_CachedHash:
+  m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 67c31dbc301a5d1ed8e7d948accbb97b
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -32,24 +32,27 @@ MonoBehaviour:
   m_ShaderBundleNaming: 0
   m_ShaderBundleCustomNaming: 
   m_MonoScriptBundleNaming: 0
+  m_CheckForContentUpdateRestrictionsOption: 0
   m_MonoScriptBundleCustomNaming: 
   m_RemoteCatalogBuildPath:
     m_Id: 0635756cb8bfe864db888437b2179867
   m_RemoteCatalogLoadPath:
     m_Id: 384b56579f7f8e241a33dd57f5c576b6
+  m_ContentStateBuildPathProfileVariableName: <default settings path>
+  m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
   m_BuildAddressablesWithPlayerBuild: 0
   m_overridePlayerVersion: 
   m_GroupAssets:
-  - {fileID: 11400000, guid: 43da499b0876ff44baa6d3e27537342b, type: 2}
-  - {fileID: 11400000, guid: 5ed61bcb86239db4c879d8f669b5adea, type: 2}
-  - {fileID: 11400000, guid: 06533754e6f222848bedadd0083e0887, type: 2}
-  - {fileID: 11400000, guid: 13695183ec0e6ba4b8e46683ca97e92f, type: 2}
-  - {fileID: 11400000, guid: d84ad5219254415479cf80fc59caeb1c, type: 2}
-  - {fileID: 11400000, guid: f33439d3a06d5924b97a22c33d12ae6c, type: 2}
   - {fileID: 11400000, guid: 2f11fb1e7c5c2564b9383e5925fecf2a, type: 2}
-  - {fileID: 11400000, guid: 47cbcb6cc95814f439f4589aad889b3e, type: 2}
   - {fileID: 11400000, guid: 291a96ceadc67164e84cfca13b576a70, type: 2}
+  - {fileID: 11400000, guid: d84ad5219254415479cf80fc59caeb1c, type: 2}
+  - {fileID: 11400000, guid: 47cbcb6cc95814f439f4589aad889b3e, type: 2}
+  - {fileID: 11400000, guid: 43da499b0876ff44baa6d3e27537342b, type: 2}
+  - {fileID: 11400000, guid: 06533754e6f222848bedadd0083e0887, type: 2}
+  - {fileID: 11400000, guid: 5ed61bcb86239db4c879d8f669b5adea, type: 2}
+  - {fileID: 11400000, guid: 13695183ec0e6ba4b8e46683ca97e92f, type: 2}
+  - {fileID: 11400000, guid: f33439d3a06d5924b97a22c33d12ae6c, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -61,17 +64,23 @@ MonoBehaviour:
       m_Id: d800521ce9e57eb48b52e775a1bcaf06
       m_ProfileName: Default
       m_Values:
+      - m_Id: 0635756cb8bfe864db888437b2179867
+        m_Value: ServerData/[BuildTarget]
+      - m_Id: 384b56579f7f8e241a33dd57f5c576b6
+        m_Value: http://[PrivateIpAddress]:[HostingServicePort]
       - m_Id: 47fe986772bc1434099436eb944c60cc
         m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
       - m_Id: 48ae8406bac792e4a81e47d7e5f079ae
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: a9999d8c7683c3e43a03d3f5a85bf1d6
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-      - m_Id: 0635756cb8bfe864db888437b2179867
-        m_Value: ServerData/[BuildTarget]
-      - m_Id: 384b56579f7f8e241a33dd57f5c576b6
-        m_Value: http://[PrivateIpAddress]:[HostingServicePort]
     m_ProfileEntryNames:
+    - m_Id: 0635756cb8bfe864db888437b2179867
+      m_Name: Remote.BuildPath
+      m_InlineUsage: 0
+    - m_Id: 384b56579f7f8e241a33dd57f5c576b6
+      m_Name: Remote.LoadPath
+      m_InlineUsage: 0
     - m_Id: 47fe986772bc1434099436eb944c60cc
       m_Name: BuildTarget
       m_InlineUsage: 0
@@ -80,12 +89,6 @@ MonoBehaviour:
       m_InlineUsage: 0
     - m_Id: a9999d8c7683c3e43a03d3f5a85bf1d6
       m_Name: Local.LoadPath
-      m_InlineUsage: 0
-    - m_Id: 0635756cb8bfe864db888437b2179867
-      m_Name: Remote.BuildPath
-      m_InlineUsage: 0
-    - m_Id: 384b56579f7f8e241a33dd57f5c576b6
-      m_Name: Remote.LoadPath
       m_InlineUsage: 0
     m_ProfileVersion: 1
   m_LabelTable:
@@ -116,3 +119,4 @@ MonoBehaviour:
     m_NextInstanceId: 0
     m_RegisteredServiceTypeRefs:
     - UnityEditor.AddressableAssets.HostingServices.HttpHostingService, Unity.Addressables.Editor
+    m_PingTimeoutInMilliseconds: 5000
