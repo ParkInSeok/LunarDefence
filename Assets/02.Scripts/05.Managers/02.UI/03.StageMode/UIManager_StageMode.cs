@@ -64,11 +64,16 @@ public class UIManager_StageMode : UIManager
 
     }
 
+    public override bool IsCreateUIActivate()
+    {
+        return commonSelectUI.gameObject.activeSelf;
+    }
+
     private void BindCloseCommonSelectUIEvent(bool arg2)
     {
         if(arg2 == false)
         {
-            Debug.Log("BindCloseCommonSelectUIEvent");
+            //Debug.Log("BindCloseCommonSelectUIEvent");
             //°°Àº ³ëµå°¡ ¾Æ´Ò¶§ ui ²ô±â
             if (fakeUI.gameObject.activeSelf)
             {

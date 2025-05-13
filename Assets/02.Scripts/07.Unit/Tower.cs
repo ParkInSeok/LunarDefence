@@ -319,7 +319,18 @@ public class Tower : BaseUnit
 
     #endregion
 
+    public void LevelUpStar()
+    {
+        stat.CurrentTowerStat.LevelUpStar();
+    }
 
+    public void ConsumeTower()
+    {
+        unitState = UnitState.die;
+        animateState = UnitAnimateState.Die;
+
+        DieEvent();
+    }
 
 
 }

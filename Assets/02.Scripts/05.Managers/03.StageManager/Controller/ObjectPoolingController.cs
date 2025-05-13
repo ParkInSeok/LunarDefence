@@ -339,6 +339,15 @@ public class ObjectPoolingController : MonoBehaviour
 
     }
 
+    public (int,int) GetTargetPathNode(BaseUnit tower)
+    {
+        var activeTower = activeTowers.Find((x) => x.unit == tower);
+        if (activeTower == null)
+            return (-1, -1);
+
+        return (activeTower.row, activeTower.column);
+    }
+
 
 
     #endregion

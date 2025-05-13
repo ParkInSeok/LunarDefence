@@ -85,7 +85,7 @@ public class PathNode
     public void SetUnit(TileUnitState state)
     {
         // unit = _unit;
-        var unit = StageManager.Instance.ObjectPoolingController.GetTargetTower(row, column).unitDieEventHandler += DieUnit;
+        StageManager.Instance.ObjectPoolingController.GetTargetTower(row, column).unitDieEventHandler = DieUnit;
         ChangeUnitState(state);
         //unit.unitDieEventHandler += DieUnit;
 
@@ -93,8 +93,8 @@ public class PathNode
 
     public void DieUnit()
     {
-        //unit.unitDieEventHandler -= DieUnit;
         //unit = null;
+        Debug.LogFormat("DieUnit node {0} {1}", row, column);
         ChangeUnitState(TileUnitState.empty);
     }
 

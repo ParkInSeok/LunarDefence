@@ -20,7 +20,16 @@ public class FusionController
 
     public void TryFusion(Tower tower1, Tower tower2)
     {
+        tower1.ConsumeTower();
+        tower2.LevelUpStar();
+    }
 
+    public bool isCanLevelUp(Tower tower1)
+    {
+        if (tower1.Stat.CurrentTowerStat.Star == StarState.max - 1)
+            return false;
+
+        return true;
     }
 
 

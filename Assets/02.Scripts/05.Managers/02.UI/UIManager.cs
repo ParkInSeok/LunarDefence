@@ -37,6 +37,10 @@ public abstract class UIManager : SingletonMono<UIManager>
 
     }
 
+    public virtual bool IsCreateUIActivate()
+    {
+        return false;
+    }
 
 
 

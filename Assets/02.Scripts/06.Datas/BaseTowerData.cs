@@ -12,6 +12,7 @@ public enum StarState
     star_five,
     star_six,
     star_seven,
+    max,
 }
 
 [Serializable]
@@ -42,5 +43,11 @@ public class BaseTowerData : BaseData
         Star = _star;
         onchangedStarStateEventHandler?.Invoke(Star);
     }
+
+    public void LevelUpStar()
+    {
+        Star++;
+    }
+
 
 }

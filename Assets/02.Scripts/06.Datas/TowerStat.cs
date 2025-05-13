@@ -9,8 +9,6 @@ using  System;
 [Serializable]
 public class TowerStat : BaseStat
 {
-
-    protected TowerData origineTowerStat;
     [SerializeField] protected TowerData currentTowerStat;
 
     
@@ -25,9 +23,7 @@ public class TowerStat : BaseStat
     public virtual void InitStat(TowerData stat)
     {
 
-        origineTowerStat = stat;
-
-        currentTowerStat = origineTowerStat;
+        currentTowerStat = new TowerData(stat);
         if (string.IsNullOrEmpty(stat.skillUniqueKey) == false)
         {
             skill = DataManager.Instance.GameData.GetSkill(stat.skillUniqueKey);

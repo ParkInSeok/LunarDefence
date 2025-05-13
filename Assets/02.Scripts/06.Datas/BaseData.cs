@@ -29,23 +29,21 @@ public enum UnitType{
 [Serializable]
 public class BaseData
 {
-    public string uniqueKey;                //유니크 키
-    public float atk;                       //공격력
-    public int hp;                          //체력
-    public float def;                       //방어력
-    public float spdef;                     //마방
-    public float attackSpeed;               //공속
-    public float propertyReinforcePower;    //속강
-    public float propertyResistPower;       //속저
-    public int attackMotionLength;
-    public string flashUniqueKey;           //발사 이펙트
-    public string bulletUniqueKey;          //탄환 이펙트
-    public string hitUniqueKey;             //맞췃을때 이펙트
-
-    [SerializeField] protected int propertyState;               //속성상태
-    [SerializeField] protected int damageType;               //데미지 타입
-
-    [SerializeField] protected int unitType;                 //유닛 타입
+    public string                   uniqueKey;                //유니크 키
+    public float                    atk;                       //공격력
+    public int                      hp;                          //체력
+    public float                    def;                       //방어력
+    public float                    spdef;                     //마방
+    public float                    attackSpeed;               //공속
+    public float                    propertyReinforcePower;    //속강
+    public float                    propertyResistPower;       //속저
+    public int                      attackMotionLength;
+    public string                   flashUniqueKey;           //발사 이펙트
+    public string                   bulletUniqueKey;          //탄환 이펙트
+    public string                   hitUniqueKey;             //맞췃을때 이펙트
+    [SerializeField] protected int  propertyState;               //속성상태
+    [SerializeField] protected int  damageType;               //데미지 타입
+    [SerializeField] protected int  unitType;                 //유닛 타입
 
     public PropertyState PropertyState { get { 
             if(propertyState >= 0 && propertyState < System.Enum.GetValues(typeof (PropertyState)).Length)
