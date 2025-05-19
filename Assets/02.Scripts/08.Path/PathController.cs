@@ -17,8 +17,9 @@ public class PathController : MonoBehaviour
 {
     [Header("Setting")]
     [SerializeField] int maxRow;
+    public int MaxRow { get { return maxRow; } }
     [SerializeField] int maxColumn;
-
+    public int MaxColumn { get { return maxColumn; } }
     public Color color;
     [SerializeField] private GameObject tilePrefab;
     [SerializeField] private GameObject wallPrefab;
@@ -35,7 +36,7 @@ public class PathController : MonoBehaviour
     //현재 마우스 위치 노드 
     public Action<PathNode> selectPathNodeEventHandler_mouse;
     //다운햇을때노드와 일치하는지 bool
-    public Action<bool> selectPathNodeEventHandler_mouse_nodeChanged;
+    public Action<bool, PathNode> selectPathNodeEventHandler_mouse_nodeChanged;
     //마우스 업했을때 마우스위치에있는 노드
     public Action<PathNode,PathNode> selectPathNodeEventHandler_mouseUp;
 
@@ -53,13 +54,20 @@ public class PathController : MonoBehaviour
     public PathNode GetTargetPathNode { get { return targetPathNode; } }
 
     [SerializeField] private PathNode[,] grid;
+    public PathNode[,] Grid { get { return grid; } }
     private List<PathNode> openSet;
     private HashSet<PathNode> closedSet;
 
     [SerializeField] List<PathNode> targetPath = new List<PathNode>();
     public List<PathNode> TargetPath { get { return targetPath; } }
 
+    /// <summary>
+    /// 클릭down 이벤트시 타워
+    /// </summary>
     Tower tryModeTower = null;
+    /// <summary>
+    /// 마우스 클릭 이벤트중 해당 위치에있는 타워
+    /// </summary>
     Tower tryTargetTower = null;
 
 
@@ -99,6 +107,11 @@ public class PathController : MonoBehaviour
         LunarInputManager.Instance.mouseUpEventHandler += BindClickUpEvent;
     }
 
+    /// <summary>
+    /// 마우스 버튼 클릭 좌표에 해당 하는 타일 정보 
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns></returns>
     PathNode GetPathNodeByMousePosition(Vector2 pos)
     {
         var nodeindex_x = (int)(pos.x / ui_tile_width);
@@ -156,65 +169,67 @@ public class PathController : MonoBehaviour
                 switch (targetNodex.unitState)
                 {
                     case TileUnitState.empty:
-                        if (tryModeTower.transform.position != targetNodex.position)
-                            tryModeTower.transform.position = targetNodex.position;
-                        if(tryTargetTower != null)
                         {
-                            (int row, int column) = StageManager.Instance.ObjectPoolingController.GetTargetPathNode(tryTargetTower);
-                            if (tryTargetTower.transform.position != grid[row, column].position)
-                                tryTargetTower.transform.position = grid[row, column].position;
-
-                            tryTargetTower = null;
-                        }
-                        break;
-                    case TileUnitState.tower:
-              
-                        if (tryTargetTower == null)
-                        {
-                            tryTargetTower = StageManager.Instance.ObjectPoolingController.GetTargetTower(targetNodex.row, targetNodex.column) as Tower;
-                        }
-                        else
-                        {
-                            var tower2 = StageManager.Instance.ObjectPoolingController.GetTargetTower(targetNodex.row, targetNodex.column) as Tower;
-                            if (tower2 != tryTargetTower)
+                            if (tryModeTower.transform.position != targetNodex.position)
+                                tryModeTower.transform.position = targetNodex.position;
+                            if (tryTargetTower != null)
                             {
                                 (int row, int column) = StageManager.Instance.ObjectPoolingController.GetTargetPathNode(tryTargetTower);
                                 if (tryTargetTower.transform.position != grid[row, column].position)
                                     tryTargetTower.transform.position = grid[row, column].position;
 
-                                tryTargetTower = tower2;
+                                tryTargetTower = null;
                             }
                         }
+                        break;
+                    case TileUnitState.tower:
+                        {
+                            if (tryTargetTower == null)
+                            {
+                                tryTargetTower = StageManager.Instance.ObjectPoolingController.GetTargetTower(targetNodex.row, targetNodex.column) as Tower;
+                            }
+                            else
+                            {
+                                var tower2 = StageManager.Instance.ObjectPoolingController.GetTargetTower(targetNodex.row, targetNodex.column) as Tower;
+                                if (tower2 != tryTargetTower)
+                                {
+                                    (int row, int column) = StageManager.Instance.ObjectPoolingController.GetTargetPathNode(tryTargetTower);
+                                    if (tryTargetTower.transform.position != grid[row, column].position)
+                                        tryTargetTower.transform.position = grid[row, column].position;
 
-                        if (tryModeTower.Stat.CurrentTowerStat.uniqueKey.Equals(tryTargetTower.Stat.CurrentTowerStat.uniqueKey) &&
-                            tryModeTower.Stat.CurrentTowerStat.Star == tryTargetTower.Stat.CurrentTowerStat.Star)
-                        {
-                            if (tryModeTower.transform.position != targetNodex.position)
-                                tryModeTower.transform.position = targetNodex.position;
-                            //조합 유아이 활성화
-                            
-                        }
-                        else
-                        {
-                            if (tryModeTower.transform.position != targetNodex.position)
-                                tryModeTower.transform.position = targetNodex.position;
-                            if (tryTargetTower.transform.position != compareNode[0].position)
-                                tryTargetTower.transform.position = compareNode[0].position;
-                        }
+                                    tryTargetTower = tower2;
+                                }
+                            }
+
+                            if (StageManager.Instance.FusionController.IsCanFusion(tryModeTower, tryTargetTower))
+                            {
+                                if (tryModeTower.transform.position != targetNodex.position)
+                                    tryModeTower.transform.position = targetNodex.position;
+                                //조합 유아이 활성화
+                            }
+                            else
+                            {
+                                if (tryModeTower.transform.position != targetNodex.position)
+                                    tryModeTower.transform.position = targetNodex.position;
+                                if (tryTargetTower.transform.position != compareNode[0].position)
+                                    tryTargetTower.transform.position = compareNode[0].position;
+                            }
+                        }              
                         break;
                     case TileUnitState.hero:
-                        if (tryTargetTower != null)
                         {
-                            (int row, int column) = StageManager.Instance.ObjectPoolingController.GetTargetPathNode(tryTargetTower);
-                            if (tryTargetTower.transform.position != grid[row, column].position)
-                                tryTargetTower.transform.position = grid[row, column].position;
+                            if (tryTargetTower != null)
+                            {
+                                (int row, int column) = StageManager.Instance.ObjectPoolingController.GetTargetPathNode(tryTargetTower);
+                                if (tryTargetTower.transform.position != grid[row, column].position)
+                                    tryTargetTower.transform.position = grid[row, column].position;
 
-                            tryTargetTower = null;
+                                tryTargetTower = null;
+                            }
+
+                            if (tryModeTower.transform.position != compareNode[0].position)
+                                tryModeTower.transform.position = compareNode[0].position;
                         }
-
-                        if (tryModeTower.transform.position != compareNode[0].position)
-                            tryModeTower.transform.position = compareNode[0].position;
-
                         break;
                 }
             }
@@ -228,7 +243,7 @@ public class PathController : MonoBehaviour
         }
 
         selectPathNodeEventHandler_mouse?.Invoke(targetNodex);
-        selectPathNodeEventHandler_mouse_nodeChanged?.Invoke(isEqual);
+        selectPathNodeEventHandler_mouse_nodeChanged?.Invoke(isEqual, compareNode[0]);
     }
 
     private void BindClickUpEvent(Vector2 obj)
@@ -249,45 +264,49 @@ public class PathController : MonoBehaviour
                 switch (compareNode[1].unitState)
                 {
                     case TileUnitState.empty:
-                        //node1 unit 옮기기
-                        StageManager.Instance.ObjectPoolingController.ChangeTowerPathNode(compareNode[0], compareNode[1]);
-                        compareNode[0].ChangeUnitState(TileUnitState.empty);
-                        compareNode[1].ChangeUnitState(TileUnitState.tower);
+                        {
+                            //node1 unit 옮기기
+                            StageManager.Instance.ObjectPoolingController.ChangeTowerPathNode(compareNode[0], compareNode[1]);
+                            compareNode[0].ChangeUnitState(TileUnitState.empty);
+                            compareNode[1].ChangeUnitState(TileUnitState.tower);
+                        }
                         break;
                     case TileUnitState.tower:
-                        Tower tower2 = StageManager.Instance.ObjectPoolingController.GetTargetTower(compareNode[1].row, compareNode[1].column) as Tower;
-                        if (tryModeTower.Stat.CurrentTowerStat.uniqueKey.Equals(tower2.Stat.CurrentTowerStat.uniqueKey) &&
-                            tryModeTower.Stat.CurrentTowerStat.Star == tower2.Stat.CurrentTowerStat.Star)
                         {
-                            //node 1, 2 unit 같은 계열 + 성급이 동일한 유닛이면 조합 
-                            if (StageManager.Instance.FusionController.isCanLevelUp(tryModeTower))
+                            Tower tower2 = StageManager.Instance.ObjectPoolingController.GetTargetTower(compareNode[1].row, compareNode[1].column) as Tower;
+                            if (StageManager.Instance.FusionController.IsCanFusion(tryModeTower, tower2))
                             {
-                                StageManager.Instance.FusionController.TryFusion(tryModeTower, tower2);
-                                compareNode[0].ChangeUnitState(TileUnitState.empty);
-                                compareNode[1].ChangeUnitState(TileUnitState.tower);
+                                //node 1, 2 unit 같은 계열 + 성급이 동일한 유닛이면 조합 
+                                if (StageManager.Instance.FusionController.isCanLevelUp(tryModeTower))
+                                {
+                                    StageManager.Instance.FusionController.TryFusion(tryModeTower, tower2);
+                                    compareNode[0].ChangeUnitState(TileUnitState.empty);
+                                    compareNode[1].ChangeUnitState(TileUnitState.tower);
+                                }
+                                else
+                                {
+                                    StageManager.Instance.ObjectPoolingController.ChangeTowerPathNode(compareNode[0], compareNode[1]);
+                                    compareNode[0].ChangeUnitState(TileUnitState.tower);
+                                    compareNode[1].ChangeUnitState(TileUnitState.tower);
+                                }
                             }
                             else
                             {
+                                //node 1, 2 unit 다른계열 유닛 서로 자리 옮기기 || 같은 유닛계열이지만 다른 성급일때 서로 자리 옮기기
                                 StageManager.Instance.ObjectPoolingController.ChangeTowerPathNode(compareNode[0], compareNode[1]);
                                 compareNode[0].ChangeUnitState(TileUnitState.tower);
                                 compareNode[1].ChangeUnitState(TileUnitState.tower);
                             }
                         }
-                        else
-                        {
-                            //node 1, 2 unit 다른계열 유닛 서로 자리 옮기기 || 같은 유닛계열이지만 다른 성급일때 서로 자리 옮기기
-                            StageManager.Instance.ObjectPoolingController.ChangeTowerPathNode(compareNode[0], compareNode[1]);
-                            compareNode[0].ChangeUnitState(TileUnitState.tower);
-                            compareNode[1].ChangeUnitState(TileUnitState.tower);
-                        }
-
                         break;
                     case TileUnitState.hero:
-                        //타워를 먹이는 로직이 적용되어있다면 타워 먹이기 아니라면 return;
-                        if (tryModeTower.transform.position != compareNode[0].position)
                         {
-                            tryModeTower.transform.position = compareNode[0].position;
-                            compareNode[0].ChangeUnitState(TileUnitState.tower);
+                            //타워를 먹이는 로직이 적용되어있다면 타워 먹이기 아니라면 return;
+                            if (tryModeTower.transform.position != compareNode[0].position)
+                            {
+                                tryModeTower.transform.position = compareNode[0].position;
+                                compareNode[0].ChangeUnitState(TileUnitState.tower);
+                            }
                         }
                         break;
                 }

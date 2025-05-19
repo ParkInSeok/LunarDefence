@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,11 +11,21 @@ public class UIManager_StageMode : UIManager
     RectTransform backCanvasRect;
 
     [SerializeField] StageBackUI backUI;
+    [Header("CommonInputUI")]
     [SerializeField] CommonSelectUI commonSelectUI;
     [SerializeField] UIEventTrigger fakeUI;
 
     // [SerializeField] CommonSelectUIType selectuitype;
 
+    [Header("CommonNodeUnitStateUI")]
+    [SerializeField] RectTransform commonUnitStateParent;
+    Queue<Image> commonUnitStateUI = new Queue<Image>();
+    List<Image> activated_commonUnitStateUI = new List<Image>();
+
+
+    [SerializeField] Color canfusionColor;
+    [SerializeField] Color cannotfusionColor;
+    [SerializeField] Color heroColor;
 
 
     void Start()
@@ -49,7 +57,8 @@ public class UIManager_StageMode : UIManager
         //backUI.Init(backCanvasRect);
 
         StageManager.Instance.PathController.selectPathNodeEventHandler_mouseDown += BindOpenCommonSelectUIEvent;
-       
+        StageManager.Instance.PathController.selectPathNodeEventHandler_mouseUp += BindQueueNodeStateUIEvent;
+
         //StageManager.Instance.PathController.selectPathNodeEventHandler_mouseUp += BindCloseCommonSelectUIEvent;
         fakeUI.onPointerDownEventHandler = (x) =>
         {
@@ -64,26 +73,16 @@ public class UIManager_StageMode : UIManager
 
     }
 
+
+
+    #region CommonUI
+
     public override bool IsCreateUIActivate()
     {
         return commonSelectUI.gameObject.activeSelf;
     }
 
-    private void BindCloseCommonSelectUIEvent(bool arg2)
-    {
-        if(arg2 == false)
-        {
-            //Debug.Log("BindCloseCommonSelectUIEvent");
-            //같은 노드가 아닐때 ui 끄기
-            if (fakeUI.gameObject.activeSelf)
-            {
-                fakeUI.gameObject.SetActive(false);
-                commonSelectUI.HideCommonSelectUI();
-            }
-            StageManager.Instance.PathController.selectPathNodeEventHandler_mouse_nodeChanged = null;
-        }
 
-    }
 
     private void BindOpenCommonSelectUIEvent(PathNode obj)
     {
@@ -163,6 +162,10 @@ public class UIManager_StageMode : UIManager
                             break;
                     }
                     break;
+                case TileWallState.notower:
+                    commonSelectUI.ShowCommonSelectUI(screenPosition, CommonSelectUIType.one, dirType,
+                        (x) => ShowInfoClick(x, obj), null, null, "Show Info");
+                    break;
                 default:
                     break;
             }
@@ -239,6 +242,128 @@ public class UIManager_StageMode : UIManager
     }
 
 
+    private void BindCloseCommonSelectUIEvent(bool arg2, PathNode baseNode)
+    {
+        if (arg2 == false)
+        {
+            //Debug.Log("BindCloseCommonSelectUIEvent");
+            //같은 노드가 아닐때 ui 끄기
+            if (fakeUI.gameObject.activeSelf)
+            {
+                fakeUI.gameObject.SetActive(false);
+                commonSelectUI.HideCommonSelectUI();
+            }
+            if (baseNode != null)
+            {
+                if (baseNode.unitState == TileUnitState.tower)
+                {
+                    //현재 노드상태가 타워라면
+                    // 전체 노드들 조회해서 타워상태인 노드들과의 머지 상태 : 초록색 / 머지 불가 상태 (이동) : 빨간색 알파는 0.2
+                    // 영웅상태 기본 빨강색 , 먹이는 로직 상태라면 회색
+                    ShowAllNodeStateByBaseNode(baseNode);
+                }
+            }
 
+            StageManager.Instance.PathController.selectPathNodeEventHandler_mouse_nodeChanged = null;
+        }
+
+    }
+
+
+    #endregion
+
+    #region NodeStateUIByBaseNode
+
+    void ShowAllNodeStateByBaseNode(PathNode baseNode)
+    {
+        if (baseNode.unitState != TileUnitState.tower)
+            return;
+
+        var grid = StageManager.Instance.PathController.Grid;
+        var maxRow = StageManager.Instance.PathController.MaxRow;
+        var maxColumn = StageManager.Instance.PathController.MaxColumn;
+        var width = StageManager.Instance.PathController.UI_Tile_Width;
+        var height = StageManager.Instance.PathController.UI_Tile_Height;
+        var baseTower = (Tower)StageManager.Instance.ObjectPoolingController.GetTargetTower(baseNode.row, baseNode.column);
+
+
+
+
+        for (int i = 0; i < maxRow; i++)
+        {
+            for (int j = 0; j < maxColumn; j++)
+            {
+                var node = grid[i, j];
+                if (baseNode == node)
+                    continue;
+
+                if (node.unitState == TileUnitState.empty)
+                    continue;
+
+                Vector3 screenPosition = Camera.main.WorldToScreenPoint(node.position);
+                var image = GetComonUnitStateUI();
+                image.rectTransform.sizeDelta = new Vector2(width, height);
+                image.rectTransform.position = screenPosition;
+
+                switch (node.unitState)
+                {
+                    case TileUnitState.empty:
+                        break;
+                    case TileUnitState.tower:
+                        var nodeTower = (Tower)StageManager.Instance.ObjectPoolingController.GetTargetTower(node.row, node.column);
+                        bool isCanFusion = StageManager.Instance.FusionController.IsCanFusion(baseTower, nodeTower) &&
+                            StageManager.Instance.FusionController.isCanLevelUp(baseTower);
+                        image.color = isCanFusion ? canfusionColor : cannotfusionColor;
+                        break;
+                    case TileUnitState.hero:
+                        image.color = heroColor;
+                        break;
+                }
+
+            }
+        }
+
+
+    }
+
+    Image GetComonUnitStateUI()
+    {
+        if(commonUnitStateUI.Count <= 0)
+        {
+            GameObject imageObj = new GameObject("commonUnitStateUI");
+            imageObj.transform.SetParent(commonUnitStateParent,false);
+            Image image = imageObj.AddComponent<Image>();
+            RectTransform rt = image.GetComponent<RectTransform>();
+            rt.anchoredPosition = new Vector2(0, 0); // 캔버스 중앙에 위치
+            rt.sizeDelta = new Vector2(200, 200); // 크기 조절
+            image.gameObject.SetActive(false);
+            commonUnitStateUI.Enqueue(image);
+
+        }
+
+        var result = commonUnitStateUI.Dequeue();
+        result.gameObject.SetActive(true);
+        activated_commonUnitStateUI.Add(result);
+        return result;
+    }
+
+
+    private void BindQueueNodeStateUIEvent(PathNode arg1, PathNode arg2)
+    {
+        if (activated_commonUnitStateUI.Count <= 0)
+            return;
+
+        for (int i = 0; i < activated_commonUnitStateUI.Count; i++)
+        {
+            commonUnitStateUI.Enqueue(activated_commonUnitStateUI[i]);
+            activated_commonUnitStateUI[i].gameObject.SetActive(false);
+        }
+
+        activated_commonUnitStateUI.Clear();
+
+    }
+
+
+    #endregion
 
 }

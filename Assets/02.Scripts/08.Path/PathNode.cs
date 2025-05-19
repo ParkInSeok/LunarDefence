@@ -7,6 +7,7 @@ public enum TileWallState
 {
     empty,
     wall,
+    notower
 }
 
 public enum TileUnitState
